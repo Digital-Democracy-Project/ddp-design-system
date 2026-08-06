@@ -1,0 +1,26 @@
+{
+  "name": "@digital-democracy-project/design-system",
+  "version": "0.1.0",
+  "description": "DDP design tokens and SCSS foundation — colors, type, spacing, motion, and mixins shared across Digital Democracy Project web products.",
+  "license": "UNLICENSED",
+  "files": [
+    "styles"
+  ],
+  "exports": {
+    "./styles": "./styles/index.scss",
+    "./styles/tokens.css": "./styles/colors_and_type.css"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Digital-Democracy-Project/ddp-design-system.git"
+  },
+  "scripts": {
+    "build:check": "sass --no-source-map styles/index.scss /dev/null"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}

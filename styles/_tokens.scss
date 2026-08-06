@@ -1,0 +1,213 @@
+@use 'sass:map';
+@use 'sass:string';
+
+// ============================================================
+// TOKEN ACCESSORS
+//
+// The source of truth for every token is colors_and_type.css —
+// CSS custom properties, so they stay themeable at runtime.
+// These functions are typed accessors that emit `var(--ddp-*)`,
+// validated against the key lists below at compile time. A typo
+// fails the build instead of silently rendering nothing.
+//
+// Use the RAW maps at the bottom only where a value must exist
+// at author time (math, colour manipulation, media queries).
+// ============================================================
+
+@function _var($name, $fallback: null) {
+  @if $fallback {
+    @return var(--ddp-#{$name}, #{$fallback});
+  }
+  @return var(--ddp-#{$name});
+}
+
+@function _assert($value, $allowed, $label) {
+  @if index($allowed, $value) == null {
+    @error 'Unknown #{$label} token `#{$value}`. Expected one of: #{$allowed}.';
+  }
+  @return $value;
+}
+
+// ---------- Colour ----------
+
+$-palette-hues: ('orange', 'violet', 'jade', 'red', 'amber', 'ochre', 'neutral', 'democratic', 'republican');
+$-palette-steps: (0, 25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950);
+
+/// Primitive palette colour. Tier 1 — avoid in component code.
+/// palette('orange', 500) → var(--ddp-color-orange-500)
+@function palette($hue, $step: 500) {
+  @if index($-palette-hues, $hue) == null {
+    @error 'Unknown hue `#{$hue}`. Expected one of: #{$-palette-hues}.';
+  }
+  @if index($-palette-steps, $step) == null {
+    @error 'Unknown step `#{$step}`. Expected one of: #{$-palette-steps}.';
+  }
+  @return _var('color-#{$hue}-#{$step}');
+}
+
+$-color-keys: (
+  // brand
+  'primary', 'primary-hover', 'primary-active', 'primary-subtle', 'primary-subtle-fg', 'on-primary',
+  'secondary', 'secondary-hover', 'secondary-active', 'secondary-subtle', 'secondary-subtle-fg', 'on-secondary',
+  'tertiary', 'tertiary-hover', 'tertiary-active', 'tertiary-subtle', 'tertiary-subtle-fg', 'on-tertiary',
+  // valence
+  'positive', 'positive-subtle', 'positive-fg',
+  'negative', 'negative-subtle', 'negative-fg',
+  'caution', 'caution-subtle', 'caution-fg',
+  'info', 'info-subtle', 'info-fg',
+  'neutral-status', 'neutral-status-subtle', 'neutral-status-fg',
+  // party — fixed, never re-themed
+  'democratic', 'democratic-subtle', 'democratic-fg',
+  'republican', 'republican-subtle', 'republican-fg',
+  'unaffiliated', 'unaffiliated-subtle', 'unaffiliated-fg'
+);
+
+/// Semantic colour. Tier 2 — this is what components should use.
+/// color('primary') → var(--ddp-color-primary)
+@function color($key) {
+  @return _var('color-#{_assert($key, $-color-keys, "color")}');
+}
+
+$-text-keys: ('default', 'muted', 'subtle', 'disabled', 'inverse', 'link', 'link-hover');
+@function text($key: 'default') {
+  @return _var('text-#{_assert($key, $-text-keys, "text")}');
+}
+
+$-surface-keys: ('page', 'raised', 'sunken', 'inverse', 'overlay');
+@function surface($key: 'raised') {
+  @return _var('surface-#{_assert($key, $-surface-keys, "surface")}');
+}
+
+$-border-keys: ('subtle', 'default', 'strong', 'inverse', 'focus');
+@function border-color($key: 'default') {
+  @return _var('border-#{_assert($key, $-border-keys, "border")}');
+}
+
+$-scale-steps: (1, 2, 3, 4, 5);
+$-scale-variants: ('base', 'subtle', 'fg');
+/// Ordinal grade scale. scale(1) → var(--ddp-scale-1)
+@function scale($step, $variant: 'base') {
+  @if index($-scale-steps, $step) == null {
+    @error 'Unknown scale step `#{$step}`. Expected 1–5.';
+  }
+  @if index($-scale-variants, $variant) == null {
+    @error 'Unknown scale variant `#{$variant}`. Expected one of: #{$-scale-variants}.';
+  }
+  @if $variant == 'base' { @return _var('scale-#{$step}'); }
+  @return _var('scale-#{$step}-#{$variant}');
+}
+
+// ---------- Space, radius, size ----------
+
+$-space-keys: (0, 'px', '0-5', 1, '1-5', 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32);
+@function space($key) {
+  @return _var('space-#{_assert($key, $-space-keys, "space")}');
+}
+
+$-radius-keys: ('none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', 'full');
+@function radius($key: 'md') {
+  @return _var('radius-#{_assert($key, $-radius-keys, "radius")}');
+}
+
+$-border-width-keys: (0, 1, 2, 4);
+@function border-width($key: 1) {
+  @return _var('border-width-#{_assert($key, $-border-width-keys, "border-width")}');
+}
+
+$-icon-size-keys: ('xs', 'sm', 'md', 'lg', 'xl');
+@function icon-size($key: 'md') {
+  @return _var('icon-size-#{_assert($key, $-icon-size-keys, "icon-size")}');
+}
+
+$-shadow-keys: ('none', 'xs', 'sm', 'md', 'lg', 'xl');
+@function shadow($key) {
+  @return _var('shadow-#{_assert($key, $-shadow-keys, "shadow")}');
+}
+
+$-z-keys: ('base', 'dropdown', 'sticky', 'overlay', 'modal', 'popover', 'toast', 'tooltip');
+@function z($key) {
+  @return _var('z-#{_assert($key, $-z-keys, "z-index")}');
+}
+
+$-opacity-keys: (0, 5, 10, 20, 40, 60, 80, 100);
+@function opacity($key) {
+  @return _var('opacity-#{_assert($key, $-opacity-keys, "opacity")}');
+}
+
+$-container-keys: ('sm', 'md', 'lg', 'xl');
+@function container($key: 'xl') {
+  @return _var('container-#{_assert($key, $-container-keys, "container")}');
+}
+
+// ---------- Type ----------
+
+$-font-family-keys: ('sans', 'serif', 'mono');
+@function font-family($key: 'sans') {
+  @return _var('font-family-#{_assert($key, $-font-family-keys, "font-family")}');
+}
+
+$-font-size-keys: ('2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl', '7xl');
+@function font-size($key: 'md') {
+  @return _var('font-size-#{_assert($key, $-font-size-keys, "font-size")}');
+}
+
+/// Line heights use the same keys as font sizes and stay on the 4px grid.
+@function line-height($key: 'md') {
+  @return _var('line-height-#{_assert($key, $-font-size-keys, "line-height")}');
+}
+
+$-font-weight-keys: ('light', 'regular', 'medium', 'semibold', 'bold', 'extrabold');
+@function font-weight($key: 'regular') {
+  @return _var('font-weight-#{_assert($key, $-font-weight-keys, "font-weight")}');
+}
+
+$-tracking-keys: ('tighter', 'tight', 'snug', 'normal', 'wide', 'wider', 'widest');
+@function tracking($key: 'normal') {
+  @return _var('letter-spacing-#{_assert($key, $-tracking-keys, "letter-spacing")}');
+}
+
+// ---------- Motion ----------
+
+$-duration-keys: ('instant', 'fast', 'base', 'slow', 'slower');
+@function duration($key: 'base') {
+  @return _var('duration-#{_assert($key, $-duration-keys, "duration")}');
+}
+
+$-ease-keys: ('standard', 'emphasized', 'in', 'out');
+@function ease($key: 'standard') {
+  @return _var('ease-#{_assert($key, $-ease-keys, "ease")}');
+}
+
+// ============================================================
+// RAW VALUES
+//
+// Compile-time literals, for the rare case where `var()` will not
+// do — media queries, colour math, calc() that must fold early.
+// Keep in sync with colors_and_type.css. Prefer the functions above.
+// ============================================================
+
+$raw-space: (
+  0: 0px, 'px': 1px, '0-5': 2px, 1: 4px, '1-5': 6px, 2: 8px, 3: 12px, 4: 16px,
+  5: 20px, 6: 24px, 8: 32px, 10: 40px, 12: 48px, 16: 64px, 20: 80px, 24: 96px, 32: 128px
+);
+
+$raw-font-size: (
+  '2xs': 11px, 'xs': 12px, 'sm': 14px, 'md': 16px, 'lg': 18px, 'xl': 20px,
+  '2xl': 24px, '3xl': 30px, '4xl': 36px, '5xl': 48px, '6xl': 60px, '7xl': 72px
+);
+
+$raw-line-height: (
+  '2xs': 16px, 'xs': 18px, 'sm': 20px, 'md': 24px, 'lg': 28px, 'xl': 28px,
+  '2xl': 32px, '3xl': 38px, '4xl': 44px, '5xl': 54px, '6xl': 64px, '7xl': 76px
+);
+
+$raw-radius: (
+  'none': 0px, 'xs': 2px, 'sm': 4px, 'md': 8px, 'lg': 12px, 'xl': 16px, '2xl': 24px, 'full': 9999px
+);
+
+@function raw($map, $key) {
+  @if not map.has-key($map, $key) {
+    @error 'Unknown raw token `#{$key}`. Expected one of: #{map.keys($map)}.';
+  }
+  @return map.get($map, $key);
+}

@@ -1,0 +1,17 @@
+// ============================================================
+// DDP style layer — single entry point.
+//
+//   @use '@digital-democracy-project/design-system/styles' as ds;
+//   .button { padding: ds.space(3); }
+//
+// or, to pull everything into scope:
+//
+//   @use '@digital-democracy-project/design-system/styles' as *;
+//   .button { padding: space(3); }
+//
+// Emits no CSS on its own — safe to @use in every module.
+// ============================================================
+
+@forward 'tokens';
+@forward 'breakpoints';
+@forward 'mixins';
