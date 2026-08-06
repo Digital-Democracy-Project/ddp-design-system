@@ -239,11 +239,11 @@
 
 /* ---------- Elevation ---------- */
 --ddp-shadow-none: none;
---ddp-shadow-xs: 0 1px 2px rgba(11, 21, 32, 0.06);
---ddp-shadow-sm: 0 1px 3px rgba(11, 21, 32, 0.09), 0 1px 2px rgba(11, 21, 32, 0.05);
---ddp-shadow-md: 0 4px 12px rgba(11, 21, 32, 0.10);
---ddp-shadow-lg: 0 12px 32px rgba(11, 21, 32, 0.13);
---ddp-shadow-xl: 0 24px 56px rgba(11, 21, 32, 0.17);
+--ddp-shadow-xs:   0 1px 2px rgba(11, 21, 32, 0.06);
+--ddp-shadow-sm:   0 1px 3px rgba(11, 21, 32, 0.09), 0 1px 2px rgba(11, 21, 32, 0.05);
+--ddp-shadow-md:   0 4px 12px rgba(11, 21, 32, 0.10);
+--ddp-shadow-lg:   0 12px 32px rgba(11, 21, 32, 0.13);
+--ddp-shadow-xl:   0 24px 56px rgba(11, 21, 32, 0.17);
 
 /* ---------- Opacity ---------- */
 --ddp-opacity-0:   0; /* @kind other */
@@ -278,60 +278,72 @@
 --ddp-duration-base:    200ms; /* @kind other */
 --ddp-duration-slow:    320ms; /* @kind other */
 --ddp-duration-slower:  480ms; /* @kind other */
---ddp-ease-standard:   cubic-bezier(0.2, 0.7, 0.2, 1); /* @kind other */
---ddp-ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
---ddp-ease-in:         cubic-bezier(0.4, 0, 1, 1); /* @kind other */
---ddp-ease-out:        cubic-bezier(0, 0, 0.2, 1); /* @kind other */
+--ddp-ease-standard:    cubic-bezier(0.2, 0.7, 0.2, 1); /* @kind other */
+--ddp-ease-emphasized:  cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+--ddp-ease-in:          cubic-bezier(0.4, 0, 1, 1); /* @kind other */
+--ddp-ease-out:         cubic-bezier(0, 0, 0.2, 1); /* @kind other */
 
 /* ---------- Layout ---------- */
 --ddp-container-sm: 640px;
 --ddp-container-md: 840px;
 --ddp-container-lg: 1080px;
 --ddp-container-xl: 1280px;
---ddp-gutter: 24px;
+--ddp-gutter:       24px;
 
 
 /* ============================================================
    TIER 2 — SEMANTIC  (light theme)
    Override any of these in a consuming project to re-theme.
+
+   Each color role exposes up to four variants, always the same
+   four suffixes, no exceptions:
+
+     {role}                    the solid, full-strength color
+     {role}-foreground         text/icon color, safe on the solid color
+     {role}-tint               a light background wash of the color
+     {role}-tint-foreground    text/icon color, safe on the tint
+
+   e.g. --ddp-color-primary-tint is a light orange wash (for a chip
+   background); --ddp-color-primary-tint-foreground is the dark
+   orange text color guaranteed to read on top of that wash.
    ============================================================ */
 
 /* ---------- Brand ---------- */
---ddp-color-primary:            var(--ddp-color-orange-500);
---ddp-color-primary-hover:      var(--ddp-color-orange-600);
---ddp-color-primary-active:     var(--ddp-color-orange-700);
---ddp-color-primary-subtle:     var(--ddp-color-orange-100);
---ddp-color-primary-subtle-fg:  var(--ddp-color-orange-700);
---ddp-color-on-primary:         var(--ddp-color-neutral-0);
+--ddp-color-primary:                 var(--ddp-color-orange-500);
+--ddp-color-primary-hover:           var(--ddp-color-orange-600);
+--ddp-color-primary-active:          var(--ddp-color-orange-700);
+--ddp-color-primary-tint:            var(--ddp-color-orange-100);
+--ddp-color-primary-tint-foreground: var(--ddp-color-orange-700);
+--ddp-color-primary-foreground:      var(--ddp-color-neutral-0);
 
---ddp-color-secondary:          var(--ddp-color-violet-500);
---ddp-color-secondary-hover:    var(--ddp-color-violet-600);
---ddp-color-secondary-active:   var(--ddp-color-violet-700);
---ddp-color-secondary-subtle:   var(--ddp-color-violet-100);
---ddp-color-secondary-subtle-fg: var(--ddp-color-violet-700);
---ddp-color-on-secondary:       var(--ddp-color-neutral-0);
+--ddp-color-secondary:                 var(--ddp-color-violet-500);
+--ddp-color-secondary-hover:           var(--ddp-color-violet-600);
+--ddp-color-secondary-active:          var(--ddp-color-violet-700);
+--ddp-color-secondary-tint:            var(--ddp-color-violet-100);
+--ddp-color-secondary-tint-foreground: var(--ddp-color-violet-700);
+--ddp-color-secondary-foreground:      var(--ddp-color-neutral-0);
 
---ddp-color-tertiary:           var(--ddp-color-jade-500);
---ddp-color-tertiary-hover:     var(--ddp-color-jade-600);
---ddp-color-tertiary-active:    var(--ddp-color-jade-700);
---ddp-color-tertiary-subtle:    var(--ddp-color-jade-100);
---ddp-color-tertiary-subtle-fg: var(--ddp-color-jade-700);
---ddp-color-on-tertiary:        var(--ddp-color-neutral-0);
+--ddp-color-tertiary:                 var(--ddp-color-jade-500);
+--ddp-color-tertiary-hover:           var(--ddp-color-jade-600);
+--ddp-color-tertiary-active:          var(--ddp-color-jade-700);
+--ddp-color-tertiary-tint:            var(--ddp-color-jade-100);
+--ddp-color-tertiary-tint-foreground: var(--ddp-color-jade-700);
+--ddp-color-tertiary-foreground:      var(--ddp-color-neutral-0);
 
 /* ---------- Surfaces ---------- */
---ddp-surface-page:     var(--ddp-color-neutral-50);
---ddp-surface-raised:   var(--ddp-color-neutral-0);
---ddp-surface-sunken:   var(--ddp-color-neutral-100);
---ddp-surface-inverse:  var(--ddp-color-neutral-900);
---ddp-surface-overlay:  rgba(11, 21, 32, 0.55);
+--ddp-surface-page:    var(--ddp-color-neutral-50);
+--ddp-surface-raised:  var(--ddp-color-neutral-0);
+--ddp-surface-sunken:  var(--ddp-color-neutral-100);
+--ddp-surface-inverse: var(--ddp-color-neutral-900);
+--ddp-surface-overlay: rgba(11, 21, 32, 0.55);
 
 /* ---------- Text ---------- */
---ddp-text-default:  var(--ddp-color-neutral-900);
---ddp-text-muted:    var(--ddp-color-neutral-600);
---ddp-text-subtle:   var(--ddp-color-neutral-500);
---ddp-text-disabled: var(--ddp-color-neutral-400);
---ddp-text-inverse:  var(--ddp-color-neutral-0);
---ddp-text-link:     var(--ddp-color-violet-500);
+--ddp-text-default:    var(--ddp-color-neutral-900);
+--ddp-text-muted:      var(--ddp-color-neutral-600);
+--ddp-text-subtle:     var(--ddp-color-neutral-500);
+--ddp-text-disabled:   var(--ddp-color-neutral-400);
+--ddp-text-inverse:    var(--ddp-color-neutral-0);
+--ddp-text-link:       var(--ddp-color-violet-500);
 --ddp-text-link-hover: var(--ddp-color-violet-700);
 
 /* ---------- Borders ---------- */
@@ -344,61 +356,61 @@
 /* ---------- Status — valence, not outcome ----------
    positive / negative are deliberately generic: they cover pass–fail,
    aligned–diverged, up–down, gain–loss. Never use them for party. */
---ddp-color-positive:         var(--ddp-color-jade-500);
---ddp-color-positive-subtle:  var(--ddp-color-jade-100);
---ddp-color-positive-fg:      var(--ddp-color-jade-700);
---ddp-color-negative:         var(--ddp-color-red-500);
---ddp-color-negative-subtle:  var(--ddp-color-red-100);
---ddp-color-negative-fg:      var(--ddp-color-red-700);
---ddp-color-caution:          var(--ddp-color-amber-500);
---ddp-color-caution-subtle:   var(--ddp-color-amber-100);
---ddp-color-caution-fg:       var(--ddp-color-amber-700);
---ddp-color-info:             var(--ddp-color-violet-500);
---ddp-color-info-subtle:      var(--ddp-color-violet-100);
---ddp-color-info-fg:          var(--ddp-color-violet-700);
---ddp-color-neutral-status:        var(--ddp-color-neutral-500);
---ddp-color-neutral-status-subtle: var(--ddp-color-neutral-100);
---ddp-color-neutral-status-fg:     var(--ddp-color-neutral-700);
+--ddp-color-positive:                       var(--ddp-color-jade-500);
+--ddp-color-positive-tint:                  var(--ddp-color-jade-100);
+--ddp-color-positive-tint-foreground:       var(--ddp-color-jade-700);
+--ddp-color-negative:                       var(--ddp-color-red-500);
+--ddp-color-negative-tint:                  var(--ddp-color-red-100);
+--ddp-color-negative-tint-foreground:       var(--ddp-color-red-700);
+--ddp-color-caution:                        var(--ddp-color-amber-500);
+--ddp-color-caution-tint:                   var(--ddp-color-amber-100);
+--ddp-color-caution-tint-foreground:        var(--ddp-color-amber-700);
+--ddp-color-info:                           var(--ddp-color-violet-500);
+--ddp-color-info-tint:                      var(--ddp-color-violet-100);
+--ddp-color-info-tint-foreground:           var(--ddp-color-violet-700);
+--ddp-color-neutral-status:                 var(--ddp-color-neutral-500);
+--ddp-color-neutral-status-tint:            var(--ddp-color-neutral-100);
+--ddp-color-neutral-status-tint-foreground: var(--ddp-color-neutral-700);
 
 /* Back-compat aliases */
---ddp-color-success:         var(--ddp-color-positive);
---ddp-color-success-subtle:  var(--ddp-color-positive-subtle);
---ddp-color-success-fg:      var(--ddp-color-positive-fg);
---ddp-color-danger:          var(--ddp-color-negative);
---ddp-color-danger-subtle:   var(--ddp-color-negative-subtle);
---ddp-color-danger-fg:       var(--ddp-color-negative-fg);
---ddp-color-warning:         var(--ddp-color-caution);
---ddp-color-warning-subtle:  var(--ddp-color-caution-subtle);
---ddp-color-warning-fg:      var(--ddp-color-caution-fg);
+--ddp-color-success:        var(--ddp-color-positive);
+--ddp-color-success-subtle: var(--ddp-color-positive-tint);
+--ddp-color-success-fg:     var(--ddp-color-positive-tint-foreground);
+--ddp-color-danger:         var(--ddp-color-negative);
+--ddp-color-danger-subtle:  var(--ddp-color-negative-tint);
+--ddp-color-danger-fg:      var(--ddp-color-negative-tint-foreground);
+--ddp-color-warning:        var(--ddp-color-caution);
+--ddp-color-warning-subtle: var(--ddp-color-caution-tint);
+--ddp-color-warning-fg:     var(--ddp-color-caution-tint-foreground);
 
 /* ---------- Ordinal scale — semantic. Five fixed steps, best → worst. */
---ddp-scale-1:        var(--ddp-color-jade-600);
---ddp-scale-1-subtle: var(--ddp-color-jade-100);
---ddp-scale-1-fg:     var(--ddp-color-jade-800);
---ddp-scale-2:        var(--ddp-color-jade-400);
---ddp-scale-2-subtle: var(--ddp-color-jade-50);
---ddp-scale-2-fg:     var(--ddp-color-jade-700);
---ddp-scale-3:        var(--ddp-color-amber-400);
---ddp-scale-3-subtle: var(--ddp-color-amber-100);
---ddp-scale-3-fg:     var(--ddp-color-amber-700);
---ddp-scale-4:        var(--ddp-color-ochre-400);
---ddp-scale-4-subtle: var(--ddp-color-ochre-100);
---ddp-scale-4-fg:     var(--ddp-color-ochre-700);
---ddp-scale-5:        var(--ddp-color-red-500);
---ddp-scale-5-subtle: var(--ddp-color-red-100);
---ddp-scale-5-fg:     var(--ddp-color-red-700);
+--ddp-scale-1:                 var(--ddp-color-jade-600);
+--ddp-scale-1-tint:            var(--ddp-color-jade-100);
+--ddp-scale-1-tint-foreground: var(--ddp-color-jade-800);
+--ddp-scale-2:                 var(--ddp-color-jade-400);
+--ddp-scale-2-tint:            var(--ddp-color-jade-50);
+--ddp-scale-2-tint-foreground: var(--ddp-color-jade-700);
+--ddp-scale-3:                 var(--ddp-color-amber-400);
+--ddp-scale-3-tint:            var(--ddp-color-amber-100);
+--ddp-scale-3-tint-foreground: var(--ddp-color-amber-700);
+--ddp-scale-4:                 var(--ddp-color-ochre-400);
+--ddp-scale-4-tint:            var(--ddp-color-ochre-100);
+--ddp-scale-4-tint-foreground: var(--ddp-color-ochre-700);
+--ddp-scale-5:                 var(--ddp-color-red-500);
+--ddp-scale-5-tint:            var(--ddp-color-red-100);
+--ddp-scale-5-tint-foreground: var(--ddp-color-red-700);
 
 /* ---------- Party — semantic. Points at fixed primitives.
    Do not override. Dark theme lifts to a lighter step for legibility only. */
---ddp-color-democratic:        var(--ddp-color-democratic-500);
---ddp-color-democratic-subtle: var(--ddp-color-democratic-100);
---ddp-color-democratic-fg:     var(--ddp-color-democratic-700);
---ddp-color-republican:        var(--ddp-color-republican-500);
---ddp-color-republican-subtle: var(--ddp-color-republican-100);
---ddp-color-republican-fg:     var(--ddp-color-republican-700);
---ddp-color-unaffiliated:        var(--ddp-color-neutral-500);
---ddp-color-unaffiliated-subtle: var(--ddp-color-neutral-100);
---ddp-color-unaffiliated-fg:     var(--ddp-color-neutral-700);
+--ddp-color-democratic:                   var(--ddp-color-democratic-500);
+--ddp-color-democratic-tint:              var(--ddp-color-democratic-100);
+--ddp-color-democratic-tint-foreground:   var(--ddp-color-democratic-700);
+--ddp-color-republican:                   var(--ddp-color-republican-500);
+--ddp-color-republican-tint:              var(--ddp-color-republican-100);
+--ddp-color-republican-tint-foreground:   var(--ddp-color-republican-700);
+--ddp-color-unaffiliated:                 var(--ddp-color-neutral-500);
+--ddp-color-unaffiliated-tint:            var(--ddp-color-neutral-100);
+--ddp-color-unaffiliated-tint-foreground: var(--ddp-color-neutral-700);
 
 /* ---------- Focus ring ---------- */
 --ddp-focus-ring-width:  3px; /* @kind spacing */
@@ -412,32 +424,32 @@
    Only Tier 2 is remapped. Primitives never change.
    ============================================================ */
 [data-theme="dark"] {
---ddp-color-primary:            var(--ddp-color-orange-400);
---ddp-color-primary-hover:      var(--ddp-color-orange-300);
---ddp-color-primary-active:     var(--ddp-color-orange-200);
---ddp-color-primary-subtle:     rgba(248, 88, 40, 0.16);
---ddp-color-primary-subtle-fg:  var(--ddp-color-orange-300);
---ddp-color-on-primary:         var(--ddp-color-neutral-950);
+--ddp-color-primary:                 var(--ddp-color-orange-400);
+--ddp-color-primary-hover:           var(--ddp-color-orange-300);
+--ddp-color-primary-active:          var(--ddp-color-orange-200);
+--ddp-color-primary-tint:            rgba(248, 88, 40, 0.16);
+--ddp-color-primary-tint-foreground: var(--ddp-color-orange-300);
+--ddp-color-primary-foreground:      var(--ddp-color-neutral-950);
 
---ddp-color-secondary:          var(--ddp-color-violet-300);
---ddp-color-secondary-hover:    var(--ddp-color-violet-200);
---ddp-color-secondary-active:   var(--ddp-color-violet-100);
---ddp-color-secondary-subtle:   rgba(107, 82, 223, 0.28);
---ddp-color-secondary-subtle-fg: var(--ddp-color-violet-200);
---ddp-color-on-secondary:       var(--ddp-color-neutral-950);
+--ddp-color-secondary:                 var(--ddp-color-violet-300);
+--ddp-color-secondary-hover:           var(--ddp-color-violet-200);
+--ddp-color-secondary-active:          var(--ddp-color-violet-100);
+--ddp-color-secondary-tint:            rgba(107, 82, 223, 0.28);
+--ddp-color-secondary-tint-foreground: var(--ddp-color-violet-200);
+--ddp-color-secondary-foreground:      var(--ddp-color-neutral-950);
 
---ddp-color-tertiary:           var(--ddp-color-jade-400);
---ddp-color-tertiary-hover:     var(--ddp-color-jade-300);
---ddp-color-tertiary-active:    var(--ddp-color-jade-200);
---ddp-color-tertiary-subtle:    rgba(27, 132, 96, 0.24);
---ddp-color-tertiary-subtle-fg: var(--ddp-color-jade-300);
---ddp-color-on-tertiary:        var(--ddp-color-neutral-950);
+--ddp-color-tertiary:                 var(--ddp-color-jade-400);
+--ddp-color-tertiary-hover:           var(--ddp-color-jade-300);
+--ddp-color-tertiary-active:          var(--ddp-color-jade-200);
+--ddp-color-tertiary-tint:            rgba(27, 132, 96, 0.24);
+--ddp-color-tertiary-tint-foreground: var(--ddp-color-jade-300);
+--ddp-color-tertiary-foreground:      var(--ddp-color-neutral-950);
 
---ddp-surface-page:     var(--ddp-color-neutral-900);
---ddp-surface-raised:   var(--ddp-color-neutral-800);
---ddp-surface-sunken:   var(--ddp-color-neutral-950);
---ddp-surface-inverse:  var(--ddp-color-neutral-0);
---ddp-surface-overlay:  rgba(0, 0, 0, 0.65);
+--ddp-surface-page:    var(--ddp-color-neutral-900);
+--ddp-surface-raised:  var(--ddp-color-neutral-800);
+--ddp-surface-sunken:  var(--ddp-color-neutral-950);
+--ddp-surface-inverse: var(--ddp-color-neutral-0);
+--ddp-surface-overlay: rgba(0, 0, 0, 0.65);
 
 --ddp-text-default:    var(--ddp-color-neutral-100);
 --ddp-text-muted:      var(--ddp-color-neutral-300);
@@ -453,47 +465,47 @@
 --ddp-border-inverse: var(--ddp-color-neutral-200);
 --ddp-border-focus:   var(--ddp-color-orange-400);
 
---ddp-color-positive:        var(--ddp-color-jade-400);
---ddp-color-positive-subtle: rgba(27, 132, 96, 0.24);
---ddp-color-positive-fg:     var(--ddp-color-jade-300);
---ddp-color-negative:        var(--ddp-color-red-400);
---ddp-color-negative-subtle: rgba(200, 65, 47, 0.22);
---ddp-color-negative-fg:     var(--ddp-color-red-300);
---ddp-color-caution:         var(--ddp-color-amber-300);
---ddp-color-caution-subtle:  rgba(223, 163, 15, 0.20);
---ddp-color-caution-fg:      var(--ddp-color-amber-200);
---ddp-color-info:            var(--ddp-color-violet-300);
---ddp-color-info-subtle:     rgba(107, 82, 223, 0.28);
---ddp-color-info-fg:         var(--ddp-color-violet-200);
---ddp-color-neutral-status:        var(--ddp-color-neutral-400);
---ddp-color-neutral-status-subtle: rgba(151, 163, 180, 0.20);
---ddp-color-neutral-status-fg:     var(--ddp-color-neutral-300);
+--ddp-color-positive:                       var(--ddp-color-jade-400);
+--ddp-color-positive-tint:                  rgba(27, 132, 96, 0.24);
+--ddp-color-positive-tint-foreground:       var(--ddp-color-jade-300);
+--ddp-color-negative:                       var(--ddp-color-red-400);
+--ddp-color-negative-tint:                  rgba(200, 65, 47, 0.22);
+--ddp-color-negative-tint-foreground:       var(--ddp-color-red-300);
+--ddp-color-caution:                        var(--ddp-color-amber-300);
+--ddp-color-caution-tint:                   rgba(223, 163, 15, 0.20);
+--ddp-color-caution-tint-foreground:        var(--ddp-color-amber-200);
+--ddp-color-info:                           var(--ddp-color-violet-300);
+--ddp-color-info-tint:                      rgba(107, 82, 223, 0.28);
+--ddp-color-info-tint-foreground:           var(--ddp-color-violet-200);
+--ddp-color-neutral-status:                 var(--ddp-color-neutral-400);
+--ddp-color-neutral-status-tint:            rgba(151, 163, 180, 0.20);
+--ddp-color-neutral-status-tint-foreground: var(--ddp-color-neutral-300);
 
---ddp-scale-1:        var(--ddp-color-jade-400);
---ddp-scale-1-subtle: rgba(27, 132, 96, 0.24);
---ddp-scale-1-fg:     var(--ddp-color-jade-300);
---ddp-scale-2:        var(--ddp-color-jade-300);
---ddp-scale-2-subtle: rgba(27, 132, 96, 0.16);
---ddp-scale-2-fg:     var(--ddp-color-jade-200);
---ddp-scale-3:        var(--ddp-color-amber-300);
---ddp-scale-3-subtle: rgba(223, 163, 15, 0.20);
---ddp-scale-3-fg:     var(--ddp-color-amber-200);
---ddp-scale-4:        var(--ddp-color-ochre-300);
---ddp-scale-4-subtle: rgba(194, 97, 15, 0.24);
---ddp-scale-4-fg:     var(--ddp-color-ochre-200);
---ddp-scale-5:        var(--ddp-color-red-400);
---ddp-scale-5-subtle: rgba(200, 65, 47, 0.22);
---ddp-scale-5-fg:     var(--ddp-color-red-300);
+--ddp-scale-1:                 var(--ddp-color-jade-400);
+--ddp-scale-1-tint:            rgba(27, 132, 96, 0.24);
+--ddp-scale-1-tint-foreground: var(--ddp-color-jade-300);
+--ddp-scale-2:                 var(--ddp-color-jade-300);
+--ddp-scale-2-tint:            rgba(27, 132, 96, 0.16);
+--ddp-scale-2-tint-foreground: var(--ddp-color-jade-200);
+--ddp-scale-3:                 var(--ddp-color-amber-300);
+--ddp-scale-3-tint:            rgba(223, 163, 15, 0.20);
+--ddp-scale-3-tint-foreground: var(--ddp-color-amber-200);
+--ddp-scale-4:                 var(--ddp-color-ochre-300);
+--ddp-scale-4-tint:            rgba(194, 97, 15, 0.24);
+--ddp-scale-4-tint-foreground: var(--ddp-color-ochre-200);
+--ddp-scale-5:                 var(--ddp-color-red-400);
+--ddp-scale-5-tint:            rgba(200, 65, 47, 0.22);
+--ddp-scale-5-tint-foreground: var(--ddp-color-red-300);
 
---ddp-color-democratic:        var(--ddp-color-democratic-300);
---ddp-color-democratic-subtle: rgba(28, 88, 168, 0.28);
---ddp-color-democratic-fg:     var(--ddp-color-democratic-200);
---ddp-color-republican:        var(--ddp-color-republican-300);
---ddp-color-republican-subtle: rgba(179, 24, 31, 0.28);
---ddp-color-republican-fg:     var(--ddp-color-republican-200);
---ddp-color-unaffiliated:        var(--ddp-color-neutral-400);
---ddp-color-unaffiliated-subtle: rgba(151, 163, 180, 0.20);
---ddp-color-unaffiliated-fg:     var(--ddp-color-neutral-300);
+--ddp-color-democratic:                   var(--ddp-color-democratic-300);
+--ddp-color-democratic-tint:              rgba(28, 88, 168, 0.28);
+--ddp-color-democratic-tint-foreground:   var(--ddp-color-democratic-200);
+--ddp-color-republican:                   var(--ddp-color-republican-300);
+--ddp-color-republican-tint:              rgba(179, 24, 31, 0.28);
+--ddp-color-republican-tint-foreground:   var(--ddp-color-republican-200);
+--ddp-color-unaffiliated:                 var(--ddp-color-neutral-400);
+--ddp-color-unaffiliated-tint:            rgba(151, 163, 180, 0.20);
+--ddp-color-unaffiliated-tint-foreground: var(--ddp-color-neutral-300);
 
 --ddp-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.40);
 --ddp-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.50);
@@ -540,14 +552,14 @@
 --ddp-font-serif:   var(--ddp-font-family-serif);
 --ddp-font-mono:    var(--ddp-font-family-mono);
 --ddp-font-script:  "Boxer Script JF", "Brush Script MT", cursive;
---ddp-space-7: var(--ddp-space-12);
---ddp-space-9: var(--ddp-space-24);
---ddp-radius-pill: var(--ddp-radius-full);
---ddp-shadow-pop: 0 8px 24px rgba(248, 88, 40, 0.28);
---ddp-dur-fast: var(--ddp-duration-fast);
---ddp-dur-base: var(--ddp-duration-base);
---ddp-dur-slow: var(--ddp-duration-slow);
---ddp-container: var(--ddp-container-xl);
+--ddp-space-7:      var(--ddp-space-12);
+--ddp-space-9:      var(--ddp-space-24);
+--ddp-radius-pill:  var(--ddp-radius-full);
+--ddp-shadow-pop:   0 8px 24px rgba(248, 88, 40, 0.28);
+--ddp-dur-fast:     var(--ddp-duration-fast);
+--ddp-dur-base:     var(--ddp-duration-base);
+--ddp-dur-slow:     var(--ddp-duration-slow);
+--ddp-container:    var(--ddp-container-xl);
 }
 
 /* -------- Boxer Script JF — tagline only. See note in README:

@@ -8,7 +8,8 @@
   ],
   "exports": {
     "./styles": "./styles/index.scss",
-    "./styles/tokens.css": "./styles/colors_and_type.css"
+    "./styles/tokens.css": "./styles/colors_and_type.css",
+    "./styles/tokens.json": "./styles/tokens.json"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"

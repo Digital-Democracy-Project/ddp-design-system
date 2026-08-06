@@ -45,21 +45,26 @@ $-palette-steps: (0, 25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950);
   @return _var('color-#{$hue}-#{$step}');
 }
 
+// Every role exposes up to four variants, same suffixes throughout:
+//   {role}                 solid color
+//   {role}-foreground      text/icon color, safe on the solid color
+//   {role}-tint            light background wash of the color
+//   {role}-tint-foreground text/icon color, safe on the tint
 $-color-keys: (
   // brand
-  'primary', 'primary-hover', 'primary-active', 'primary-subtle', 'primary-subtle-fg', 'on-primary',
-  'secondary', 'secondary-hover', 'secondary-active', 'secondary-subtle', 'secondary-subtle-fg', 'on-secondary',
-  'tertiary', 'tertiary-hover', 'tertiary-active', 'tertiary-subtle', 'tertiary-subtle-fg', 'on-tertiary',
+  'primary', 'primary-hover', 'primary-active', 'primary-tint', 'primary-tint-foreground', 'primary-foreground',
+  'secondary', 'secondary-hover', 'secondary-active', 'secondary-tint', 'secondary-tint-foreground', 'secondary-foreground',
+  'tertiary', 'tertiary-hover', 'tertiary-active', 'tertiary-tint', 'tertiary-tint-foreground', 'tertiary-foreground',
   // valence
-  'positive', 'positive-subtle', 'positive-fg',
-  'negative', 'negative-subtle', 'negative-fg',
-  'caution', 'caution-subtle', 'caution-fg',
-  'info', 'info-subtle', 'info-fg',
-  'neutral-status', 'neutral-status-subtle', 'neutral-status-fg',
+  'positive', 'positive-tint', 'positive-tint-foreground',
+  'negative', 'negative-tint', 'negative-tint-foreground',
+  'caution', 'caution-tint', 'caution-tint-foreground',
+  'info', 'info-tint', 'info-tint-foreground',
+  'neutral-status', 'neutral-status-tint', 'neutral-status-tint-foreground',
   // party — fixed, never re-themed
-  'democratic', 'democratic-subtle', 'democratic-fg',
-  'republican', 'republican-subtle', 'republican-fg',
-  'unaffiliated', 'unaffiliated-subtle', 'unaffiliated-fg'
+  'democratic', 'democratic-tint', 'democratic-tint-foreground',
+  'republican', 'republican-tint', 'republican-tint-foreground',
+  'unaffiliated', 'unaffiliated-tint', 'unaffiliated-tint-foreground'
 );
 
 /// Semantic colour. Tier 2 — this is what components should use.
@@ -84,7 +89,7 @@ $-border-keys: ('subtle', 'default', 'strong', 'inverse', 'focus');
 }
 
 $-scale-steps: (1, 2, 3, 4, 5);
-$-scale-variants: ('base', 'subtle', 'fg');
+$-scale-variants: ('base', 'tint', 'tint-foreground');
 /// Ordinal grade scale. scale(1) → var(--ddp-scale-1)
 @function scale($step, $variant: 'base') {
   @if index($-scale-steps, $step) == null {
@@ -182,7 +187,7 @@ $-ease-keys: ('standard', 'emphasized', 'in', 'out');
 // RAW VALUES
 //
 // Compile-time literals, for the rare case where `var()` will not
-// do — media queries, colour math, calc() that must fold early.
+// do — media queries, colour manipulation, calc() that must fold early.
 // Keep in sync with colors_and_type.css. Prefer the functions above.
 // ============================================================
 

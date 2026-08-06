@@ -1,6 +1,6 @@
 # Style layer
 
-Three files, no emitted CSS. `@use` them freely from any module.
+Three SCSS files, no emitted CSS — `@use` them freely from any module — plus one JSON export for JS/TS consumers that don't go through Sass at all.
 
 | File | Contains |
 |---|---|
@@ -8,6 +8,7 @@ Three files, no emitted CSS. `@use` them freely from any module.
 | `_breakpoints.scss` | Breakpoint map and the `media` / `media-below` / `media-between` mixins. |
 | `_mixins.scss` | Everything CSS custom properties cannot express at author time. |
 | `index.scss` | Barrel. `@forward`s all three. |
+| `tokens.json` | The same semantic tokens as `_tokens.scss`, as plain data — `var(--ddp-*)` strings, keyed and grouped to match the Sass accessor functions one-for-one. For JS/TS code with no Sass step at all: `import tokens from '@digital-democracy-project/design-system/styles/tokens.json'`. |
 
 ## Why tokens stay CSS custom properties
 
@@ -43,7 +44,7 @@ Reach for `$raw-*` maps only when a value must fold at compile time: media query
 
 .primary {
   background: color('primary');
-  color: color('on-primary');
+  color: color('primary-foreground');
 
   &:hover  { background: color('primary-hover'); }
   &:active { background: color('primary-active'); }
@@ -61,6 +62,24 @@ Reach for `$raw-*` maps only when a value must fold at compile time: media query
   }
 }
 ```
+
+## JS/TS token export (`tokens.json`)
+
+For code that never touches Sass — chart libraries, canvas rendering, map layer styling — `tokens.json` mirrors every accessor group above as plain data:
+
+```ts
+import tokens from '@digital-democracy-project/design-system/styles/tokens.json';
+
+tokens.color.primary;   // "var(--ddp-color-primary)"
+tokens.space['3'];      // "var(--ddp-space-3)"
+tokens.scale['2']['tint-foreground'];   // "var(--ddp-scale-2-tint-foreground)"
+```
+
+TypeScript infers the exact shape automatically via `resolveJsonModule` (on by default in most modern setups) — no separate `.d.ts` to maintain.
+
+Every value is a `var(--ddp-*)` string, not a resolved color/length — same as the Sass functions, and for the same reason (see above): one export works correctly under both themes because the *browser* resolves the variable against whichever `[data-theme]` is active, not the token file. That means these strings are only meaningful somewhere the CSS cascade applies — safe to hand to `style={{ color: tokens.color.primary }}` or a CSS-in-JS template, **not** safe to hand to a canvas `fillStyle` or a charting library that expects a literal color (those need `getComputedStyle(el).getPropertyValue('--ddp-color-primary')` at render time instead).
+
+The one exception is `tokens.breakpoints` — plain pixel numbers (`{ sm: 480, md: 768, ... }`), because `matchMedia` and JS breakpoint logic can't consume a custom property either way, themed or not.
 
 ## Accessors
 
