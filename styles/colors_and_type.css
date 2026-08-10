@@ -14,11 +14,41 @@
 
 /* -------------------------------------------------------------
    FONTS
-   Preview loads from Google. The published package MUST vendor
-   these as .woff2 under assets/fonts/ and swap the @import for
-   local @font-face rules. Both faces are SIL OFL — redistributable.
+   Vendored locally as variable .woff2, Latin subset only (DDP
+   ships English-language content). Both faces are SIL OFL —
+   redistributable. Source: Google Fonts (Public Sans v21,
+   Newsreader v26). Each file covers its full weight range (and,
+   for Newsreader, its optical-size range) via variable font axes
+   — no separate files needed per weight.
    ------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300..800;1,400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap');
+@font-face {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url("fonts/PublicSans-Roman-VF.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Public Sans";
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("fonts/PublicSans-Italic-VF.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("fonts/Newsreader-Roman-VF.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: italic;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("fonts/Newsreader-Italic-VF.woff2") format("woff2");
+}
 
 :root {
 
