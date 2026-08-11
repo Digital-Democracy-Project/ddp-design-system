@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import svgr from 'vite-plugin-svgr';
 import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
 
@@ -10,6 +11,11 @@ import { resolve } from 'path';
 export default defineConfig({
   plugins: [
     react(),
+    // Inlines assets/icons/*.svg?react imports into real React components
+    // at build time (same mechanism ddp-scorecard-react already uses via
+    // this same plugin) — no runtime fetch, no separate icon-font/sprite
+    // dependency.
+    svgr(),
     dts({
       include: ['components'],
       exclude: ['components/**/*.stories.tsx'],
@@ -31,6 +37,13 @@ export default defineConfig({
     cssCodeSplit: false,
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime'],
+      output: {
+        // Without this, Vite falls back to deriving the CSS asset name from
+        // package.json's "name" (producing design-system.css) now that
+        // lib.name isn't set. Pinning it explicitly keeps it decoupled from
+        // the package name and matching the ./styles.css export below.
+        assetFileNames: 'style.css',
+      },
     },
   },
 });

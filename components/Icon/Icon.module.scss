@@ -1,0 +1,41 @@
+@use '../../styles' as *;
+
+// No new component-token indirection here — --ddp-icon-size-* is already
+// scoped specifically to icons, so there's nothing meaningful to alias.
+//
+// display: inline-flex (not inline-block) specifically avoids the
+// inline-block "baseline of last line box" fallback rule, which degrades
+// to the bottom margin edge for a childless element like this SVG and
+// reproduces the same icon-sits-too-low-next-to-text bug as the browser
+// default (display: inline). flex: none is a separate, unrelated concern:
+// it keeps the icon from being stretched or squished if some ancestor
+// (e.g. a future Button laying out icon + label) itself uses flex.
+.icon {
+  display: inline-flex;
+  flex: none;
+}
+
+.xs {
+  width: icon-size('xs');
+  height: icon-size('xs');
+}
+
+.sm {
+  width: icon-size('sm');
+  height: icon-size('sm');
+}
+
+.md {
+  width: icon-size('md');
+  height: icon-size('md');
+}
+
+.lg {
+  width: icon-size('lg');
+  height: icon-size('lg');
+}
+
+.xl {
+  width: icon-size('xl');
+  height: icon-size('xl');
+}

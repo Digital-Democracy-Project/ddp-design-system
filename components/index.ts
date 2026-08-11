@@ -1,2 +1,2 @@
-// Component barrel — real exports land here as each component is built.
-export {};
+export { Icon } from './Icon/Icon';
+export type { IconProps, IconName, IconSize } from './Icon/Icon';
