@@ -1,0 +1,88 @@
+@use '../../styles' as *;
+
+// No component-token indirection layer here, unlike Button — the only
+// sanctioned way to customize a badge's color beyond `tone` is the
+// `customColors` prop (Badge.tsx), which sets background-color/color
+// directly as inline styles. There's no external-CSS override path to
+// support, so a --ddp-badge-bg/-fg custom property would just be an extra
+// layer nothing ever reaches through.
+//
+// Only the brand tones (primary/secondary/tertiary) get a soft+solid
+// pairing, since those are the only semantic roles with a dedicated plain
+// foreground token safe on a solid background (see $-color-keys in
+// _tokens.scss) — 'neutral' only has a soft look. Valence- or grade-style
+// semantics (a ValencePill, GradeChip, etc.) are deliberately not baked in
+// here; those belong in a separate component that wraps this one with its
+// own explicit color choice.
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: radius('full');
+  font-weight: font-weight('medium');
+}
+
+// ---------- Sizes ----------
+
+.sm {
+  padding: space('0-5') space(2);
+  font-size: font-size('xs');
+  line-height: line-height('xs');
+}
+
+.md {
+  padding: space(1) space(3);
+  font-size: font-size('sm');
+  line-height: line-height('sm');
+}
+
+.lg {
+  padding: space('1-5') space(4);
+  font-size: font-size('md');
+  line-height: line-height('md');
+}
+
+// ---------- Tones (soft — the default appearance) ----------
+
+.neutral {
+  background-color: surface('sunken');
+  color: text('default');
+}
+
+.primary {
+  background-color: color('primary-tint');
+  color: color('primary-tint-foreground');
+}
+
+.secondary {
+  background-color: color('secondary-tint');
+  color: color('secondary-tint-foreground');
+}
+
+.tertiary {
+  background-color: color('tertiary-tint');
+  color: color('tertiary-tint-foreground');
+}
+
+// ---------- Solid appearance ----------
+// Overrides the tone classes above only for the three brand tones —
+// 'neutral' has no matching override nested here, so appearance="solid"
+// has no visual effect on it and it stays soft.
+
+.solid {
+  &.primary {
+    background-color: color('primary');
+    color: color('primary-foreground');
+  }
+
+  &.secondary {
+    background-color: color('secondary');
+    color: color('secondary-foreground');
+  }
+
+  &.tertiary {
+    background-color: color('tertiary');
+    color: color('tertiary-foreground');
+  }
+}

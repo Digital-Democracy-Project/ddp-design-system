@@ -1,0 +1,118 @@
+@use '../../styles' as *;
+
+// No component-token indirection layer for the standard variants — same
+// simplification as Badge. Each variant sets background-color/color
+// directly, including its own :hover/:active rules, since nothing outside
+// this file ever needs to read a --ddp-button-* value for these.
+.button {
+  @include unstyled-button;
+  @include focus-ring;
+  @include disabled;
+  @include transition(background-color, color, border-color);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: radius('md');
+  font-weight: font-weight('medium');
+}
+
+// ---------- Sizes ----------
+
+.sm {
+  gap: space(1);
+  padding: space(1) space(3);
+  font-size: font-size('sm');
+  line-height: line-height('sm');
+}
+
+.md {
+  gap: space('1-5');
+  padding: space('1-5') space(4);
+  font-size: font-size('md');
+  line-height: line-height('md');
+}
+
+.lg {
+  gap: space(2);
+  padding: space(2) space(5);
+  font-size: font-size('lg');
+  line-height: line-height('lg');
+}
+
+// ---------- Variants ----------
+
+.primary {
+  background-color: color('primary');
+  color: color('primary-foreground');
+
+  &:hover { background-color: color('primary-hover'); }
+  &:active { background-color: color('primary-active'); }
+}
+
+.secondary {
+  background-color: color('secondary');
+  color: color('secondary-foreground');
+
+  &:hover { background-color: color('secondary-hover'); }
+  &:active { background-color: color('secondary-active'); }
+}
+
+.tertiary {
+  background-color: color('tertiary');
+  color: color('tertiary-foreground');
+
+  &:hover { background-color: color('tertiary-hover'); }
+  &:active { background-color: color('tertiary-active'); }
+}
+
+// Matches `.ddp a` in colors_and_type.css exactly: same link color, same
+// hover-only underline via an animated border-bottom (not text-decoration,
+// for tighter control near descenders), same transition. No padding, same
+// as a real inline link — the point of this variant is to disappear into
+// surrounding text, so it deliberately does not share the padded hit-area
+// of the other variants. Declared after .sm/.md/.lg so this override wins.
+.link {
+  background-color: transparent;
+  color: text('link');
+  padding: 0;
+  border-radius: radius('sm');
+  font-weight: font-weight('regular');
+  border-bottom: border-width(1) solid transparent;
+
+  &:hover {
+    color: text('link-hover');
+    border-bottom-color: currentColor;
+  }
+}
+
+// ---------- Custom colors escape hatch ----------
+// The one place Button still uses CSS custom properties, and only because
+// inline `style` (what the `customColors` prop sets these from) has no way
+// to express a pseudo-class — ":hover, use this color" has to read from
+// something. --ddp-button-bg-hover/-active fall back to the base color via
+// var()'s second argument when Button.tsx doesn't set them (i.e.
+// `backgroundHover`/`backgroundActive` were omitted from `customColors`).
+.custom {
+  background-color: var(--ddp-button-bg);
+  color: var(--ddp-button-fg);
+
+  &:hover {
+    background-color: var(--ddp-button-bg-hover, var(--ddp-button-bg));
+  }
+
+  &:active {
+    background-color: var(--ddp-button-bg-active, var(--ddp-button-bg));
+  }
+
+  // link has no background by design — customColors only overrides its
+  // text color, not the transparent background. (Its hover color still
+  // comes from .link:hover above, which is more specific than .custom, so
+  // the built-in link-hover tone intentionally still wins on hover.)
+  &.link,
+  &.link:hover,
+  &.link:active {
+    background-color: transparent;
+  }
+}
