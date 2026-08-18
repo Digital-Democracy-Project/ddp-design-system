@@ -581,7 +581,7 @@
 --ddp-font-banner:  var(--ddp-font-family-sans);
 --ddp-font-serif:   var(--ddp-font-family-serif);
 --ddp-font-mono:    var(--ddp-font-family-mono);
---ddp-font-script:  "Boxer Script JF", "Brush Script MT", cursive;
+--ddp-font-script:  "Brush Script MT", cursive;
 --ddp-space-7:      var(--ddp-space-12);
 --ddp-space-9:      var(--ddp-space-24);
 --ddp-radius-pill:  var(--ddp-radius-full);
@@ -591,15 +591,6 @@
 --ddp-dur-slow:     var(--ddp-duration-slow);
 --ddp-container:    var(--ddp-container-xl);
 }
-
-/* -------- Boxer Script JF — tagline only. See note in README:
-   the published package uses an outlined SVG, not this font file. -------- */
-@font-face {
-    font-family: "Boxer Script JF";
-    src: url("fonts/BoxerScriptJF-Regular.ttf") format("truetype");
-    font-weight: 400; font-style: normal; font-display: swap;
-}
-
 
 /* ============================================================
    BASE ELEMENT STYLES  (opt-in via .ddp)
