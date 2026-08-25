@@ -6,6 +6,7 @@ import styles from './Button.module.scss';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'link';
 export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonAppearance = 'solid' | 'outline';
 
 export interface ButtonCustomColors {
   background: string;
@@ -16,7 +17,10 @@ export interface ButtonCustomColors {
   backgroundActive?: string;
 }
 
-export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
+export interface ButtonProps extends Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'type'
+> {
   /**
    * Visual treatment. `'link'` looks like an inline hyperlink (matches the
    * base `<a>` styling in colors_and_type.css exactly — same color, same
@@ -26,6 +30,13 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
    */
   variant?: ButtonVariant;
   size?: ButtonSize;
+  /**
+   * `'solid'` (filled, the default) or `'outline'` (transparent background,
+   * border and text in the variant's color, tint-filled on hover). Has no
+   * effect on `variant="link"`, which has no color of its own to outline —
+   * same rule as `Badge`'s `appearance` having no effect on `tone="neutral"`.
+   */
+  appearance?: ButtonAppearance;
   /**
    * Native button type. Defaults to `'button'`, not the browser's implicit
    * `'submit'` default, since an unintentional form submit from a stray
@@ -43,33 +54,52 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
   children: ReactNode;
 }
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  { variant = 'primary', size = 'md', type = 'button', customColors, className, style, children, ...rest },
-  ref
-) {
-  const classes = [
-    styles.button,
-    styles[variant],
-    styles[size],
-    customColors ? styles.custom : undefined,
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  function Button(
+    {
+      variant = 'primary',
+      size = 'md',
+      appearance = 'solid',
+      type = 'button',
+      customColors,
+      className,
+      style,
+      children,
+      ...rest
+    },
+    ref,
+  ) {
+    const classes = [
+      styles.button,
+      styles[variant],
+      styles[size],
+      styles[appearance],
+      customColors ? styles.custom : undefined,
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ');
 
-  const mergedStyle: CSSProperties | undefined = customColors
-    ? ({
-        '--ddp-button-bg': customColors.background,
-        '--ddp-button-fg': customColors.foreground,
-        '--ddp-button-bg-hover': customColors.backgroundHover,
-        '--ddp-button-bg-active': customColors.backgroundActive,
-        ...style,
-      } as CSSProperties)
-    : style;
+    const mergedStyle: CSSProperties | undefined = customColors
+      ? ({
+          '--ddp-button-bg': customColors.background,
+          '--ddp-button-fg': customColors.foreground,
+          '--ddp-button-bg-hover': customColors.backgroundHover,
+          '--ddp-button-bg-active': customColors.backgroundActive,
+          ...style,
+        } as CSSProperties)
+      : style;
 
-  return (
-    <button ref={ref} type={type} className={classes} style={mergedStyle} {...rest}>
-      {children}
-    </button>
-  );
-});
+    return (
+      <button
+        ref={ref}
+        type={type}
+        className={classes}
+        style={mergedStyle}
+        {...rest}
+      >
+        {children}
+      </button>
+    );
+  },
+);

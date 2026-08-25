@@ -7,9 +7,6 @@
                          components consume, and what consuming
                          projects override.
    Tier 3  THEME       — dark-mode remapping of Tier 2 only.
-   Tier 4  LEGACY      — v1 aliases kept so existing previews /
-                         UI kits keep rendering. Delete before
-                         the npm package ships.
    ============================================================ */
 
 /* -------------------------------------------------------------
@@ -26,28 +23,28 @@
   font-style: normal;
   font-weight: 300 800;
   font-display: swap;
-  src: url("fonts/PublicSans-Roman-VF.woff2") format("woff2");
+  src: url("../assets/fonts/PublicSans-Roman-VF.woff2") format("woff2");
 }
 @font-face {
   font-family: "Public Sans";
   font-style: italic;
   font-weight: 400 700;
   font-display: swap;
-  src: url("fonts/PublicSans-Italic-VF.woff2") format("woff2");
+  src: url("../assets/fonts/PublicSans-Italic-VF.woff2") format("woff2");
 }
 @font-face {
   font-family: "Newsreader";
   font-style: normal;
   font-weight: 300 700;
   font-display: swap;
-  src: url("fonts/Newsreader-Roman-VF.woff2") format("woff2");
+  src: url("../assets/fonts/Newsreader-Roman-VF.woff2") format("woff2");
 }
 @font-face {
   font-family: "Newsreader";
   font-style: italic;
   font-weight: 300 700;
   font-display: swap;
-  src: url("fonts/Newsreader-Italic-VF.woff2") format("woff2");
+  src: url("../assets/fonts/Newsreader-Italic-VF.woff2") format("woff2");
 }
 
 :root {
@@ -546,51 +543,6 @@
 --ddp-focus-ring-color: rgba(252, 122, 79, 0.50);
 }
 
-
-/* ============================================================
-   TIER 4 — LEGACY ALIASES  (v1 names → v2 tokens)
-   Keeps existing preview cards and UI kits rendering.
-   DELETE before publishing the npm package.
-   ============================================================ */
-:root {
---ddp-orange:       var(--ddp-color-orange-500);
---ddp-orange-600:   var(--ddp-color-orange-600);
---ddp-orange-100:   var(--ddp-color-orange-100);
---ddp-blue:         var(--ddp-color-violet-500);
---ddp-blue-700:     var(--ddp-color-violet-700);
---ddp-blue-100:     var(--ddp-color-violet-100);
---ddp-navy:         var(--ddp-color-neutral-900);
---ddp-navy-800:     var(--ddp-color-neutral-800);
---ddp-green:        var(--ddp-color-jade-500);
---ddp-green-700:    var(--ddp-color-jade-700);
---ddp-green-100:    var(--ddp-color-jade-100);
---ddp-lime:         var(--ddp-color-jade-400);
---ddp-lime-100:     var(--ddp-color-jade-100);
---ddp-red:          var(--ddp-color-red-500);
---ddp-amber:        var(--ddp-color-amber-400);
---ddp-bg:           var(--ddp-surface-page);
---ddp-surface:      var(--ddp-surface-raised);
---ddp-surface-2:    var(--ddp-surface-sunken);
---ddp-line:         var(--ddp-border-default);
---ddp-line-strong:  var(--ddp-border-strong);
---ddp-fg-1:         var(--ddp-text-default);
---ddp-fg-2:         var(--ddp-text-muted);
---ddp-fg-3:         var(--ddp-text-subtle);
---ddp-font-sans:    var(--ddp-font-family-sans);
---ddp-font-display: var(--ddp-font-family-sans);
---ddp-font-banner:  var(--ddp-font-family-sans);
---ddp-font-serif:   var(--ddp-font-family-serif);
---ddp-font-mono:    var(--ddp-font-family-mono);
---ddp-font-script:  "Brush Script MT", cursive;
---ddp-space-7:      var(--ddp-space-12);
---ddp-space-9:      var(--ddp-space-24);
---ddp-radius-pill:  var(--ddp-radius-full);
---ddp-shadow-pop:   0 8px 24px rgba(248, 88, 40, 0.28);
---ddp-dur-fast:     var(--ddp-duration-fast);
---ddp-dur-base:     var(--ddp-duration-base);
---ddp-dur-slow:     var(--ddp-duration-slow);
---ddp-container:    var(--ddp-container-xl);
-}
 
 /* ============================================================
    BASE ELEMENT STYLES  (opt-in via .ddp)

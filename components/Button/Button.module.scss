@@ -16,6 +16,8 @@
   white-space: nowrap;
   border-radius: radius('md');
   font-weight: font-weight('medium');
+  // Pinned so the outline appearance's border doesn't change a button's outer footprint relative to solid — without this, adding a border would grow the box by 2px (content-box is the browser default absent an explicit reset), making same-size solid/outline buttons mismatch.
+  box-sizing: border-box;
 }
 
 // ---------- Sizes ----------
@@ -47,24 +49,39 @@
   background-color: color('primary');
   color: color('primary-foreground');
 
-  &:hover { background-color: color('primary-hover'); }
-  &:active { background-color: color('primary-active'); }
+  &:hover {
+    background-color: color('primary-hover');
+  }
+
+  &:active {
+    background-color: color('primary-active');
+  }
 }
 
 .secondary {
   background-color: color('secondary');
   color: color('secondary-foreground');
 
-  &:hover { background-color: color('secondary-hover'); }
-  &:active { background-color: color('secondary-active'); }
+  &:hover {
+    background-color: color('secondary-hover');
+  }
+
+  &:active {
+    background-color: color('secondary-active');
+  }
 }
 
 .tertiary {
   background-color: color('tertiary');
   color: color('tertiary-foreground');
 
-  &:hover { background-color: color('tertiary-hover'); }
-  &:active { background-color: color('tertiary-active'); }
+  &:hover {
+    background-color: color('tertiary-hover');
+  }
+
+  &:active {
+    background-color: color('tertiary-active');
+  }
 }
 
 // Matches `.ddp a` in colors_and_type.css exactly: same link color, same
@@ -84,6 +101,55 @@
   &:hover {
     color: text('link-hover');
     border-bottom-color: currentColor;
+  }
+}
+
+// ---------- Appearance: outline ----------
+// Transparent background, border + text in the variant's own color, filled with that variant's existing -tint token on hover/active — reuses tokens already defined for Badge's soft appearance, nothing new added to colors_and_type.css. No effect on .link (no override defined for it — same no-effect pattern Badge already uses for appearance="solid" on tone="neutral": link has no color of its own to put an outline around).
+.outline {
+  &.primary {
+    background-color: transparent;
+    color: color('primary');
+    border: border-width(1) solid color('primary');
+
+    &:hover,
+    &:active {
+      background-color: color('primary-tint');
+    }
+  }
+
+  &.secondary {
+    background-color: transparent;
+    color: color('secondary');
+    border: border-width(1) solid color('secondary');
+
+    &:hover,
+    &:active {
+      background-color: color('secondary-tint');
+    }
+  }
+
+  &.tertiary {
+    background-color: transparent;
+    color: color('tertiary');
+    border: border-width(1) solid color('tertiary');
+
+    &:hover,
+    &:active {
+      background-color: color('tertiary-tint');
+    }
+  }
+
+  // customColors still overrides color when combined with outline — needs the same 2-class specificity as .outline.primary etc. above (plain .custom, at 1 class, would lose to them) and to come after them in source order to win at that equal specificity. No hover/active tint here: customColors has no separate "tint" value to draw on, so it stays flat rather than guessing at one.
+  &.custom {
+    background-color: transparent;
+    color: var(--ddp-button-fg);
+    border-color: var(--ddp-button-fg);
+
+    &:hover,
+    &:active {
+      background-color: transparent;
+    }
   }
 }
 

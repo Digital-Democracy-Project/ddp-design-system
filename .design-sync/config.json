@@ -1,0 +1,10 @@
+{
+  "projectId": "019dea4d-76a9-7731-a38b-3cd20a073f60",
+  "shape": "storybook",
+  "pkg": "@digital-democracy-project/design-system",
+  "storybookStatic": ".design-sync/sb-reference",
+  "storybookConfigDir": ".storybook",
+  "overrides": {
+    "Button": { "cardMode": "column" }
+  }
+}

@@ -6,6 +6,7 @@
   "license": "UNLICENSED",
   "files": [
     "styles",
+    "assets/fonts",
     "dist"
   ],
   "main": "./dist/index.cjs",
