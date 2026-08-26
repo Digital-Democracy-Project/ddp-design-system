@@ -54,7 +54,7 @@ See each component's own README under `components/<Name>/` for its full prop ref
 - [ ] Set up Changesets
 
 **Phase 3 — Keep the Claude Design project in sync** (parallel to Phase 1)
-- [ ] Run `/design-sync` for current state (Icon, Button, Badge, tokens, fonts) — in progress: build/validate/compare clean, all stories graded match, conventions.md + upload still pending
+- [x] Run `/design-sync` for current state (Icon, Button, Badge, tokens, fonts) — uploaded and verified
 - [ ] Re-sync after each new component lands
 - [ ] Retire superseded static previews as real components land
 - [ ] Decide fate of `ui_kits/*` and token-doc preview pages

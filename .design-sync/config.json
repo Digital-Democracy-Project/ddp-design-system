@@ -4,6 +4,7 @@
   "pkg": "@digital-democracy-project/design-system",
   "storybookStatic": ".design-sync/sb-reference",
   "storybookConfigDir": ".storybook",
+  "readmeHeader": ".design-sync/conventions.md",
   "overrides": {
     "Button": { "cardMode": "column" }
   }
