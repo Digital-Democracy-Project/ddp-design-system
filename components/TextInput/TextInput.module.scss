@@ -1,0 +1,87 @@
+@use '../../styles' as *;
+
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  background-color: surface('raised');
+  border: border-width(1) solid border-color('default');
+  border-radius: radius('md');
+  @include transition(border-color, box-shadow);
+
+  &:focus-within {
+    border-color: color('primary');
+    box-shadow: 0 0 0 1px color('primary');
+  }
+}
+
+// Not @include unstyled-button here — that mixin sets cursor: pointer,
+// which is wrong for a text input (should stay the native text cursor).
+.input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  color: text('default');
+  padding: 0;
+
+  &::placeholder {
+    color: text('subtle');
+  }
+}
+
+.clearButton {
+  flex-shrink: 0;
+}
+
+// ---------- Sizes ----------
+
+.sm {
+  gap: space(1);
+  padding: space('0-5') space(2);
+  font-size: font-size('sm');
+  line-height: line-height('sm');
+}
+
+.md {
+  gap: space('1-5');
+  padding: space(1) space(3);
+  font-size: font-size('md');
+  line-height: line-height('md');
+}
+
+.lg {
+  gap: space(2);
+  padding: space('1-5') space(4);
+  font-size: font-size('lg');
+  line-height: line-height('lg');
+}
+
+// ---------- States ----------
+
+.error {
+  border-color: color('negative');
+
+  &:focus-within {
+    border-color: color('negative');
+    box-shadow: 0 0 0 1px color('negative');
+  }
+}
+
+.errorMessage {
+  margin: space(1) 0 0;
+  font-size: font-size('sm');
+  color: color('negative');
+}
+
+// Applied to the wrapper directly from TSX (the input, not the wrapper, is
+// what's actually :disabled, so the `disabled` mixin — which targets
+// &:disabled on itself — doesn't reach the wrapper).
+.disabled {
+  cursor: not-allowed;
+  opacity: opacity(60);
+  background-color: surface('sunken');
+}

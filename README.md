@@ -39,7 +39,9 @@ See each component's own README under `components/<Name>/` for its full prop ref
 - [x] Build Button
 - [x] Build Badge/Pill
 - [ ] Checkpoint: review Button + Badge together, lock in conventions
-- [ ] Build remaining v1 components: Text Input → Checkbox → Toggle button/group → Select/Menu/MenuItem → Toggle switch
+- [x] Build IconButton (new, separate from Button — opinionated icon-only control)
+- [x] Build Text Input
+- [ ] Build remaining v1 components: Checkbox → Toggle button/group → Select/Menu/MenuItem → SearchBar (new — composes TextInput + Menu) → Toggle switch
 - [ ] Scope decision: Card (bill/legislator)
 - [ ] Scope decision: `ddp-mapapp`-derived candidates (Accordion, Stat, Spinner, Slide-over, Drawer, Expandable text)
 
