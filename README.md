@@ -41,7 +41,9 @@ See each component's own README under `components/<Name>/` for its full prop ref
 - [ ] Checkpoint: review Button + Badge together, lock in conventions
 - [x] Build IconButton (new, separate from Button — opinionated icon-only control)
 - [x] Build Text Input
-- [ ] Build remaining v1 components: Checkbox → Toggle button/group → Select/Menu/MenuItem → SearchBar (new — composes TextInput + Menu) → Toggle switch
+- [x] Build Checkbox
+- [x] Build ToggleButton (renamed from "Toggle button/group"; folds in an optional checkbox indicator, validated against `CheckboxItem`/`ToggleChip` in `ddp-scorecard-react` and the legislative-scorecard hi-fi mockup)
+- [ ] Build remaining v1 components: Select/Menu/MenuItem → SearchBar (new — composes TextInput + Menu) → ToggleSwitch (the track-and-knob control)
 - [ ] Scope decision: Card (bill/legislator)
 - [ ] Scope decision: `ddp-mapapp`-derived candidates (Accordion, Stat, Spinner, Slide-over, Drawer, Expandable text)
 
