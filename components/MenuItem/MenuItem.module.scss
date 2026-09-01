@@ -1,0 +1,53 @@
+@use '../../styles' as *;
+
+// Highlighted (keyboard-active) state is deliberately NOT a separate CSS
+// class here — the actively-navigated item receives real DOM focus via
+// Select's roving tabIndex (Floating UI's useListNavigation), so plain
+// &:focus styling picks it up for free, matching how a real listbox's
+// "highlighted" state is supposed to work (it's genuine focus, not a
+// simulated one).
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: space(2);
+  padding: space('1-5') space(3);
+  font-size: font-size('sm');
+  line-height: line-height('sm');
+  color: text('default');
+  cursor: pointer;
+  border-radius: radius('sm');
+  outline: none;
+  @include transition(background-color, color);
+
+  &:hover,
+  &:focus {
+    background-color: surface('sunken');
+  }
+}
+
+.checkIcon {
+  flex-shrink: 0;
+  color: color('primary');
+}
+
+.label {
+  flex: 1;
+  min-width: 0;
+  @include truncate;
+}
+
+.selected {
+  font-weight: font-weight('medium');
+  color: color('primary');
+
+  &:hover,
+  &:focus {
+    background-color: color('primary-tint');
+  }
+}
+
+.disabled {
+  color: text('disabled');
+  cursor: not-allowed;
+  pointer-events: none;
+}
