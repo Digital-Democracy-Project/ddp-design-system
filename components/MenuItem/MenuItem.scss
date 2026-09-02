@@ -1,4 +1,4 @@
-@use '../../styles' as *;
+@use '../../styles/core' as *;
 
 // Highlighted (keyboard-active) state is deliberately NOT a separate CSS
 // class here — the actively-navigated item receives real DOM focus via
@@ -28,6 +28,30 @@
 .ddp-menu-item-check-icon {
   flex-shrink: 0;
   color: color('primary');
+}
+
+// Multi-select indicator — a persistent checkbox square, checked or not,
+// reusing the same box language as Checkbox/ToggleButton's own indicator.
+.ddp-menu-item-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: space(4);
+  height: space(4);
+  background-color: surface('raised');
+  border: border-width(1) solid border-color('default');
+  border-radius: radius('sm');
+  @include transition(background-color, border-color);
+}
+
+.ddp-menu-item.is-selected .ddp-menu-item-box {
+  background-color: color('primary');
+  border-color: color('primary');
+}
+
+.ddp-menu-item.is-selected .ddp-menu-item-box .ddp-menu-item-check-icon {
+  color: color('primary-foreground');
 }
 
 .ddp-menu-item-label {

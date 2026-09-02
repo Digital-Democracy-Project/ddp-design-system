@@ -1,4 +1,4 @@
-@use '../../styles' as *;
+@use '../../styles/core' as *;
 
 // No component-token indirection layer for the standard variants — same
 // simplification as Badge. Each variant sets background-color/color
@@ -22,8 +22,6 @@
   white-space: nowrap;
   border-radius: radius('md');
   font-weight: font-weight('medium');
-  // Pinned so the outline appearance's border doesn't change a button's outer footprint relative to solid — without this, adding a border would grow the box by 2px (content-box is the browser default absent an explicit reset), making same-size solid/outline buttons mismatch.
-  box-sizing: border-box;
 
   // Default look: md size + primary variant, resting state only — no
   // :hover/:active here. A pseudo-class on the bare block would have the

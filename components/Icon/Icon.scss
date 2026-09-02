@@ -1,4 +1,4 @@
-@use '../../styles' as *;
+@use '../../styles/core' as *;
 
 // No new component-token indirection here — --ddp-icon-size-* is already
 // scoped specifically to icons, so there's nothing meaningful to alias.

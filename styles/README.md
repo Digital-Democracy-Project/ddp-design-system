@@ -1,14 +1,30 @@
 # Style layer
 
-Three SCSS files, no emitted CSS — `@use` them freely from any module — plus one JSON export for JS/TS consumers that don't go through Sass at all.
+Three groups, split by what they actually do — not just files sitting in the same directory:
+
+**`core/` — zero-CSS Sass, `@use` freely from any module.**
 
 | File | Contains |
 |---|---|
-| `_tokens.scss` | Typed accessors that emit `var(--ddp-*)`, validated at compile time. Plus raw maps for the few places a literal is required. |
-| `_breakpoints.scss` | Breakpoint map and the `media` / `media-below` / `media-between` mixins. |
-| `_mixins.scss` | Everything CSS custom properties cannot express at author time. |
-| `index.scss` | Barrel. `@forward`s all three. |
-| `tokens.json` | The same semantic tokens as `_tokens.scss`, as plain data — `var(--ddp-*)` strings, keyed and grouped to match the Sass accessor functions one-for-one. For JS/TS code with no Sass step at all: `import tokens from '@digital-democracy-project/design-system/styles/tokens.json'`. |
+| `core/_tokens.scss` | Typed accessors that emit `var(--ddp-*)`, validated at compile time. Plus raw maps for the few places a literal is required. |
+| `core/_breakpoints.scss` | Breakpoint map and the `media` / `media-below` / `media-between` mixins. |
+| `core/_mixins.scss` | Everything CSS custom properties cannot express at author time. |
+| `core/index.scss` | Barrel. `@forward`s the three above. |
+
+**Real, applied CSS — not `@use`-able, reaches consumers via a build step or a direct import, never via `core/index.scss`.**
+
+| File | Contains |
+|---|---|
+| `colors_and_type.css` | The actual token *values* as CSS custom properties (`--ddp-color-primary: #F85828`, etc.), plus `@font-face` declarations and the dark-theme override block. Not Sass — `core/`'s accessor functions don't read this file at compile time; they just emit `var()` references validated against a hardcoded list of allowed keys, kept in sync with this file by convention. |
+| `_base.scss` | The box-sizing reset and the opt-in `.ddp` base element styles. Forwarding either of these through `core/index.scss` would mean every consumer component using `@use '.../styles' as *;` silently re-emits them into their own compiled output — see the file's own header comment. |
+
+Both reach the published `dist/style.css` via `vite.config.ts`'s build step, and Storybook via their own direct imports in `.storybook/preview.tsx` — the same two paths, for the same reason.
+
+**Data export — for code with no Sass step at all.**
+
+| File | Contains |
+|---|---|
+| `tokens.json` | The same semantic tokens as `core/_tokens.scss`, as plain data — `var(--ddp-*)` strings, keyed and grouped to match the Sass accessor functions one-for-one. `import tokens from '@digital-democracy-project/design-system/styles/tokens.json'`. |
 
 ## Why tokens stay CSS custom properties
 
@@ -25,8 +41,8 @@ Reach for `$raw-*` maps only when a value must fold at compile time: media query
 ## Usage
 
 ```scss
-// Button.module.scss
-@use '../styles' as *;
+// Button.scss
+@use '@digital-democracy-project/design-system/styles' as *;
 
 .button {
   @include unstyled-button;

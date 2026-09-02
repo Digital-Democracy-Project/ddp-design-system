@@ -23,7 +23,7 @@
       "require": "./dist/index.cjs"
     },
     "./styles.css": "./dist/style.css",
-    "./styles": "./styles/index.scss",
+    "./styles": "./styles/core/index.scss",
     "./styles/tokens.css": "./styles/colors_and_type.css",
     "./styles/tokens.json": "./styles/tokens.json"
   },
@@ -35,7 +35,7 @@
     "url": "git+https://github.com/Digital-Democracy-Project/ddp-design-system.git"
   },
   "scripts": {
-    "build:check": "sass --no-source-map styles/index.scss /dev/null",
+    "build:check": "sass --no-source-map styles/core/index.scss /dev/null",
     "build": "vite build",
     "typecheck": "tsc --noEmit",
     "dev": "vite build --watch",

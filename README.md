@@ -47,7 +47,8 @@ _Temporary section — remove once the initial component library and consuming-a
 - [x] Build Text Input
 - [x] Build Checkbox
 - [x] Build ToggleButton (renamed from "Toggle button/group"; folds in an optional checkbox indicator, validated against `CheckboxItem`/`ToggleChip` in `ddp-scorecard-react` and the legislative-scorecard hi-fi mockup)
-- [ ] Build remaining v1 components: Select/Menu/MenuItem → SearchBar (new — composes TextInput + Menu) → ToggleSwitch (the track-and-knob control)
+- [x] Build MenuItem, Menu, DropdownMenu, Select (single-select only — see component READMEs for the multi-select deferral reasoning)
+- [ ] Build remaining v1 components: SearchBar (composes TextInput + Menu) → ToggleSwitch (the track-and-knob control)
 - [ ] Scope decision: Card (bill/legislator)
 - [ ] Scope decision: `ddp-mapapp`-derived candidates (Accordion, Stat, Spinner, Slide-over, Drawer, Expandable text)
 

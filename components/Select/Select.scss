@@ -1,0 +1,96 @@
+@use '../../styles/core' as *;
+
+// Trigger reads as a form field, not an action — same box language as
+// TextInput (bordered, surface('raised'), same size scale), not Button.
+// Matches the one real native <select> precedent in ddp-next (a browser-
+// rendered bordered box) and the general convention that a select is a
+// field, not a command.
+//
+// Size is a peer-choice axis (every step, including the default, is an
+// actually-rendered look), so `ddp-select-md` is always explicitly applied
+// by Select.tsx. Styled as md here too, but only as a documented fallback.
+.ddp-select {
+  @include unstyled-button;
+  @include focus-ring;
+  @include disabled;
+  @include transition(border-color, box-shadow);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+  background-color: surface('raised');
+  border: border-width(1) solid border-color('default');
+  border-radius: radius('md');
+  text-align: left;
+  cursor: pointer;
+
+  gap: space('1-5');
+  padding: space(1) space(3);
+  font-size: font-size('md');
+  line-height: line-height('md');
+
+  &:hover {
+    border-color: border-color('strong');
+  }
+}
+
+.ddp-select.is-open {
+  border-color: color('primary');
+  box-shadow: 0 0 0 1px color('primary');
+}
+
+.ddp-select-value {
+  flex: 1;
+  min-width: 0;
+  color: text('default');
+  @include truncate;
+}
+
+.ddp-select-placeholder {
+  color: text('subtle');
+}
+
+.ddp-select-chevron {
+  flex-shrink: 0;
+  color: text('muted');
+  @include transition(transform);
+}
+
+.ddp-select.is-open .ddp-select-chevron {
+  transform: rotate(180deg);
+}
+
+.ddp-select-search {
+  padding: space(1);
+}
+
+// No manual .is-disabled class — the trigger itself is the real
+// `:disabled` element (unlike TextInput, where the wrapper isn't the
+// disabled node), so `@include disabled` above already covers it via the
+// native pseudo-class, same convention as Button/IconButton/ToggleButton.
+
+// ---------- Sizes ----------
+
+.ddp-select-sm {
+  gap: space(1);
+  padding: space('0-5') space(2);
+  font-size: font-size('sm');
+  line-height: line-height('sm');
+}
+
+.ddp-select-md {
+  gap: space('1-5');
+  padding: space(1) space(3);
+  font-size: font-size('md');
+  line-height: line-height('md');
+}
+
+.ddp-select-lg {
+  gap: space(2);
+  padding: space('1-5') space(4);
+  font-size: font-size('lg');
+  line-height: line-height('lg');
+}
+

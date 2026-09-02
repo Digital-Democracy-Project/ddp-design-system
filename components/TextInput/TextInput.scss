@@ -1,4 +1,4 @@
-@use '../../styles' as *;
+@use '../../styles/core' as *;
 
 // Root class dropped "wrapper" — this is the component's block, styled
 // directly, not an internal implementation detail. Size is a peer-choice

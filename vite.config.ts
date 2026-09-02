@@ -4,6 +4,7 @@ import svgr from 'vite-plugin-svgr';
 import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
 import { readFileSync, writeFileSync, unlinkSync } from 'fs';
+import { compile } from 'sass';
 
 // Library-mode build: bundles components/index.ts into ESM + CJS, rolls up .d.ts via vite-plugin-dts, and emits one combined, self-sufficient stylesheet (dist/style.css) for consumers who don't process Sass/CSS Modules themselves. The raw Sass source under styles/ is published separately, untouched by this build.
 // dist/style.css ships BOTH the token definitions (colors_and_type.css) and the compiled component CSS in one file, tokens first — a single import gets a consumer everything, rather than requiring two separate imports that are easy to forget one of (this bit us for real, debugging the ddp-next integration). Token-only consumption is still available separately via the ./styles/tokens.css export, unaffected by this.
@@ -19,8 +20,15 @@ function mergeTokensIntoStylesheet() {
       // Relying on Vite/Rollup's CSS-module concatenation order instead (e.g. via an `import '../styles/colors_and_type.css'` in components/index.ts) would make that correctness depend on bundler-internal behavior rather than an explicit, auditable step.
       // colors_and_type.css's @font-face url()s point at ../assets/fonts/ — no rewriting needed here, unlike a plain concatenation normally would: assets/, styles/, and dist/ are all direct siblings under the repo root, so that same relative path resolves correctly whether read from styles/colors_and_type.css directly (Storybook) or from this concatenated dist/style.css.
       const tokens = readFileSync(resolve(__dirname, 'styles/colors_and_type.css'), 'utf8');
+      // styles/_base.scss (the box-sizing reset + opt-in .ddp base element
+      // styles) isn't part of the raw-Sass @use layer (index.scss only
+      // forwards the CSS-free accessor/mixin files) — compiled here
+      // instead, same as colors_and_type.css is read here rather than
+      // relied upon via the JS import graph. Storybook gets it via its own
+      // direct import in .storybook/preview.tsx.
+      const base = compile(resolve(__dirname, 'styles/_base.scss')).css;
       const componentCss = readFileSync(rawPath, 'utf8');
-      writeFileSync(resolve(__dirname, 'dist/style.css'), `${tokens}\n\n${componentCss}`);
+      writeFileSync(resolve(__dirname, 'dist/style.css'), `${tokens}\n\n${base}\n\n${componentCss}`);
       unlinkSync(rawPath);
     },
   };

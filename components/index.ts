@@ -6,4 +6,6 @@ export * from './TextInput';
 export * from './Checkbox';
 export * from './ToggleButton';
 export * from './MenuItem';
+export * from './Menu';
 export * from './DropdownMenu';
+export * from './Select';

@@ -1,4 +1,4 @@
-@use '../../styles' as *;
+@use '../../styles/core' as *;
 
 // The native input stays in the DOM and keeps real checkbox semantics —
 // visually-hidden (not display:none), never display:none, so it's still

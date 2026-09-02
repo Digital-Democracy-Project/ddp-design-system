@@ -1,4 +1,4 @@
-@use '../../styles' as *;
+@use '../../styles/core' as *;
 
 // Deliberately opinionated: the icon lives inside the component (an
 // `iconName` prop, not children) — this is a single-purpose control, a

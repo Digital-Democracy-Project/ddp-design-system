@@ -34,6 +34,7 @@ This component deliberately does **not** implement a suggestions dropdown — th
 
 ## Not built in
 
-- **A decorative leading icon** — considered and deliberately dropped; nothing in this codebase has actually validated a need for one yet (the real reference this component is based on puts its icon inside a submit button, not as passive decoration). Add it if/when `SearchBar` or another real use case needs it.
+- **A decorative leading icon** — considered and deliberately dropped; nothing in this codebase has actually validated a need for one yet (the real reference this component is based on puts its icon inside a submit button, not as passive decoration). Add it if/when `SearchBar` or another real use case needs it. (Almost added for `Select`'s searchable panel, but deferred in favor of swapping that usage for `SearchBar` once it exists, rather than growing this component for one caller.)
 - **Debouncing** — left entirely to the consumer via `onChange`. Timers and cleanup-on-unmount are a concern for whoever's wiring up the actual search/filter logic, not this visual primitive.
 - **The suggestions dropdown itself** — see "Typeahead readiness" above.
+- **`type="search"` + `clearable` together** — not currently combined anywhere. When they are (likely in `SearchBar`), WebKit renders its own native cancel ("×") button for `type="search"` inputs, which would show alongside `clearable`'s own `IconButton`-based one — a double-clear-button look. Override the native one (`-webkit-search-cancel-button: none` or equivalent) when that combination actually happens, rather than guessing at the right treatment now.

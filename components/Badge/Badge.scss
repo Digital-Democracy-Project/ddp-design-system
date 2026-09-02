@@ -1,4 +1,4 @@
-@use '../../styles' as *;
+@use '../../styles/core' as *;
 
 // No component-token indirection layer here, unlike Button — the only
 // sanctioned way to customize a badge's color beyond `tone` is the

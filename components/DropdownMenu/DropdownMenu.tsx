@@ -25,15 +25,14 @@ export interface DropdownMenuProps extends HTMLAttributes<HTMLDivElement> {
 // scrollable card surface. Named "DropdownMenu", not "Menu": it always
 // assumes a Floating UI `context` anchoring it to a trigger, so it can
 // only ever be a positioned, trigger-anchored panel — never an inline or
-// always-visible menu. A genuinely positioning-agnostic `Menu` is a
-// separate, not-yet-built component for if/when a real inline-menu need
-// shows up (nothing in the research validated one yet).
+// always-visible menu. The content/keyboard-nav layer lives in the
+// separate `Menu` component, which this wraps — see Menu.tsx for why that
+// split exists (Floating UI's interaction hooks have to combine wherever
+// the `context` originates, so `Menu` can't own them itself).
 //
 // No `role`/ARIA of its own: that's owned by whatever the consumer's
 // `useRole()` call supplies (a listbox for `Select` today), spread in via
-// `...rest`. Doesn't own the interaction hooks itself either
-// (useListNavigation/useTypeahead/etc. all need the full option list,
-// which only the consumer has) — see Select.tsx.
+// `...rest`.
 export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(function DropdownMenu(
   { context, initialFocus = -1, className, children, ...rest },
   ref

@@ -1,5 +1,9 @@
 import type { Preview } from '@storybook/react-vite';
 import '../styles/colors_and_type.css';
+// Not part of the tokens file itself — see styles/_base.scss for why it's
+// a separate Sass partial, loaded here directly since Storybook bypasses
+// vite.config.ts's dist/style.css assembly entirely.
+import '../styles/_base.scss';
 
 // Renders every story inside a themed wrapper so the toolbar toggle below
 // actually exercises our [data-theme="dark"] token remapping, not just the
