@@ -1,6 +1,11 @@
 @use '../../styles' as *;
 
-.wrapper {
+// Root class dropped "wrapper" — this is the component's block, styled
+// directly, not an internal implementation detail. Size is a peer-choice
+// axis (every step, including the default, is an actually-rendered look),
+// so `ddp-text-input-md` is always explicitly applied by TextInput.tsx.
+// Styled as md here too, but only as a documented fallback.
+.ddp-text-input {
   display: inline-flex;
   align-items: center;
   width: 100%;
@@ -10,6 +15,11 @@
   border-radius: radius('md');
   @include transition(border-color, box-shadow);
 
+  gap: space('1-5');
+  padding: space(1) space(3);
+  font-size: font-size('md');
+  line-height: line-height('md');
+
   &:focus-within {
     border-color: color('primary');
     box-shadow: 0 0 0 1px color('primary');
@@ -18,7 +28,9 @@
 
 // Not @include unstyled-button here — that mixin sets cursor: pointer,
 // which is wrong for a text input (should stay the native text cursor).
-.input {
+// Named "field", not "input" — "ddp-text-input-input" would repeat
+// "input" twice in a row.
+.ddp-text-input-field {
   flex: 1;
   min-width: 0;
   border: none;
@@ -33,27 +45,27 @@
   }
 }
 
-.clearButton {
+.ddp-text-input-clear-button {
   flex-shrink: 0;
 }
 
 // ---------- Sizes ----------
 
-.sm {
+.ddp-text-input-sm {
   gap: space(1);
   padding: space('0-5') space(2);
   font-size: font-size('sm');
   line-height: line-height('sm');
 }
 
-.md {
+.ddp-text-input-md {
   gap: space('1-5');
   padding: space(1) space(3);
   font-size: font-size('md');
   line-height: line-height('md');
 }
 
-.lg {
+.ddp-text-input-lg {
   gap: space(2);
   padding: space('1-5') space(4);
   font-size: font-size('lg');
@@ -62,7 +74,7 @@
 
 // ---------- States ----------
 
-.error {
+.ddp-text-input.is-error {
   border-color: color('negative');
 
   &:focus-within {
@@ -71,16 +83,16 @@
   }
 }
 
-.errorMessage {
+.ddp-text-input-error-message {
   margin: space(1) 0 0;
   font-size: font-size('sm');
   color: color('negative');
 }
 
-// Applied to the wrapper directly from TSX (the input, not the wrapper, is
-// what's actually :disabled, so the `disabled` mixin — which targets
-// &:disabled on itself — doesn't reach the wrapper).
-.disabled {
+// Applied to the root directly from TSX (the field, not the root, is what's
+// actually :disabled, so the `disabled` mixin — which targets &:disabled
+// on itself — doesn't reach the root).
+.ddp-text-input.is-disabled {
   cursor: not-allowed;
   opacity: opacity(60);
   background-color: surface('sunken');

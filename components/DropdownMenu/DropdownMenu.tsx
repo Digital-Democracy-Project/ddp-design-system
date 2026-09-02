@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 import type { ComponentProps, HTMLAttributes, ReactNode } from 'react';
 import type { FloatingContext } from '@floating-ui/react';
 import { FloatingFocusManager, FloatingPortal } from '@floating-ui/react';
-import styles from './DropdownMenu.module.scss';
+import './DropdownMenu.scss';
 
 export interface DropdownMenuProps extends HTMLAttributes<HTMLDivElement> {
   /** The `context` returned by the consumer's own `useFloating()` call. */
@@ -43,7 +43,7 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(functi
   return (
     <FloatingPortal>
       <FloatingFocusManager context={context} initialFocus={initialFocus} modal={false}>
-        <div ref={ref} className={[styles.dropdownMenu, className].filter(Boolean).join(' ')} {...rest}>
+        <div ref={ref} className={['ddp-dropdown-menu', className].filter(Boolean).join(' ')} {...rest}>
           {children}
         </div>
       </FloatingFocusManager>

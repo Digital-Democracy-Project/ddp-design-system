@@ -25,16 +25,20 @@ Raw Sass (tokens, mixins) is also available for consumers authoring their own co
 
 ```scss
 @use '@digital-democracy-project/design-system/styles' as *;
-.thing { padding: space(3); color: color('primary'); }
+.thing {
+  padding: space(3);
+  color: color('primary');
+}
 ```
 
 See each component's own README under `components/<Name>/` for its full prop reference.
 
 ## Development roadmap
 
-*Temporary section — remove once the initial component library and consuming-app migration are far enough along that this reads as a finished package, not a work in progress.*
+_Temporary section — remove once the initial component library and consuming-app migration are far enough along that this reads as a finished package, not a work in progress._
 
 **Phase 1 — Core component library**
+
 - [x] Build Icon
 - [x] Build Button
 - [x] Build Badge/Pill
@@ -48,6 +52,7 @@ See each component's own README under `components/<Name>/` for its full prop ref
 - [ ] Scope decision: `ddp-mapapp`-derived candidates (Accordion, Stat, Spinner, Slide-over, Drawer, Expandable text)
 
 **Phase 2 — Package/publish readiness**
+
 - [x] Claim npm scope
 - [x] `"type": "module"` in package.json
 - [x] First `npm publish` (`0.1.0`)
@@ -58,19 +63,23 @@ See each component's own README under `components/<Name>/` for its full prop ref
 - [ ] Set up Changesets
 
 **Phase 3 — Keep the Claude Design project in sync** (parallel to Phase 1)
+
 - [x] Run `/design-sync` for current state (Icon, Button, Badge, tokens, fonts) — uploaded and verified
 - [ ] Re-sync after each new component lands
 - [ ] Retire superseded static previews as real components land
 - [ ] Decide fate of `ui_kits/*` and token-doc preview pages
 
 **Phase 4 — Migrate consuming apps**
+
 - [ ] `ddp-next`: replace Tailwind/ad hoc UI
 - [ ] `ddp-scorecard-react`: adapt at its own pace
 - [ ] `ddp-mapapp` → `ddp-next` page migration
 
 **Phase 5 — Deferred hygiene**
+
 - [ ] Tests (Vitest/RTL/axe)
 - [ ] Visual regression
 - [ ] CI
 - [ ] Lint/format tooling
-- [ ] Convert component CSS from CSS Modules to manual BEM naming (`ddp-` prefix) — not a priority, explicitly backlogged; do before too many more components exist
+- [x] Convert component CSS from CSS Modules to manual BEM naming (`ddp-` prefix)
+- [ ] `stylelint` rule enforcing the `ddp-` prefix (pairs with lint/format tooling above)

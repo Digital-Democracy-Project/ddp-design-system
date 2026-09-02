@@ -14,30 +14,44 @@
 // semantics (a ValencePill, GradeChip, etc.) are deliberately not baked in
 // here; those belong in a separate component that wraps this one with its
 // own explicit color choice.
-.badge {
+//
+// tone and size are peer-choice axes (every value, including the default,
+// is an actually-rendered look), so `ddp-badge-neutral`/`ddp-badge-md` are
+// always explicitly applied by Badge.tsx. Styled as neutral + md here too,
+// but only as a documented fallback — this isn't a substitute for those
+// classes. `appearance` (soft/solid) stays on/off: `soft` is a genuine
+// absence of the solid override, so it gets no class of its own.
+.ddp-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
   border-radius: radius('full');
   font-weight: font-weight('medium');
+
+  // Default look: md size + neutral tone.
+  padding: space(1) space(3);
+  font-size: font-size('sm');
+  line-height: line-height('sm');
+  background-color: surface('sunken');
+  color: text('default');
 }
 
 // ---------- Sizes ----------
 
-.sm {
+.ddp-badge-sm {
   padding: space('0-5') space(2);
   font-size: font-size('xs');
   line-height: line-height('xs');
 }
 
-.md {
+.ddp-badge-md {
   padding: space(1) space(3);
   font-size: font-size('sm');
   line-height: line-height('sm');
 }
 
-.lg {
+.ddp-badge-lg {
   padding: space('1-5') space(4);
   font-size: font-size('md');
   line-height: line-height('md');
@@ -45,22 +59,22 @@
 
 // ---------- Tones (soft — the default appearance) ----------
 
-.neutral {
+.ddp-badge-neutral {
   background-color: surface('sunken');
   color: text('default');
 }
 
-.primary {
+.ddp-badge-primary {
   background-color: color('primary-tint');
   color: color('primary-tint-foreground');
 }
 
-.secondary {
+.ddp-badge-secondary {
   background-color: color('secondary-tint');
   color: color('secondary-tint-foreground');
 }
 
-.tertiary {
+.ddp-badge-tertiary {
   background-color: color('tertiary-tint');
   color: color('tertiary-tint-foreground');
 }
@@ -70,18 +84,18 @@
 // 'neutral' has no matching override nested here, so appearance="solid"
 // has no visual effect on it and it stays soft.
 
-.solid {
-  &.primary {
+.ddp-badge-solid {
+  &.ddp-badge-primary {
     background-color: color('primary');
     color: color('primary-foreground');
   }
 
-  &.secondary {
+  &.ddp-badge-secondary {
     background-color: color('secondary');
     color: color('secondary-foreground');
   }
 
-  &.tertiary {
+  &.ddp-badge-tertiary {
     background-color: color('tertiary');
     color: color('tertiary-foreground');
   }

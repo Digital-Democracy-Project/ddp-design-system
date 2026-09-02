@@ -3,7 +3,7 @@
 import { forwardRef, useState } from 'react';
 import type { ChangeEvent, InputHTMLAttributes, KeyboardEvent } from 'react';
 import { IconButton } from '../IconButton';
-import styles from './TextInput.module.scss';
+import './TextInput.scss';
 
 export type TextInputSize = 'sm' | 'md' | 'lg';
 
@@ -68,10 +68,10 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function T
   };
 
   const wrapperClasses = [
-    styles.wrapper,
-    styles[size],
-    error ? styles.error : undefined,
-    disabled ? styles.disabled : undefined,
+    'ddp-text-input',
+    `ddp-text-input-${size}`,
+    error ? 'is-error' : undefined,
+    disabled ? 'is-disabled' : undefined,
     className,
   ]
     .filter(Boolean)
@@ -87,7 +87,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function T
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           disabled={disabled}
-          className={styles.input}
+          className="ddp-text-input-field"
           aria-invalid={error || undefined}
           {...rest}
         />
@@ -95,15 +95,14 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function T
           <IconButton
             iconName="close"
             iconSize="sm"
-            theme="none"
             onClick={handleClear}
             disabled={disabled}
             aria-label="Clear"
-            className={styles.clearButton}
+            className="ddp-text-input-clear-button"
           />
         )}
       </div>
-      {error && errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+      {error && errorMessage && <p className="ddp-text-input-error-message">{errorMessage}</p>}
     </div>
   );
 });

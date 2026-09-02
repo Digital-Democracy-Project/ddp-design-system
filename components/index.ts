@@ -5,3 +5,5 @@ export * from './IconButton';
 export * from './TextInput';
 export * from './Checkbox';
 export * from './ToggleButton';
+export * from './MenuItem';
+export * from './DropdownMenu';

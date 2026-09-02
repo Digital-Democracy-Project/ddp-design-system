@@ -6,7 +6,7 @@
 // &:focus styling picks it up for free, matching how a real listbox's
 // "highlighted" state is supposed to work (it's genuine focus, not a
 // simulated one).
-.menuItem {
+.ddp-menu-item {
   display: flex;
   align-items: center;
   gap: space(2);
@@ -25,18 +25,18 @@
   }
 }
 
-.checkIcon {
+.ddp-menu-item-check-icon {
   flex-shrink: 0;
   color: color('primary');
 }
 
-.label {
+.ddp-menu-item-label {
   flex: 1;
   min-width: 0;
   @include truncate;
 }
 
-.selected {
+.ddp-menu-item.is-selected {
   font-weight: font-weight('medium');
   color: color('primary');
 
@@ -46,7 +46,7 @@
   }
 }
 
-.disabled {
+.ddp-menu-item.is-disabled {
   color: text('disabled');
   cursor: not-allowed;
   pointer-events: none;

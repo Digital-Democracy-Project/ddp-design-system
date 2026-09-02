@@ -4,10 +4,10 @@ import { IconButton } from './IconButton';
 const meta: Meta<typeof IconButton> = {
   title: 'Components/IconButton',
   component: IconButton,
-  args: { iconName: 'close', iconSize: 'sm', theme: 'none', 'aria-label': 'Clear' },
+  args: { iconName: 'close', iconSize: 'sm', 'aria-label': 'Clear' },
   argTypes: {
     iconSize: { control: 'select', options: ['xs', 'sm', 'md', 'lg', 'xl'] },
-    theme: { control: 'select', options: ['none', 'primary', 'secondary', 'tertiary'] },
+    theme: { control: 'select', options: [undefined, 'primary', 'secondary', 'tertiary'] },
   },
 };
 export default meta;
@@ -19,7 +19,7 @@ export const Playground: Story = {};
 export const AllThemes: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-      <IconButton iconName="close" theme="none" aria-label="Close" />
+      <IconButton iconName="close" aria-label="Close" />
       <IconButton iconName="close" theme="primary" aria-label="Close" />
       <IconButton iconName="close" theme="secondary" aria-label="Close" />
       <IconButton iconName="close" theme="tertiary" aria-label="Close" />
@@ -43,7 +43,7 @@ export const CustomIconColor: Story = {
 export const Disabled: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-      <IconButton iconName="close" theme="none" disabled aria-label="Close" />
+      <IconButton iconName="close" disabled aria-label="Close" />
       <IconButton iconName="close" theme="primary" disabled aria-label="Close" />
     </div>
   ),
@@ -63,7 +63,7 @@ export const InTextInputContext: Story = {
       }}
     >
       <span>housing</span>
-      <IconButton iconName="close" iconSize="sm" theme="none" fill aria-label="Clear" />
+      <IconButton iconName="close" iconSize="sm" fill aria-label="Clear" />
     </div>
   ),
 };

@@ -3,7 +3,7 @@
 import { forwardRef } from 'react';
 import type { HTMLAttributes, ReactNode } from 'react';
 import { Icon } from '../Icon';
-import styles from './MenuItem.module.scss';
+import './MenuItem.scss';
 
 export interface MenuItemProps extends HTMLAttributes<HTMLDivElement> {
   selected?: boolean;
@@ -20,14 +20,19 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(function MenuI
   { selected, disabled, className, children, ...rest },
   ref
 ) {
-  const classes = [styles.menuItem, selected ? styles.selected : undefined, disabled ? styles.disabled : undefined, className]
+  const classes = [
+    'ddp-menu-item',
+    selected ? 'is-selected' : undefined,
+    disabled ? 'is-disabled' : undefined,
+    className,
+  ]
     .filter(Boolean)
     .join(' ');
 
   return (
     <div ref={ref} role="option" aria-selected={selected} aria-disabled={disabled} className={classes} {...rest}>
-      {selected && <Icon name="check" size="xs" className={styles.checkIcon} />}
-      <span className={styles.label}>{children}</span>
+      {selected && <Icon name="check" size="xs" className="ddp-menu-item-check-icon" />}
+      <span className="ddp-menu-item-label">{children}</span>
     </div>
   );
 });

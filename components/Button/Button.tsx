@@ -2,7 +2,7 @@
 
 import { forwardRef } from 'react';
 import type { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
-import styles from './Button.module.scss';
+import './Button.scss';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'link';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -70,11 +70,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref,
   ) {
     const classes = [
-      styles.button,
-      styles[variant],
-      styles[size],
-      styles[appearance],
-      customColors ? styles.custom : undefined,
+      'ddp-button',
+      `ddp-button-${variant}`,
+      `ddp-button-${size}`,
+      appearance === 'outline' ? 'ddp-button-outline' : undefined,
+      customColors ? 'ddp-button-custom' : undefined,
       className,
     ]
       .filter(Boolean)

@@ -4,7 +4,13 @@
 // simplification as Badge. Each variant sets background-color/color
 // directly, including its own :hover/:active rules, since nothing outside
 // this file ever needs to read a --ddp-button-* value for these.
-.button {
+//
+// variant and size are both peer-choice axes (every value, including the
+// default, is an actually-rendered look — there's no "off" state), so
+// `ddp-button-primary`/`ddp-button-md` are always explicitly applied by
+// Button.tsx, never omitted. Styled as primary + md here too, but only as
+// a documented fallback — this isn't a substitute for those classes.
+.ddp-button {
   @include unstyled-button;
   @include focus-ring;
   @include disabled;
@@ -18,25 +24,41 @@
   font-weight: font-weight('medium');
   // Pinned so the outline appearance's border doesn't change a button's outer footprint relative to solid — without this, adding a border would grow the box by 2px (content-box is the browser default absent an explicit reset), making same-size solid/outline buttons mismatch.
   box-sizing: border-box;
+
+  // Default look: md size + primary variant, resting state only — no
+  // :hover/:active here. A pseudo-class on the bare block would have the
+  // same specificity as e.g. `.ddp-button-secondary:hover` and could only
+  // be beaten by an equally-specific, explicit override; `.ddp-button-link`
+  // doesn't redeclare `background-color` on hover (it only ever changes
+  // text color/underline), so it would silently inherit primary's hover
+  // background otherwise. `.ddp-button-primary` below already owns the
+  // real hover/active rule for actual primary buttons — this base copy is
+  // just enough to not look broken if that class were ever missing.
+  gap: space('1-5');
+  padding: space('1-5') space(4);
+  font-size: font-size('md');
+  line-height: line-height('md');
+  background-color: color('primary');
+  color: color('primary-foreground');
 }
 
 // ---------- Sizes ----------
 
-.sm {
+.ddp-button-sm {
   gap: space(1);
   padding: space(1) space(3);
   font-size: font-size('sm');
   line-height: line-height('sm');
 }
 
-.md {
+.ddp-button-md {
   gap: space('1-5');
   padding: space('1-5') space(4);
   font-size: font-size('md');
   line-height: line-height('md');
 }
 
-.lg {
+.ddp-button-lg {
   gap: space(2);
   padding: space(2) space(5);
   font-size: font-size('lg');
@@ -45,7 +67,7 @@
 
 // ---------- Variants ----------
 
-.primary {
+.ddp-button-primary {
   background-color: color('primary');
   color: color('primary-foreground');
 
@@ -58,7 +80,7 @@
   }
 }
 
-.secondary {
+.ddp-button-secondary {
   background-color: color('secondary');
   color: color('secondary-foreground');
 
@@ -71,7 +93,7 @@
   }
 }
 
-.tertiary {
+.ddp-button-tertiary {
   background-color: color('tertiary');
   color: color('tertiary-foreground');
 
@@ -89,12 +111,19 @@
 // for tighter control near descenders), same transition. No padding, same
 // as a real inline link — the point of this variant is to disappear into
 // surrounding text, so it deliberately does not share the padded hit-area
-// of the other variants. Declared after .sm/.md/.lg so this override wins.
-.link {
+// of the other variants. Declared after the size classes so this override wins.
+//
+// No border-radius normally — `.ddp a` has none either, so the hover
+// underline (a border-bottom) stays a crisp straight line instead of
+// curving up into a corner radius. Only applied on :focus-visible, purely
+// to give the keyboard focus ring a reasonable rounded shape (a real `<a>`
+// doesn't need this since browsers already handle its focus ring
+// differently) — modern outlines follow the element's own border-radius.
+.ddp-button-link {
   background-color: transparent;
   color: text('link');
   padding: 0;
-  border-radius: radius('sm');
+  border-radius: 0;
   font-weight: font-weight('regular');
   border-bottom: border-width(1) solid transparent;
 
@@ -102,12 +131,16 @@
     color: text('link-hover');
     border-bottom-color: currentColor;
   }
+
+  &:focus-visible {
+    border-radius: radius('sm');
+  }
 }
 
 // ---------- Appearance: outline ----------
-// Transparent background, border + text in the variant's own color, filled with that variant's existing -tint token on hover/active — reuses tokens already defined for Badge's soft appearance, nothing new added to colors_and_type.css. No effect on .link (no override defined for it — same no-effect pattern Badge already uses for appearance="solid" on tone="neutral": link has no color of its own to put an outline around).
-.outline {
-  &.primary {
+// Transparent background, border + text in the variant's own color, filled with that variant's existing -tint token on hover/active — reuses tokens already defined for Badge's soft appearance, nothing new added to colors_and_type.css. No effect on .ddp-button-link (no override defined for it — same no-effect pattern Badge already uses for appearance="solid" on tone="neutral": link has no color of its own to put an outline around). `solid` (the default appearance) stays implicit — it's an on/off axis (does this button have an outline or not), unlike variant/size, so it gets no class of its own, same as Badge's `soft` appearance.
+.ddp-button-outline {
+  &.ddp-button-primary {
     background-color: transparent;
     color: color('primary');
     border: border-width(1) solid color('primary');
@@ -118,7 +151,7 @@
     }
   }
 
-  &.secondary {
+  &.ddp-button-secondary {
     background-color: transparent;
     color: color('secondary');
     border: border-width(1) solid color('secondary');
@@ -129,7 +162,7 @@
     }
   }
 
-  &.tertiary {
+  &.ddp-button-tertiary {
     background-color: transparent;
     color: color('tertiary');
     border: border-width(1) solid color('tertiary');
@@ -140,8 +173,8 @@
     }
   }
 
-  // customColors still overrides color when combined with outline — needs the same 2-class specificity as .outline.primary etc. above (plain .custom, at 1 class, would lose to them) and to come after them in source order to win at that equal specificity. No hover/active tint here: customColors has no separate "tint" value to draw on, so it stays flat rather than guessing at one.
-  &.custom {
+  // customColors still overrides color when combined with outline — needs the same 2-class specificity as .ddp-button-outline.ddp-button-primary etc. above (plain .ddp-button-custom, at 1 class, would lose to them) and to come after them in source order to win at that equal specificity. No hover/active tint here: customColors has no separate "tint" value to draw on, so it stays flat rather than guessing at one.
+  &.ddp-button-custom {
     background-color: transparent;
     color: var(--ddp-button-fg);
     border-color: var(--ddp-button-fg);
@@ -160,7 +193,7 @@
 // something. --ddp-button-bg-hover/-active fall back to the base color via
 // var()'s second argument when Button.tsx doesn't set them (i.e.
 // `backgroundHover`/`backgroundActive` were omitted from `customColors`).
-.custom {
+.ddp-button-custom {
   background-color: var(--ddp-button-bg);
   color: var(--ddp-button-fg);
 
@@ -174,11 +207,12 @@
 
   // link has no background by design — customColors only overrides its
   // text color, not the transparent background. (Its hover color still
-  // comes from .link:hover above, which is more specific than .custom, so
-  // the built-in link-hover tone intentionally still wins on hover.)
-  &.link,
-  &.link:hover,
-  &.link:active {
+  // comes from .ddp-button-link:hover above, which is more specific than
+  // .ddp-button-custom, so the built-in link-hover tone intentionally
+  // still wins on hover.)
+  &.ddp-button-link,
+  &.ddp-button-link:hover,
+  &.ddp-button-link:active {
     background-color: transparent;
   }
 }

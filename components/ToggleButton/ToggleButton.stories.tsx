@@ -5,11 +5,11 @@ import { ToggleButton } from './ToggleButton';
 const meta: Meta<typeof ToggleButton> = {
   title: 'Components/ToggleButton',
   component: ToggleButton,
-  args: { tone: 'primary', size: 'md', indicator: 'none', disabled: false, children: 'Hide voice votes' },
+  args: { tone: 'primary', size: 'md', disabled: false, children: 'Hide voice votes' },
   argTypes: {
     tone: { control: 'select', options: ['neutral', 'primary', 'secondary', 'tertiary'] },
     size: { control: 'select', options: ['sm', 'md', 'lg'] },
-    indicator: { control: 'select', options: ['none', 'checkbox'] },
+    indicator: { control: 'select', options: [undefined, 'checkbox'] },
   },
 };
 export default meta;
@@ -27,7 +27,7 @@ export const PlainChip: Story = {
     return (
       <div style={{ display: 'flex', gap: 8 }}>
         {['2023', '2024', '2025'].map((year) => (
-          <ToggleButton key={year} indicator="none" tone="secondary" pressed={years.includes(year)} onPressedChange={() => toggle(year)}>
+          <ToggleButton key={year} tone="secondary" pressed={years.includes(year)} onPressedChange={() => toggle(year)}>
             {year}
           </ToggleButton>
         ))}
@@ -53,8 +53,8 @@ export const Tones: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
       {(['neutral', 'primary', 'secondary', 'tertiary'] as const).map((tone) => (
         <div key={tone} style={{ display: 'flex', gap: 8 }}>
-          <ToggleButton tone={tone} indicator="none">{tone}</ToggleButton>
-          <ToggleButton tone={tone} indicator="none" defaultPressed>{tone} pressed</ToggleButton>
+          <ToggleButton tone={tone}>{tone}</ToggleButton>
+          <ToggleButton tone={tone} defaultPressed>{tone} pressed</ToggleButton>
           <ToggleButton tone={tone} indicator="checkbox">{tone}</ToggleButton>
           <ToggleButton tone={tone} indicator="checkbox" defaultPressed>{tone} pressed</ToggleButton>
         </div>

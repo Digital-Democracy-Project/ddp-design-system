@@ -6,29 +6,38 @@
 // with the custom box and text, so native label-click delegation gives the
 // whole row a click target for free — no generated id/htmlFor or tap-target
 // hack needed the way IconButton needed one for its bare icon-only hit area.
-.checkbox {
+//
+// Size is a peer-choice axis (every step, including the default, is an
+// actually-rendered look), so `ddp-checkbox-md` is always explicitly
+// applied by Checkbox.tsx. The box/text sizing below is duplicated onto
+// the bare block as a documented fallback for the md look; the explicit
+// `ddp-checkbox-md` rule further down is what's actually relied on.
+.ddp-checkbox {
   display: inline-flex;
   align-items: center;
   gap: space(2);
   cursor: pointer;
 
-  &.disabled {
+  .ddp-checkbox-box { width: space(4); height: space(4); }
+  .ddp-checkbox-text { font-size: font-size('sm'); line-height: line-height('sm'); }
+
+  &.is-disabled {
     cursor: not-allowed;
     opacity: opacity(60);
   }
 }
 
-.control {
+.ddp-checkbox-control {
   position: relative;
   display: inline-flex;
   flex-shrink: 0;
 }
 
-.input {
+.ddp-checkbox-input {
   @include visually-hidden;
 }
 
-.box {
+.ddp-checkbox-box {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -39,7 +48,7 @@
   @include transition(background-color, border-color);
 }
 
-.checkIcon {
+.ddp-checkbox-check-icon {
   color: color('primary-foreground');
   opacity: 0;
   @include transition(opacity, $speed: 'fast');
@@ -48,7 +57,7 @@
 // Drawn with CSS, not a source icon — no minus/dash glyph exists in
 // assets/icons/ yet, and a plain bar is enough to communicate
 // indeterminate without adding an SVG for one state of one component.
-.dash {
+.ddp-checkbox-dash {
   position: absolute;
   width: 60%;
   height: border-width(2);
@@ -57,35 +66,35 @@
   display: none;
 }
 
-// input:checked / :indeterminate / :disabled / :focus-visible are native
+// :checked / :indeterminate / :disabled / :focus-visible are native
 // pseudo-classes on the hidden input — driving the box's appearance off
 // them directly (sibling combinator) keeps checked/indeterminate/focus
 // state as a single source of truth (the real DOM checkbox), no JS-side
 // class mirroring required.
-.input:checked ~ .box,
-.input:indeterminate ~ .box {
+.ddp-checkbox-input:checked ~ .ddp-checkbox-box,
+.ddp-checkbox-input:indeterminate ~ .ddp-checkbox-box {
   background-color: color('primary');
   border-color: color('primary');
 }
 
-.input:checked ~ .box .checkIcon {
+.ddp-checkbox-input:checked ~ .ddp-checkbox-box .ddp-checkbox-check-icon {
   opacity: 1;
 }
 
-.input:indeterminate ~ .box .checkIcon {
+.ddp-checkbox-input:indeterminate ~ .ddp-checkbox-box .ddp-checkbox-check-icon {
   display: none;
 }
 
-.input:indeterminate ~ .box .dash {
+.ddp-checkbox-input:indeterminate ~ .ddp-checkbox-box .ddp-checkbox-dash {
   display: block;
 }
 
-.input:focus-visible ~ .box {
+.ddp-checkbox-input:focus-visible ~ .ddp-checkbox-box {
   outline: var(--ddp-focus-ring-width) solid var(--ddp-focus-ring-color);
   outline-offset: var(--ddp-focus-ring-offset);
 }
 
-.text {
+.ddp-checkbox-text {
   color: text('default');
 }
 
@@ -97,28 +106,28 @@
 // to its label reads as too heavy at the same scale a standalone text
 // input or button uses. No new raw magic numbers, just borrowed steps.
 
-.sm {
-  .box { width: space(3); height: space(3); }
-  .text { font-size: font-size('xs'); line-height: line-height('xs'); }
+.ddp-checkbox-sm {
+  .ddp-checkbox-box { width: space(3); height: space(3); }
+  .ddp-checkbox-text { font-size: font-size('xs'); line-height: line-height('xs'); }
 }
 
-.md {
-  .box { width: space(4); height: space(4); }
-  .text { font-size: font-size('sm'); line-height: line-height('sm'); }
+.ddp-checkbox-md {
+  .ddp-checkbox-box { width: space(4); height: space(4); }
+  .ddp-checkbox-text { font-size: font-size('sm'); line-height: line-height('sm'); }
 }
 
-.lg {
-  .box { width: space(5); height: space(5); }
-  .text { font-size: font-size('md'); line-height: line-height('md'); }
+.ddp-checkbox-lg {
+  .ddp-checkbox-box { width: space(5); height: space(5); }
+  .ddp-checkbox-text { font-size: font-size('md'); line-height: line-height('md'); }
 }
 
 // ---------- States ----------
 
-.error .box {
+.ddp-checkbox.is-error .ddp-checkbox-box {
   border-color: color('negative');
 }
 
-.errorMessage {
+.ddp-checkbox-error-message {
   margin: space(1) 0 0;
   font-size: font-size('sm');
   color: color('negative');

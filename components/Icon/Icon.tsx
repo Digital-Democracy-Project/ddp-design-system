@@ -1,5 +1,5 @@
 import type { FunctionComponent, SVGProps } from 'react';
-import styles from './Icon.module.scss';
+import './Icon.scss';
 
 type IconComponent = FunctionComponent<SVGProps<SVGSVGElement>>;
 
@@ -28,11 +28,11 @@ export type IconName = string;
 export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 const SIZE_CLASSES: Record<IconSize, string> = {
-  xs: styles.xs,
-  sm: styles.sm,
-  md: styles.md,
-  lg: styles.lg,
-  xl: styles.xl,
+  xs: 'ddp-icon-xs',
+  sm: 'ddp-icon-sm',
+  md: 'ddp-icon-md',
+  lg: 'ddp-icon-lg',
+  xl: 'ddp-icon-xl',
 };
 
 export interface IconProps extends Omit<SVGProps<SVGSVGElement>, 'width' | 'height'> {
@@ -51,7 +51,7 @@ export interface IconProps extends Omit<SVGProps<SVGSVGElement>, 'width' | 'heig
 export function Icon({ name, size = 'md', title, className, style, ...rest }: IconProps) {
   const Component = ICONS[name];
   const isCustomSize = typeof size === 'number';
-  const classes = [styles.icon, !isCustomSize ? SIZE_CLASSES[size] : undefined, className]
+  const classes = ['ddp-icon', !isCustomSize ? SIZE_CLASSES[size] : undefined, className]
     .filter(Boolean)
     .join(' ');
   const mergedStyle = isCustomSize ? { width: size, height: size, ...style } : style;

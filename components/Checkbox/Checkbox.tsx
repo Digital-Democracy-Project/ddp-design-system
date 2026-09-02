@@ -3,14 +3,14 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
 import type { ChangeEvent, InputHTMLAttributes, ReactNode } from 'react';
 import { Icon } from '../Icon';
-import styles from './Checkbox.module.scss';
+import './Checkbox.scss';
 
 export type CheckboxSize = 'sm' | 'md' | 'lg';
 
 // Matches the real, shipped reference (ddp-scorecard-react's CheckboxItem,
 // button mode): the checkmark fills the box edge-to-edge (icon size ==
 // box size, no internal padding) — only the box's own border provides any
-// visual margin. These match the box dimensions in Checkbox.module.scss.
+// visual margin. These match the box dimensions in Checkbox.scss.
 const CHECK_ICON_SIZE: Record<CheckboxSize, number> = { sm: 12, md: 16, lg: 20 };
 
 export interface CheckboxProps
@@ -70,32 +70,38 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
     else if (ref) ref.current = node;
   };
 
-  const rootClasses = [styles.checkbox, styles[size], error ? styles.error : undefined, disabled ? styles.disabled : undefined, className]
+  const rootClasses = [
+    'ddp-checkbox',
+    `ddp-checkbox-${size}`,
+    error ? 'is-error' : undefined,
+    disabled ? 'is-disabled' : undefined,
+    className,
+  ]
     .filter(Boolean)
     .join(' ');
 
   return (
     <div>
       <label className={rootClasses}>
-        <span className={styles.control}>
+        <span className="ddp-checkbox-control">
           <input
             ref={setRefs}
             type="checkbox"
             checked={currentChecked}
             onChange={handleChange}
             disabled={disabled}
-            className={styles.input}
+            className="ddp-checkbox-input"
             aria-invalid={error || undefined}
             {...rest}
           />
-          <span className={styles.box}>
-            <Icon name="check" size={CHECK_ICON_SIZE[size]} className={styles.checkIcon} />
-            <span className={styles.dash} />
+          <span className="ddp-checkbox-box">
+            <Icon name="check" size={CHECK_ICON_SIZE[size]} className="ddp-checkbox-check-icon" />
+            <span className="ddp-checkbox-dash" />
           </span>
         </span>
-        {children && <span className={styles.text}>{children}</span>}
+        {children && <span className="ddp-checkbox-text">{children}</span>}
       </label>
-      {error && errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+      {error && errorMessage && <p className="ddp-checkbox-error-message">{errorMessage}</p>}
     </div>
   );
 });

@@ -2,7 +2,7 @@
 
 A real `<button aria-pressed>` with two shapes, validated against two independently-built real references:
 
-- `indicator="none"` — a plain pill, solid-filled with `tone`'s color when pressed. Matches `ddp-scorecard-react`'s `ToggleChip` and the legislative-scorecard hi-fi mockup's `ChipToggle` — used for multi-select-style chips (e.g. picking one or more years/sessions).
+- Omitting `indicator` — a plain pill, solid-filled with `tone`'s color when pressed. Matches `ddp-scorecard-react`'s `ToggleChip` and the legislative-scorecard hi-fi mockup's `ChipToggle` — used for multi-select-style chips (e.g. picking one or more years/sessions).
 - `indicator="checkbox"` — a rounded rect with a small decorative checkbox square, soft/tint-filled with `tone`'s color when pressed. Matches `ddp-scorecard-react`'s `CheckboxItem` (button mode) and the mockup's own `ToggleButton` — used for independent boolean flags (e.g. "hide voice votes").
 
 Both real references consistently pair a shape with a fill treatment, so `indicator` drives both together rather than exposing them as independent props — there's no validated case that mixes them.
@@ -16,7 +16,7 @@ import { ToggleButton } from '@digital-democracy-project/design-system';
   Hide voice votes
 </ToggleButton>
 
-<ToggleButton indicator="none" tone="secondary" pressed={years.includes('2025')} onPressedChange={() => toggle('2025')}>
+<ToggleButton tone="secondary" pressed={years.includes('2025')} onPressedChange={() => toggle('2025')}>
   2025
 </ToggleButton>
 ```
@@ -29,7 +29,7 @@ import { ToggleButton } from '@digital-democracy-project/design-system';
 | `onPressedChange` | `(pressed: boolean) => void` | — | |
 | `tone` | `'neutral' \| 'primary' \| 'secondary' \| 'tertiary'` | `'primary'` | Same vocabulary as `Badge`'s `tone`. `'neutral'` has no dedicated brand color token (same reasoning as `Badge`), so its pressed state inverts using `text()`/`surface()` tokens instead of a `color()` value — monochrome by design, not a guessed "neutral color." |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Same padding/font scale as `Button`, so the two sit comfortably in the same row. |
-| `indicator` | `'none' \| 'checkbox'` | `'none'` | See above. |
+| `indicator` | `'checkbox'` | — (omit for the plain pill) | See above — not a peer shape, just present or absent. |
 | `children` | `ReactNode` | — | The button's label. |
 
 Everything else is a normal `<button>` prop and passes through untouched. Accepts a `ref` to the underlying `<button>` element.

@@ -1,5 +1,5 @@
 import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
-import styles from './Badge.module.scss';
+import './Badge.scss';
 
 export type BadgeTone = 'neutral' | 'primary' | 'secondary' | 'tertiary';
 export type BadgeAppearance = 'soft' | 'solid';
@@ -47,7 +47,13 @@ export function Badge({
   children,
   ...rest
 }: BadgeProps) {
-  const classes = [styles.badge, styles[tone], styles[appearance], styles[size], className]
+  const classes = [
+    'ddp-badge',
+    `ddp-badge-${tone}`,
+    appearance === 'solid' ? 'ddp-badge-solid' : undefined,
+    `ddp-badge-${size}`,
+    className,
+  ]
     .filter(Boolean)
     .join(' ');
 

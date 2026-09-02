@@ -3,11 +3,11 @@
 import { forwardRef, useState } from 'react';
 import type { ButtonHTMLAttributes, MouseEvent, ReactNode } from 'react';
 import { Icon } from '../Icon';
-import styles from './ToggleButton.module.scss';
+import './ToggleButton.scss';
 
 export type ToggleButtonTone = 'neutral' | 'primary' | 'secondary' | 'tertiary';
 export type ToggleButtonSize = 'sm' | 'md' | 'lg';
-export type ToggleButtonIndicator = 'none' | 'checkbox';
+export type ToggleButtonIndicator = 'checkbox';
 
 // Matches Checkbox's own box scale exactly, since indicator="checkbox"
 // reuses that same visual language (edge-to-edge checkmark fill).
@@ -21,9 +21,9 @@ export interface ToggleButtonProps
   tone?: ToggleButtonTone;
   size?: ToggleButtonSize;
   /**
-   * `'none'` (a plain pill, filled solid when pressed — for a
-   * multi-select-style chip) or `'checkbox'` (a rounded rect with a small
-   * decorative checkbox square, tinted when pressed — for an independent
+   * Omit for a plain pill, filled solid when pressed (a multi-select-style
+   * chip) — the default. Pass `'checkbox'` for a rounded rect with a small
+   * decorative checkbox square, tinted when pressed (an independent
    * boolean flag read as "hide voice votes"-style). Purely presentational:
    * this is always a real `<button aria-pressed>`, never a native
    * checkbox input — see the README for why.
@@ -39,7 +39,7 @@ export const ToggleButton = forwardRef<HTMLButtonElement, ToggleButtonProps>(fun
     onPressedChange,
     tone = 'primary',
     size = 'md',
-    indicator = 'none',
+    indicator,
     disabled,
     className,
     children,
@@ -60,11 +60,11 @@ export const ToggleButton = forwardRef<HTMLButtonElement, ToggleButtonProps>(fun
   };
 
   const classes = [
-    styles.toggleButton,
-    styles[tone],
-    styles[size],
-    styles[indicator],
-    currentPressed ? styles.pressed : undefined,
+    'ddp-toggle-button',
+    `ddp-toggle-button-${tone}`,
+    `ddp-toggle-button-${size}`,
+    indicator === 'checkbox' ? 'has-checkbox' : undefined,
+    currentPressed ? 'is-pressed' : undefined,
     className,
   ]
     .filter(Boolean)
@@ -81,8 +81,8 @@ export const ToggleButton = forwardRef<HTMLButtonElement, ToggleButtonProps>(fun
       {...rest}
     >
       {indicator === 'checkbox' && (
-        <span className={styles.box}>
-          <Icon name="check" size={CHECK_ICON_SIZE[size]} className={styles.checkIcon} />
+        <span className="ddp-toggle-button-box">
+          <Icon name="check" size={CHECK_ICON_SIZE[size]} className="ddp-toggle-button-check-icon" />
         </span>
       )}
       {children}

@@ -10,32 +10,40 @@
 // default (display: inline). flex: none is a separate, unrelated concern:
 // it keeps the icon from being stretched or squished if some ancestor
 // (e.g. a future Button laying out icon + label) itself uses flex.
-.icon {
+//
+// Size is a peer-choice axis (every step, including the default, is an
+// actually-rendered size — there's no "off" state) — so `md` gets its own
+// class same as every other step, always explicitly applied. Styled as
+// `md` here too, as a documented fallback only: `ddp-icon-md` is still
+// applied by Icon.tsx in the default case, this isn't a substitute for it.
+.ddp-icon {
   display: inline-flex;
   flex: none;
-}
-
-.xs {
-  width: icon-size('xs');
-  height: icon-size('xs');
-}
-
-.sm {
-  width: icon-size('sm');
-  height: icon-size('sm');
-}
-
-.md {
   width: icon-size('md');
   height: icon-size('md');
 }
 
-.lg {
+.ddp-icon-xs {
+  width: icon-size('xs');
+  height: icon-size('xs');
+}
+
+.ddp-icon-sm {
+  width: icon-size('sm');
+  height: icon-size('sm');
+}
+
+.ddp-icon-md {
+  width: icon-size('md');
+  height: icon-size('md');
+}
+
+.ddp-icon-lg {
   width: icon-size('lg');
   height: icon-size('lg');
 }
 
-.xl {
+.ddp-icon-xl {
   width: icon-size('xl');
   height: icon-size('xl');
 }

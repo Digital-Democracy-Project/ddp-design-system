@@ -4,9 +4,9 @@ import { forwardRef } from 'react';
 import type { ButtonHTMLAttributes, CSSProperties } from 'react';
 import { Icon } from '../Icon';
 import type { IconName, IconSize } from '../Icon';
-import styles from './IconButton.module.scss';
+import './IconButton.scss';
 
-export type IconButtonTheme = 'none' | 'primary' | 'secondary' | 'tertiary';
+export type IconButtonTheme = 'primary' | 'secondary' | 'tertiary';
 
 export interface IconButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'aria-label'> {
   /**
@@ -32,8 +32,9 @@ export interface IconButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonEle
    */
   iconColor?: string;
   /**
-   * `'none'` (default, transparent background, muted icon color) or a
-   * brand color (`'primary'` | `'secondary'` | `'tertiary'` — solid
+   * Omit for the default look (transparent background, muted icon color —
+   * the only treatment validated against a real reference so far), or pick
+   * a brand color (`'primary'` | `'secondary'` | `'tertiary'` — solid
    * background, safe foreground icon color, same pairing Button's solid
    * variant uses). `iconColor` overrides whatever the theme would
    * otherwise set.
@@ -53,7 +54,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(functio
     iconName,
     iconSize = 'md',
     iconColor,
-    theme = 'none',
+    theme,
     padding,
     width,
     height,
@@ -64,7 +65,12 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(functio
   },
   ref
 ) {
-  const classes = [styles.iconButton, styles[theme], fill ? styles.fill : undefined, className]
+  const classes = [
+    'ddp-icon-button',
+    theme ? `ddp-icon-button-${theme}` : undefined,
+    fill ? 'ddp-icon-button-fill' : undefined,
+    className,
+  ]
     .filter(Boolean)
     .join(' ');
 
