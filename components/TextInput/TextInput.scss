@@ -1,10 +1,6 @@
 @use '../../styles/core' as *;
 
-// Root class dropped "wrapper" — this is the component's block, styled
-// directly, not an internal implementation detail. Size is a peer-choice
-// axis (every step, including the default, is an actually-rendered look),
-// so `ddp-text-input-md` is always explicitly applied by TextInput.tsx.
-// Styled as md here too, but only as a documented fallback.
+// Root class dropped "wrapper" — this is the component's block, styled directly, not an internal implementation detail. Size is a peer-choice axis (every step, including the default, is an actually-rendered look), so `ddp-text-input-md` is always explicitly applied by TextInput.tsx. Styled as md here too, but only as a documented fallback.
 .ddp-text-input {
   display: inline-flex;
   align-items: center;
@@ -26,10 +22,7 @@
   }
 }
 
-// Not @include unstyled-button here — that mixin sets cursor: pointer,
-// which is wrong for a text input (should stay the native text cursor).
-// Named "field", not "input" — "ddp-text-input-input" would repeat
-// "input" twice in a row.
+// Not @include unstyled-button here — that mixin sets cursor: pointer, which is wrong for a text input (should stay the native text cursor). Named "field", not "input" — "ddp-text-input-input" would repeat "input" twice in a row.
 .ddp-text-input-field {
   flex: 1;
   min-width: 0;
@@ -89,9 +82,7 @@
   color: color('negative');
 }
 
-// Applied to the root directly from TSX (the field, not the root, is what's
-// actually :disabled, so the `disabled` mixin — which targets &:disabled
-// on itself — doesn't reach the root).
+// Applied to the root directly from TSX (the field, not the root, is what's actually :disabled, so the `disabled` mixin — which targets &:disabled on itself — doesn't reach the root).
 .ddp-text-input.is-disabled {
   cursor: not-allowed;
   opacity: opacity(60);

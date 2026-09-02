@@ -34,11 +34,7 @@ export interface SelectProps
   onChange?: (value: string) => void;
   placeholder?: string;
   size?: SelectSize;
-  /**
-   * Adds a filter `TextInput` inside the panel — a real, validated pattern
-   * (Aqua's `AquaDropdown`, the legislative-scorecard hi-fi mockup's
-   * `CategoryMenu`), not speculative. Off by default.
-   */
+  /** Adds a filter `TextInput` inside the panel — a real, validated pattern (Aqua's `AquaDropdown`, the legislative-scorecard hi-fi mockup's `CategoryMenu`), not speculative. Off by default. */
   searchable?: boolean;
   searchPlaceholder?: string;
   ref?: Ref<HTMLButtonElement>;
@@ -110,8 +106,7 @@ export function Select({
     ],
   });
 
-  // Preselect the current value on open, matching native <select> — keyboard
-  // navigation starts near the existing selection instead of the top.
+  // Preselect the current value on open, matching native <select> — keyboard navigation starts near the existing selection instead of the top.
   useEffect(() => {
     if (open) {
       const index = filteredOptions.findIndex((option) => option.value === currentValue);
@@ -185,12 +180,7 @@ export function Select({
         initialFocus={searchable ? 0 : -1}
         {...getFloatingProps()}
       >
-        {/* Plain TextInput deliberately, not a styled-up search field — no
-            type="search", no leading icon. TextInput has no icon-prop
-            capability at all (a past deliberate decision, see its own
-            README), and reopening that just for this one usage isn't worth
-            it now that SearchBar is coming soon anyway. Swap this for
-            SearchBar once it exists, rather than growing TextInput here. */}
+        {/* Plain TextInput deliberately, not a styled-up search field — no type="search", no leading icon. TextInput has no icon-prop capability at all (a past deliberate decision, see its own README), and reopening that just for this one usage isn't worth it now that SearchBar is coming soon anyway. Swap this for SearchBar once it exists, rather than growing TextInput here. */}
         {searchable && (
           <div className="ddp-select-search">
             <TextInput

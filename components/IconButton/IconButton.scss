@@ -1,18 +1,8 @@
 @use '../../styles/core' as *;
 
-// Deliberately opinionated: the icon lives inside the component (an
-// `iconName` prop, not children) — this is a single-purpose control, a
-// button whose only content is one centered icon. unstyled-button already
-// resets padding to 0, which is the correct default here: the one
-// treatment actually validated (a live reference clear-button) has no
-// padding at all, just tap-target's invisible hit-area expansion. Explicit
-// `padding`/`width`/`height` props (applied as inline style in the
-// component) override this per-instance.
+// Deliberately opinionated: the icon lives inside the component (an `iconName` prop, not children) — this is a single-purpose control, a button whose only content is one centered icon. unstyled-button already resets padding to 0, which is the correct default here: the one treatment actually validated (a live reference clear-button) has no padding at all, just tap-target's invisible hit-area expansion. Explicit `padding`/`width`/`height` props (applied as inline style in the component) override this per-instance.
 //
-// `theme` is an on/off axis, not peer-choice: the default (no theme prop)
-// is a genuine absence of color chrome (transparent, muted text) — not a
-// fourth peer color alongside primary/secondary/tertiary — so it has no
-// class of its own, folded directly into the base class below.
+// `theme` is an on/off axis, not peer-choice: the default (no theme prop) is a genuine absence of color chrome (transparent, muted text) — not a fourth peer color alongside primary/secondary/tertiary — so it has no class of its own, folded directly into the base class below.
 .ddp-icon-button {
   @include unstyled-button;
   @include focus-ring;
@@ -40,12 +30,7 @@
 }
 
 // ---------- Themes ----------
-// Each theme's :hover/:active redeclares `color`, not just
-// `background-color` — the base class's own `:hover, :active { color:
-// text('muted') }` rule (folded in for the no-theme default) has equal
-// specificity to `.ddp-icon-button-primary:hover` and would otherwise win
-// on the `color` property alone, reverting a themed icon to muted gray on
-// hover/active instead of staying its safe-on-solid foreground color.
+// Each theme's :hover/:active redeclares `color`, not just `background-color` — the base class's own `:hover, :active { color: text('muted') }` rule (folded in for the no-theme default) has equal specificity to `.ddp-icon-button-primary:hover` and would otherwise win on the `color` property alone, reverting a themed icon to muted gray on hover/active instead of staying its safe-on-solid foreground color.
 
 .ddp-icon-button-primary {
   background-color: color('primary');

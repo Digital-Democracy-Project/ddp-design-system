@@ -1,21 +1,10 @@
 @use '../../styles/core' as *;
 
-// No new component-token indirection here — --ddp-icon-size-* is already
-// scoped specifically to icons, so there's nothing meaningful to alias.
+// No new component-token indirection here — --ddp-icon-size-* is already scoped specifically to icons, so there's nothing meaningful to alias.
 //
-// display: inline-flex (not inline-block) specifically avoids the
-// inline-block "baseline of last line box" fallback rule, which degrades
-// to the bottom margin edge for a childless element like this SVG and
-// reproduces the same icon-sits-too-low-next-to-text bug as the browser
-// default (display: inline). flex: none is a separate, unrelated concern:
-// it keeps the icon from being stretched or squished if some ancestor
-// (e.g. a future Button laying out icon + label) itself uses flex.
+// display: inline-flex (not inline-block) specifically avoids the inline-block "baseline of last line box" fallback rule, which degrades to the bottom margin edge for a childless element like this SVG and reproduces the same icon-sits-too-low-next-to-text bug as the browser default (display: inline). flex: none is a separate, unrelated concern: it keeps the icon from being stretched or squished if some ancestor (e.g. a future Button laying out icon + label) itself uses flex.
 //
-// Size is a peer-choice axis (every step, including the default, is an
-// actually-rendered size — there's no "off" state) — so `md` gets its own
-// class same as every other step, always explicitly applied. Styled as
-// `md` here too, as a documented fallback only: `ddp-icon-md` is still
-// applied by Icon.tsx in the default case, this isn't a substitute for it.
+// Size is a peer-choice axis (every step, including the default, is an actually-rendered size — there's no "off" state) — so `md` gets its own class same as every other step, always explicitly applied. Styled as `md` here too, as a documented fallback only: `ddp-icon-md` is still applied by Icon.tsx in the default case, this isn't a substitute for it.
 .ddp-icon {
   display: inline-flex;
   flex: none;

@@ -1,14 +1,8 @@
 @use '../../styles/core' as *;
 
-// Trigger reads as a form field, not an action — same box language as
-// TextInput (bordered, surface('raised'), same size scale), not Button.
-// Matches the one real native <select> precedent in ddp-next (a browser-
-// rendered bordered box) and the general convention that a select is a
-// field, not a command.
+// Trigger reads as a form field, not an action — same box language as TextInput (bordered, surface('raised'), same size scale), not Button. Matches the one real native <select> precedent in ddp-next (a browser-rendered bordered box) and the general convention that a select is a field, not a command.
 //
-// Size is a peer-choice axis (every step, including the default, is an
-// actually-rendered look), so `ddp-select-md` is always explicitly applied
-// by Select.tsx. Styled as md here too, but only as a documented fallback.
+// Size is a peer-choice axis (every step, including the default, is an actually-rendered look), so `ddp-select-md` is always explicitly applied by Select.tsx. Styled as md here too, but only as a documented fallback.
 .ddp-select {
   @include unstyled-button;
   @include focus-ring;
@@ -66,10 +60,7 @@
   padding: space(1);
 }
 
-// No manual .is-disabled class — the trigger itself is the real
-// `:disabled` element (unlike TextInput, where the wrapper isn't the
-// disabled node), so `@include disabled` above already covers it via the
-// native pseudo-class, same convention as Button/IconButton/ToggleButton.
+// No manual .is-disabled class — the trigger itself is the real `:disabled` element (unlike TextInput, where the wrapper isn't the disabled node), so `@include disabled` above already covers it via the native pseudo-class, same convention as Button/IconButton/ToggleButton.
 
 // ---------- Sizes ----------
 

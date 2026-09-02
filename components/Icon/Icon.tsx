@@ -3,13 +3,7 @@ import './Icon.scss';
 
 type IconComponent = FunctionComponent<SVGProps<SVGSVGElement>>;
 
-// Auto-discovers every SVG in assets/icons/ at build time via Vite's glob
-// import — drop a new standardized icon in that folder and it's available
-// here immediately, no import statement or registry entry to maintain.
-// Trade-off, accepted deliberately: `name` below can only be typed as
-// `string`, not a literal union, since TypeScript has no way to know what
-// the glob will match without actually running it. A typo in `name` is a
-// runtime issue (the icon silently fails to render), not a compile error.
+// Auto-discovers every SVG in assets/icons/ at build time via Vite's glob import — drop a new standardized icon in that folder and it's available here immediately, no import statement or registry entry to maintain. Trade-off, accepted deliberately: `name` below can only be typed as `string`, not a literal union, since TypeScript has no way to know what the glob will match without actually running it. A typo in `name` is a runtime issue (the icon silently fails to render), not a compile error.
 const modules = import.meta.glob<IconComponent>('../../assets/icons/*.svg', {
   eager: true,
   query: '?react',
@@ -40,11 +34,7 @@ export interface IconProps extends Omit<SVGProps<SVGSVGElement>, 'width' | 'heig
   name: IconName;
   /** Named size step (default 'md'), or a raw pixel number as an escape hatch. */
   size?: IconSize | number;
-  /**
-   * Accessible label. Omit for decorative icons — the common case
-   * alongside visible text — and the icon gets `aria-hidden`. Provide it
-   * and the icon gets `role="img"` + `aria-label` instead.
-   */
+  /** Accessible label. Omit for decorative icons — the common case alongside visible text — and the icon gets `aria-hidden`. Provide it and the icon gets `role="img"` + `aria-label` instead. */
   title?: string;
 }
 

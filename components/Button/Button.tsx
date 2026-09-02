@@ -22,33 +22,20 @@ export interface ButtonProps extends Omit<
   'type'
 > {
   /**
-   * Visual treatment. `'link'` looks like an inline hyperlink (matches the
-   * base `<a>` styling in colors_and_type.css exactly — same color, same
-   * hover-only underline) but stays a real `<button>`, so assistive tech
-   * still announces it correctly as a button — use it for actions that
-   * should read visually as a link without misrepresenting what they do.
+   * Visual treatment. `'link'` looks like an inline hyperlink (matches the base `<a>` styling in colors_and_type.css exactly — same color, same hover-only underline) but stays a real `<button>`, so assistive tech still announces it correctly as a button — use it for actions that should read visually as a link without misrepresenting what they do.
    */
   variant?: ButtonVariant;
   size?: ButtonSize;
   /**
-   * `'solid'` (filled, the default) or `'outline'` (transparent background,
-   * border and text in the variant's color, tint-filled on hover). Has no
-   * effect on `variant="link"`, which has no color of its own to outline —
-   * same rule as `Badge`'s `appearance` having no effect on `tone="neutral"`.
+   * `'solid'` (filled, the default) or `'outline'` (transparent background, border and text in the variant's color, tint-filled on hover). Has no effect on `variant="link"`, which has no color of its own to outline — same rule as `Badge`'s `appearance` having no effect on `tone="neutral"`.
    */
   appearance?: ButtonAppearance;
   /**
-   * Native button type. Defaults to `'button'`, not the browser's implicit
-   * `'submit'` default, since an unintentional form submit from a stray
-   * button inside a `<form>` is a common, easy-to-miss bug.
+   * Native button type. Defaults to `'button'`, not the browser's implicit `'submit'` default, since an unintentional form submit from a stray button inside a `<form>` is a common, easy-to-miss bug.
    */
   type?: 'button' | 'submit' | 'reset';
   /**
-   * Escape hatch for any color scheme outside the standard variants —
-   * overrides `variant`'s color only; shape (padding, radius, the `link`
-   * treatment) still comes from `variant`. On `variant="link"`, only the
-   * base foreground is customizable — the hover color shift stays the
-   * built-in link-hover tone, and the background stays transparent.
+   * Escape hatch for any color scheme outside the standard variants — overrides `variant`'s color only; shape (padding, radius, the `link` treatment) still comes from `variant`. On `variant="link"`, only the base foreground is customizable — the hover color shift stays the built-in link-hover tone, and the background stays transparent.
    */
   customColors?: ButtonCustomColors;
   children: ReactNode;

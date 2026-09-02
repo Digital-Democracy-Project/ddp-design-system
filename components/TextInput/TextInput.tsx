@@ -13,14 +13,7 @@ export interface TextInputProps
   defaultValue?: string;
   /** Fires on every keystroke, with the current string value. */
   onChange?: (value: string) => void;
-  /**
-   * Fires when Enter is pressed, with the current string value — a
-   * "commit" callback distinct from `onChange`'s live updates, matching
-   * the two-tier model already validated in ddp-scorecard-react's search
-   * box. Purely a visual/interaction primitive: matching, filtering, and
-   * any debouncing are the consumer's responsibility, not this
-   * component's — it doesn't know or care what onSubmit does with the value.
-   */
+  /** Fires when Enter is pressed, with the current string value — a "commit" callback distinct from `onChange`'s live updates, matching the two-tier model already validated in ddp-scorecard-react's search box. Purely a visual/interaction primitive: matching, filtering, and any debouncing are the consumer's responsibility, not this component's — it doesn't know or care what onSubmit does with the value. */
   onSubmit?: (value: string) => void;
   size?: TextInputSize;
   /** Shows a clear (×) control once there's a value; clears and fires both `onChange('')` and `onSubmit('')`. */

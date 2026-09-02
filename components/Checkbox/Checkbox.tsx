@@ -7,10 +7,7 @@ import './Checkbox.scss';
 
 export type CheckboxSize = 'sm' | 'md' | 'lg';
 
-// Matches the real, shipped reference (ddp-scorecard-react's CheckboxItem,
-// button mode): the checkmark fills the box edge-to-edge (icon size ==
-// box size, no internal padding) — only the box's own border provides any
-// visual margin. These match the box dimensions in Checkbox.scss.
+// Matches the real, shipped reference (ddp-scorecard-react's CheckboxItem, button mode): the checkmark fills the box edge-to-edge (icon size == box size, no internal padding) — only the box's own border provides any visual margin. These match the box dimensions in Checkbox.scss.
 const CHECK_ICON_SIZE: Record<CheckboxSize, number> = { sm: 12, md: 16, lg: 20 };
 
 export interface CheckboxProps
@@ -19,10 +16,7 @@ export interface CheckboxProps
   defaultChecked?: boolean;
   onChange?: (checked: boolean) => void;
   /**
-   * Neither checked nor unchecked — a DOM property, not an HTML attribute,
-   * so it can't be set via JSX and is synced imperatively via a ref.
-   * Purely visual: the underlying input's `checked` state (and what
-   * `onChange` reports on the next interaction) is unaffected.
+   * Neither checked nor unchecked — a DOM property, not an HTML attribute, so it can't be set via JSX and is synced imperatively via a ref. Purely visual: the underlying input's `checked` state (and what `onChange` reports on the next interaction) is unaffected.
    */
   indeterminate?: boolean;
   size?: CheckboxSize;

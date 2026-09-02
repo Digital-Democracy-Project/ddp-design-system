@@ -1,20 +1,8 @@
 @use '../../styles/core' as *;
 
-// Two shapes, one component — validated against two real, independently-
-// built references (ddp-scorecard-react's ToggleChip/CheckboxItem, and the
-// legislative-scorecard hi-fi mockup's ChipToggle/ToggleButton), both of
-// which consistently pair a shape with a fill treatment: a plain pill
-// solid-fills when pressed (no indicator prop), a rounded rect with a
-// checkbox square soft/tint-fills when pressed (indicator="checkbox").
-// No validated case mixes them, so the two aren't exposed as independent
-// props.
+// Two shapes, one component — validated against two real, independently-built references (ddp-scorecard-react's ToggleChip/CheckboxItem, and the legislative-scorecard hi-fi mockup's ChipToggle/ToggleButton), both of which consistently pair a shape with a fill treatment: a plain pill solid-fills when pressed (no indicator prop), a rounded rect with a checkbox square soft/tint-fills when pressed (indicator="checkbox"). No validated case mixes them, so the two aren't exposed as independent props.
 //
-// tone and size are peer-choice axes (every value, including the default,
-// is an actually-rendered look), so `ddp-toggle-button-primary`/`-md` are
-// always explicitly applied by ToggleButton.tsx. `indicator` is on/off —
-// its default (no indicator) is a genuine absence of the checkbox square,
-// not a third peer shape — so it stays implicit, via the shared
-// `has-checkbox` class only when present.
+// tone and size are peer-choice axes (every value, including the default, is an actually-rendered look), so `ddp-toggle-button-primary`/`-md` are always explicitly applied by ToggleButton.tsx. `indicator` is on/off — its default (no indicator) is a genuine absence of the checkbox square, not a third peer shape — so it stays implicit, via the shared `has-checkbox` class only when present.
 .ddp-toggle-button {
   @include unstyled-button;
   @include focus-ring;
@@ -45,8 +33,7 @@
 }
 
 // ---------- Sizes ----------
-// Same scale as Button, so a ToggleButton sits comfortably next to one in
-// the same toolbar/filter row.
+// Same scale as Button, so a ToggleButton sits comfortably next to one in the same toolbar/filter row.
 
 .ddp-toggle-button-sm {
   gap: space(1);
@@ -70,16 +57,13 @@
 }
 
 // ---------- Indicator shape ----------
-// `has-checkbox` overrides the base pill shape with a rounded rect. There's
-// no class for the pill shape itself — it's the base's own default look.
+// `has-checkbox` overrides the base pill shape with a rounded rect. There's no class for the pill shape itself — it's the base's own default look.
 
 .has-checkbox {
   border-radius: radius('md');
 }
 
-// The decorative checkbox square — presentational only, no real input
-// behind it (see ToggleButton.tsx). Reuses Checkbox's own box language:
-// same box-size scale, same edge-to-edge checkmark fill.
+// The decorative checkbox square — presentational only, no real input behind it (see ToggleButton.tsx). Reuses Checkbox's own box language: same box-size scale, same edge-to-edge checkmark fill.
 .ddp-toggle-button-box {
   position: relative;
   display: inline-flex;
@@ -102,14 +86,9 @@
 .ddp-toggle-button-lg .ddp-toggle-button-box { width: space(5); height: space(5); }
 
 // ---------- Tones: pressed state ----------
-// Unpressed is identical across every tone (set on .ddp-toggle-button
-// above) — only .is-pressed needs a per-tone/per-shape override. 'neutral'
-// has no dedicated brand color() token (same reasoning as Badge's
-// tone="neutral") so it inverts using text()/surface() tokens instead,
-// staying monochrome by design rather than guessing at a "neutral color."
-// Every tone (including primary) gets its own explicit compound here —
-// primary isn't special-cased as "the absence of a tone class" the way
-// `has-checkbox`'s absence is, since tone is peer-choice, not on/off.
+// Unpressed is identical across every tone (set on .ddp-toggle-button above) — only .is-pressed needs a per-tone/per-shape override.
+// 'neutral' has no dedicated brand color() token (same reasoning as Badge's tone="neutral") so it inverts using text()/surface() tokens instead, staying monochrome by design rather than guessing at a "neutral color."
+// Every tone (including primary) gets its own explicit compound here — primary isn't special-cased as "the absence of a tone class" the way `has-checkbox`'s absence is, since tone is peer-choice, not on/off.
 
 .is-pressed {
   &.ddp-toggle-button-primary { background-color: color('primary'); color: color('primary-foreground'); border-color: color('primary'); }

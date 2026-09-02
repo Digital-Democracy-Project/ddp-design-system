@@ -1,30 +1,14 @@
 // ============================================================
-// BASE STYLES — always applied to the final compiled stylesheet,
-// unlike the accessor/mixin layer this directory otherwise ships
-// (index.scss forwards those specifically because they emit no CSS
-// on their own — safe to @use in every consumer component file).
-// This file DOES emit real CSS, so it is deliberately NOT forwarded
-// through index.scss — it reaches the compiled `dist/style.css` via
-// vite.config.ts's `mergeTokensIntoStylesheet` plugin instead, and
-// reaches Storybook via its own direct import in
-// .storybook/preview.tsx. Forwarding it through index.scss would
-// mean every consumer component using `@use '.../styles' as *;`
-// silently re-emits this into their own compiled CSS.
+// BASE STYLES — always applied to the final compiled stylesheet, unlike the accessor/mixin layer this directory otherwise ships (index.scss forwards those specifically because they emit no CSS on their own — safe to @use in every consumer component file).
+// This file DOES emit real CSS, so it is deliberately NOT forwarded through index.scss — it reaches the compiled `dist/style.css` via vite.config.ts's `mergeTokensIntoStylesheet` plugin instead, and reaches Storybook via its own direct import in .storybook/preview.tsx.
+// Forwarding it through index.scss would mean every consumer component using `@use '.../styles' as *;` silently re-emits this into their own compiled CSS.
 // ============================================================
 
 /* ------------------------------------------------------------
 	RESET — always applied, not opt-in via .ddp.
-	box-sizing: border-box everywhere, so a component's own
-	border/padding never grows its rendered box past a width it
-	sets itself (the classic content-box overflow bug — a select's
-	trigger or text input at width:100% plus a 1px border would
-	otherwise overflow its container by 2px). Standard practice for
-	any component library that ships one global stylesheet, same as
-	Normalize/sanitize.css/Tailwind's preflight/Bootstrap's reboot.
-	Unconditional, unlike the .ddp-scoped styles below — no component
-	here requires consumers to wrap their page in .ddp, so a reset
-	scoped to it wouldn't reach them for a consumer who never uses
-	that wrapper.
+	box-sizing: border-box everywhere, so a component's own border/padding never grows its rendered box past a width it sets itself (the classic content-box overflow bug — a select's trigger or text input at width:100% plus a 1px border would otherwise overflow its container by 2px).
+	Standard practice for any component library that ships one global stylesheet, same as Normalize/sanitize.css/Tailwind's preflight/Bootstrap's reboot.
+	Unconditional, unlike the .ddp-scoped styles below — no component here requires consumers to wrap their page in .ddp, so a reset scoped to it wouldn't reach them for a consumer who never uses that wrapper.
 	------------------------------------------------------------ */
 *,
 *::before,

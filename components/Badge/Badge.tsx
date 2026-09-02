@@ -12,26 +12,16 @@ export interface BadgeCustomColors {
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   /**
-   * Color role. Deliberately just the brand roles plus a token-backed
-   * `'neutral'` default — not a valence/status/grade vocabulary. A
-   * component like ValencePill or GradeChip that needs domain-specific
-   * color mapping should wrap this one with its own explicit color choice
-   * rather than this component guessing at meaning.
+   * Color role. Deliberately just the brand roles plus a token-backed `'neutral'` default — not a valence/status/grade vocabulary. A component like ValencePill or GradeChip that needs domain-specific color mapping should wrap this one with its own explicit color choice rather than this component guessing at meaning.
    */
   tone?: BadgeTone;
   /**
-   * `'soft'` (tinted background, the default) or `'solid'` (filled).
-   * `'solid'` only has real effect on `'primary'`/`'secondary'`/`'tertiary'`
-   * — `'neutral'` has no dedicated safe-foreground-on-solid token, so it
-   * stays soft regardless.
+   * `'soft'` (tinted background, the default) or `'solid'` (filled). `'solid'` only has real effect on `'primary'`/`'secondary'`/`'tertiary'` — `'neutral'` has no dedicated safe-foreground-on-solid token, so it stays soft regardless.
    */
   appearance?: BadgeAppearance;
   size?: BadgeSize;
   /**
-   * Escape hatch for any color scheme outside `tone`/`appearance` — sets
-   * this badge's background/foreground directly as inline styles, so it
-   * still composes normally with `size` and everything else. Takes
-   * priority over `tone`/`appearance` when provided.
+   * Escape hatch for any color scheme outside `tone`/`appearance` — sets this badge's background/foreground directly as inline styles, so it still composes normally with `size` and everything else. Takes priority over `tone`/`appearance` when provided.
    */
   customColors?: BadgeCustomColors;
   children: ReactNode;

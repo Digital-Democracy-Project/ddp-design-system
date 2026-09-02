@@ -9,8 +9,7 @@ export type ToggleButtonTone = 'neutral' | 'primary' | 'secondary' | 'tertiary';
 export type ToggleButtonSize = 'sm' | 'md' | 'lg';
 export type ToggleButtonIndicator = 'checkbox';
 
-// Matches Checkbox's own box scale exactly, since indicator="checkbox"
-// reuses that same visual language (edge-to-edge checkmark fill).
+// Matches Checkbox's own box scale exactly, since indicator="checkbox" reuses that same visual language (edge-to-edge checkmark fill).
 const CHECK_ICON_SIZE: Record<ToggleButtonSize, number> = { sm: 12, md: 16, lg: 20 };
 
 export interface ToggleButtonProps
@@ -20,14 +19,7 @@ export interface ToggleButtonProps
   onPressedChange?: (pressed: boolean) => void;
   tone?: ToggleButtonTone;
   size?: ToggleButtonSize;
-  /**
-   * Omit for a plain pill, filled solid when pressed (a multi-select-style
-   * chip) — the default. Pass `'checkbox'` for a rounded rect with a small
-   * decorative checkbox square, tinted when pressed (an independent
-   * boolean flag read as "hide voice votes"-style). Purely presentational:
-   * this is always a real `<button aria-pressed>`, never a native
-   * checkbox input — see the README for why.
-   */
+  /** Omit for a plain pill, filled solid when pressed (a multi-select-style chip) — the default. Pass `'checkbox'` for a rounded rect with a small decorative checkbox square, tinted when pressed (an independent boolean flag read as "hide voice votes"-style). Purely presentational: this is always a real `<button aria-pressed>`, never a native checkbox input — see the README for why. */
   indicator?: ToggleButtonIndicator;
   children: ReactNode;
 }

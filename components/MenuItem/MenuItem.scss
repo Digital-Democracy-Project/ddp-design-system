@@ -1,11 +1,6 @@
 @use '../../styles/core' as *;
 
-// Highlighted (keyboard-active) state is deliberately NOT a separate CSS
-// class here — the actively-navigated item receives real DOM focus via
-// Select's roving tabIndex (Floating UI's useListNavigation), so plain
-// &:focus styling picks it up for free, matching how a real listbox's
-// "highlighted" state is supposed to work (it's genuine focus, not a
-// simulated one).
+// Highlighted (keyboard-active) state is deliberately NOT a separate CSS class here — the actively-navigated item receives real DOM focus via Select's roving tabIndex (Floating UI's useListNavigation), so plain &:focus styling picks it up for free, matching how a real listbox's "highlighted" state is supposed to work (it's genuine focus, not a simulated one).
 .ddp-menu-item {
   display: flex;
   align-items: center;
@@ -30,8 +25,7 @@
   color: color('primary');
 }
 
-// Multi-select indicator — a persistent checkbox square, checked or not,
-// reusing the same box language as Checkbox/ToggleButton's own indicator.
+// Multi-select indicator — a persistent checkbox square, checked or not, reusing the same box language as Checkbox/ToggleButton's own indicator.
 .ddp-menu-item-box {
   display: inline-flex;
   align-items: center;

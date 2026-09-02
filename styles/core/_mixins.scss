@@ -21,8 +21,7 @@
   }
 }
 
-/// Inset variant, for controls flush against a container edge
-/// where an outset ring would be clipped.
+/// Inset variant, for controls flush against a container edge where an outset ring would be clipped.
 @mixin focus-ring-inset {
   &:focus { outline: none; }
   &:focus-visible {
@@ -121,9 +120,7 @@
 
 // ---------- Interaction ----------
 
-/// Standard transition. Pass any property list, plus optional
-/// $speed / $curve overrides — a rest param can't have trailing
-/// defaulted params in Sass, so overrides travel as keyword args.
+/// Standard transition. Pass any property list, plus optional $speed / $curve overrides — a rest param can't have trailing defaulted params in Sass, so overrides travel as keyword args.
 @mixin transition($props...) {
   $overrides: meta.keywords($props);
   $speed: 'fast';

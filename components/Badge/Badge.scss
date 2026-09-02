@@ -1,26 +1,10 @@
 @use '../../styles/core' as *;
 
-// No component-token indirection layer here, unlike Button — the only
-// sanctioned way to customize a badge's color beyond `tone` is the
-// `customColors` prop (Badge.tsx), which sets background-color/color
-// directly as inline styles. There's no external-CSS override path to
-// support, so a --ddp-badge-bg/-fg custom property would just be an extra
-// layer nothing ever reaches through.
+// No component-token indirection layer here, unlike Button — the only sanctioned way to customize a badge's color beyond `tone` is the `customColors` prop (Badge.tsx), which sets background-color/color directly as inline styles. There's no external-CSS override path to support, so a --ddp-badge-bg/-fg custom property would just be an extra layer nothing ever reaches through.
 //
-// Only the brand tones (primary/secondary/tertiary) get a soft+solid
-// pairing, since those are the only semantic roles with a dedicated plain
-// foreground token safe on a solid background (see $-color-keys in
-// _tokens.scss) — 'neutral' only has a soft look. Valence- or grade-style
-// semantics (a ValencePill, GradeChip, etc.) are deliberately not baked in
-// here; those belong in a separate component that wraps this one with its
-// own explicit color choice.
+// Only the brand tones (primary/secondary/tertiary) get a soft+solid pairing, since those are the only semantic roles with a dedicated plain foreground token safe on a solid background (see $-color-keys in _tokens.scss) — 'neutral' only has a soft look. Valence- or grade-style semantics (a ValencePill, GradeChip, etc.) are deliberately not baked in here; those belong in a separate component that wraps this one with its own explicit color choice.
 //
-// tone and size are peer-choice axes (every value, including the default,
-// is an actually-rendered look), so `ddp-badge-neutral`/`ddp-badge-md` are
-// always explicitly applied by Badge.tsx. Styled as neutral + md here too,
-// but only as a documented fallback — this isn't a substitute for those
-// classes. `appearance` (soft/solid) stays on/off: `soft` is a genuine
-// absence of the solid override, so it gets no class of its own.
+// tone and size are peer-choice axes (every value, including the default, is an actually-rendered look), so `ddp-badge-neutral`/`ddp-badge-md` are always explicitly applied by Badge.tsx. Styled as neutral + md here too, but only as a documented fallback — this isn't a substitute for those classes. `appearance` (soft/solid) stays on/off: `soft` is a genuine absence of the solid override, so it gets no class of its own.
 .ddp-badge {
   display: inline-flex;
   align-items: center;
@@ -80,9 +64,7 @@
 }
 
 // ---------- Solid appearance ----------
-// Overrides the tone classes above only for the three brand tones —
-// 'neutral' has no matching override nested here, so appearance="solid"
-// has no visual effect on it and it stays soft.
+// Overrides the tone classes above only for the three brand tones — 'neutral' has no matching override nested here, so appearance="solid" has no visual effect on it and it stays soft.
 
 .ddp-badge-solid {
   &.ddp-badge-primary {
