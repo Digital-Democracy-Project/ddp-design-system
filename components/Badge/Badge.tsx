@@ -1,9 +1,10 @@
 import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
+import type { SizeOptions } from '../shared/types';
 import './Badge.scss';
 
 export type BadgeTone = 'neutral' | 'primary' | 'secondary' | 'tertiary';
 export type BadgeAppearance = 'soft' | 'solid';
-export type BadgeSize = 'sm' | 'md' | 'lg';
+export type BadgeSize = SizeOptions;
 
 export interface BadgeCustomColors {
   background: string;

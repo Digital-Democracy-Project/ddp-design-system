@@ -52,7 +52,8 @@ _Temporary section — remove once the initial component library and consuming-a
 - [ ] Theming/visual refinements to `SearchBar` and `Select` — flagged during Storybook review, deliberately deferred to keep pace; not blocking
 - [x] Build Card (generic container — reprioritized ahead of ToggleSwitch, needed for upcoming page mockups)
 - [x] Build ClickableTile (single-element link/button surface, whole box including padding is the hit target — the answer to "can the whole Card be a clickable link")
-- [ ] Build remaining v1 components: ToggleSwitch (the track-and-knob control, deliberately built last)
+- [x] Build ToggleSwitch (the track-and-knob control, deliberately built last — reuses `Checkbox`'s real-input-driven structural pattern, not `ToggleButton`'s button-based one) — last v1 component done
+- [x] Introduce `SizeOptions` (shared `'sm' | 'md' | 'lg'` type in `components/shared/types.ts`), retrofitted into Button/Badge/Checkbox/Select/SearchBar/TextInput/ToggleButton/ToggleSwitch
 - [ ] Scope decision: `ddp-mapapp`-derived candidates (Accordion, Stat, Spinner, Slide-over, Drawer, Expandable text)
 
 **Phase 2 — Package/publish readiness**

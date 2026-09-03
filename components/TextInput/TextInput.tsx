@@ -5,6 +5,7 @@ import type { ChangeEvent, InputHTMLAttributes, KeyboardEvent } from 'react';
 import { Icon } from '../Icon';
 import { IconButton } from '../IconButton';
 import type { IconName } from '../Icon';
+import type { SizeOptions } from '../shared/types';
 import './TextInput.scss';
 
 // Internal icons (the leading icon, the clear button) scale 1:1 with the
@@ -13,7 +14,7 @@ import './TextInput.scss';
 // through with no lookup needed. Now a general convention — see
 // ddp-select's chevron for the other instance of the same fix.
 
-export type TextInputSize = 'sm' | 'md' | 'lg';
+export type TextInputSize = SizeOptions;
 
 export interface TextInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'onChange' | 'onSubmit' | 'value' | 'defaultValue'> {

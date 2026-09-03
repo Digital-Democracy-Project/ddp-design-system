@@ -18,8 +18,9 @@ import { TextInput } from '../TextInput';
 import { DropdownMenu } from '../DropdownMenu';
 import { Menu } from '../Menu';
 import type { MenuOption } from '../Menu';
+import type { SizeOptions } from '../shared/types';
 
-export type SearchBarSize = 'sm' | 'md' | 'lg';
+export type SearchBarSize = SizeOptions;
 
 export interface SearchBarProps
   extends Omit<

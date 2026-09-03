@@ -3,9 +3,10 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
 import type { ChangeEvent, InputHTMLAttributes, ReactNode } from 'react';
 import { Icon } from '../Icon';
+import type { SizeOptions } from '../shared/types';
 import './Checkbox.scss';
 
-export type CheckboxSize = 'sm' | 'md' | 'lg';
+export type CheckboxSize = SizeOptions;
 
 // Matches the real, shipped reference (ddp-scorecard-react's CheckboxItem, button mode): the checkmark fills the box edge-to-edge (icon size == box size, no internal padding) — only the box's own border provides any visual margin. These match the box dimensions in Checkbox.scss.
 const CHECK_ICON_SIZE: Record<CheckboxSize, number> = { sm: 12, md: 16, lg: 20 };

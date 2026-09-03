@@ -2,10 +2,11 @@
 
 import { forwardRef } from 'react';
 import type { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
+import type { SizeOptions } from '../shared/types';
 import './Button.scss';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'link';
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonSize = SizeOptions;
 export type ButtonAppearance = 'solid' | 'outline';
 
 export interface ButtonCustomColors {

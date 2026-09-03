@@ -3,10 +3,11 @@
 import { forwardRef, useState } from 'react';
 import type { ButtonHTMLAttributes, MouseEvent, ReactNode } from 'react';
 import { Icon } from '../Icon';
+import type { SizeOptions } from '../shared/types';
 import './ToggleButton.scss';
 
 export type ToggleButtonTone = 'neutral' | 'primary' | 'secondary' | 'tertiary';
-export type ToggleButtonSize = 'sm' | 'md' | 'lg';
+export type ToggleButtonSize = SizeOptions;
 export type ToggleButtonIndicator = 'checkbox';
 
 // Matches Checkbox's own box scale exactly, since indicator="checkbox" reuses that same visual language (edge-to-edge checkmark fill).

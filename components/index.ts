@@ -1,3 +1,4 @@
+export * from './shared/types';
 export * from './Icon';
 export * from './Button';
 export * from './Badge';
@@ -12,3 +13,4 @@ export * from './Select';
 export * from './SearchBar';
 export * from './Card';
 export * from './ClickableTile';
+export * from './ToggleSwitch';

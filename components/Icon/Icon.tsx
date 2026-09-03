@@ -1,4 +1,5 @@
 import type { FunctionComponent, SVGProps } from 'react';
+import type { SizeOptions } from '../shared/types';
 import './Icon.scss';
 
 type IconComponent = FunctionComponent<SVGProps<SVGSVGElement>>;
@@ -19,7 +20,8 @@ for (const path in modules) {
 }
 
 export type IconName = string;
-export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+// Deliberately a superset of SizeOptions ('xs' and 'xl' added), not an alias of it — every SizeOptions-scaled component's own size passes straight through to this one with no lookup table, since the subset relationship holds by construction. See TextInput/Select for the components that rely on this.
+export type IconSize = 'xs' | SizeOptions | 'xl';
 
 const SIZE_CLASSES: Record<IconSize, string> = {
   xs: 'ddp-icon-xs',

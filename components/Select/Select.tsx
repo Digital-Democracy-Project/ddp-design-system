@@ -21,9 +21,10 @@ import { TextInput } from '../TextInput';
 import { DropdownMenu } from '../DropdownMenu';
 import { Menu } from '../Menu';
 import type { MenuOption } from '../Menu';
+import type { SizeOptions } from '../shared/types';
 import './Select.scss';
 
-export type SelectSize = 'sm' | 'md' | 'lg';
+export type SelectSize = SizeOptions;
 export type SelectOption = MenuOption;
 
 export interface SelectProps
