@@ -21,7 +21,7 @@ import { Select } from '@digital-democracy-project/design-system';
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
-| `options` | `{ value: string; label: string; disabled?: boolean }[]` | — (required) | `label` is a plain string, not `ReactNode` — typeahead needs to match against it, and every real option set found in research (jurisdiction codes, session names, categories) is plain text. |
+| `options` | `{ value: string; label: string; disabled?: boolean; icon?: IconName }[]` (this is `MenuOption` — `SelectOption` is a type alias of it) | — (required) | `label` is a plain string, not `ReactNode` — typeahead needs to match against it, and every real option set found in research (jurisdiction codes, session names, categories) is plain text. `icon` (a per-option leading icon) comes along for free from `MenuOption` — added for `SearchBar`'s unified multi-facet search, but nothing stops a `Select` consumer from using it too. |
 | `value` / `defaultValue` | `string` | — | Controlled/uncontrolled, same convention as the rest of the library. |
 | `onChange` | `(value: string) => void` | — | Plain string, not a native event. |
 | `placeholder` | `string` | `'Select…'` | Shown when nothing is selected. |

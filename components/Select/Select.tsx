@@ -171,7 +171,8 @@ export function Select({
         <span className="ddp-select-value">
           {selectedOption ? selectedOption.label : <span className="ddp-select-placeholder">{placeholder}</span>}
         </span>
-        <Icon name="chevron-down" size="sm" className="ddp-select-chevron" />
+        {/* size passes straight through — SelectSize is a subset of IconSize, so the chevron scales 1:1 with Select's own size, same convention as TextInput's internal icons. */}
+        <Icon name="chevron-down" size={size} className="ddp-select-chevron" />
       </button>
       <DropdownMenu
         context={context}

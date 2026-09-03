@@ -42,14 +42,17 @@ _Temporary section — remove once the initial component library and consuming-a
 - [x] Build Icon
 - [x] Build Button
 - [x] Build Badge/Pill
-- [ ] Checkpoint: review Button + Badge together, lock in conventions
+- [x] Checkpoint: review Button + Badge together, lock in conventions
 - [x] Build IconButton (new, separate from Button — opinionated icon-only control)
 - [x] Build Text Input
 - [x] Build Checkbox
 - [x] Build ToggleButton (renamed from "Toggle button/group"; folds in an optional checkbox indicator, validated against `CheckboxItem`/`ToggleChip` in `ddp-scorecard-react` and the legislative-scorecard hi-fi mockup)
 - [x] Build MenuItem, Menu, DropdownMenu, Select (single-select only — see component READMEs for the multi-select deferral reasoning)
-- [ ] Build remaining v1 components: SearchBar (composes TextInput + Menu) → ToggleSwitch (the track-and-knob control)
-- [ ] Scope decision: Card (bill/legislator)
+- [x] Build SearchBar (composes TextInput + DropdownMenu + Menu; standalone mode for Select's own internal search field, combobox mode for suggestions)
+- [ ] Theming/visual refinements to `SearchBar` and `Select` — flagged during Storybook review, deliberately deferred to keep pace; not blocking
+- [x] Build Card (generic container — reprioritized ahead of ToggleSwitch, needed for upcoming page mockups)
+- [x] Build ClickableTile (single-element link/button surface, whole box including padding is the hit target — the answer to "can the whole Card be a clickable link")
+- [ ] Build remaining v1 components: ToggleSwitch (the track-and-knob control, deliberately built last)
 - [ ] Scope decision: `ddp-mapapp`-derived candidates (Accordion, Stat, Spinner, Slide-over, Drawer, Expandable text)
 
 **Phase 2 — Package/publish readiness**

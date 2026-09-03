@@ -42,6 +42,16 @@
   flex-shrink: 0;
 }
 
+.ddp-text-input-icon {
+  flex-shrink: 0;
+  color: text('muted');
+}
+
+// type="search" + clearable combine in SearchBar — WebKit renders its own native cancel ("×") button for type="search" inputs, which would show alongside clearable's own IconButton-based one. Suppress the native one so there's only ever one clear control.
+.ddp-text-input-field[type='search']::-webkit-search-cancel-button {
+  display: none;
+}
+
 // ---------- Sizes ----------
 
 .ddp-text-input-sm {

@@ -1,6 +1,6 @@
 @use '../../styles/core' as *;
 
-// Highlighted (keyboard-active) state is deliberately NOT a separate CSS class here — the actively-navigated item receives real DOM focus via Select's roving tabIndex (Floating UI's useListNavigation), so plain &:focus styling picks it up for free, matching how a real listbox's "highlighted" state is supposed to work (it's genuine focus, not a simulated one).
+// Two ways an item can be "highlighted," matching two different keyboard-nav patterns real consumers use. In Select's roving-tabIndex listbox pattern, the actively-navigated item receives real DOM focus (Floating UI's useListNavigation), so plain &:focus styling picks it up for free — genuine focus, not a simulated one, which is how a real listbox is supposed to work. In SearchBar's combobox pattern, focus has to stay on the text input, so there's no real :focus to key off — the is-highlighted class (set from Menu's virtual focus mode) gets the identical visual treatment instead.
 .ddp-menu-item {
   display: flex;
   align-items: center;
@@ -18,6 +18,10 @@
   &:focus {
     background-color: surface('sunken');
   }
+}
+
+.ddp-menu-item.is-highlighted {
+  background-color: surface('sunken');
 }
 
 .ddp-menu-item-check-icon {
@@ -46,6 +50,12 @@
 
 .ddp-menu-item.is-selected .ddp-menu-item-box .ddp-menu-item-check-icon {
   color: color('primary-foreground');
+}
+
+// A facet/entity-type icon for this specific row — e.g. distinguishing a legislator result from a bill result in a unified search. Muted, not the brand-colored treatment the selected-indicator check-icon gets, since it's identity, not a state.
+.ddp-menu-item-icon {
+  flex-shrink: 0;
+  color: text('muted');
 }
 
 .ddp-menu-item-label {

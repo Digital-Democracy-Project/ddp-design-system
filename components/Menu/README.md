@@ -6,29 +6,39 @@ The content/keyboard-nav-target layer for a list of selectable options — rende
 
 Floating UI requires every interaction hook (`useClick`, `useDismiss`, `useListNavigation`, `useTypeahead`, etc.) to combine in a single `useInteractions([...])` call, since they merge event handlers onto the same reference/floating/item elements — that orchestration has to live wherever the floating `context` originates (`Select`, today), and can't be split into `Menu` without fighting the library. So `Menu` doesn't own keyboard nav itself; it takes the already-computed `getItemProps`/`activeIndex`/nav refs from its consumer and only owns turning `options` into correctly-wired `MenuItem`s. `DropdownMenu` wraps `Menu` for the floating case, the same way it would wrap any other content.
 
-Built alongside `Select` rather than deferred, once a second consumer with the same internal shape was judged likely enough to extract this immediately instead of letting `Select` duplicate it later. Multi-select support was added the same way, for the same reason — a single-select-only `Menu` would have had little more reuse value than `Select` just inlining its own list rendering.
+Built alongside `Select` rather than deferred, once a second consumer with the same internal shape was judged likely enough to extract this immediately instead of letting `Select` duplicate it later. Multi-select support was added the same way, for the same reason — a single-select-only `Menu` would have had little more reuse value than `Select` just inlining its own list rendering. `focusMode="virtual"` (below) was added when `SearchBar` arrived as a genuinely different second consumer — a combobox, not a listbox — proving the same point again.
+
+## Two focus modes, for two different keyboard-nav patterns
+
+- **`'roving'` (default)** — the actively-navigated item receives real DOM focus, via roving `tabIndex`. This is the correct WAI-ARIA listbox pattern, and what `Select` (a button that opens a listbox) uses.
+- **`'virtual'`** — focus stays on the consumer's own input/trigger; the active item is only ever visually highlighted (`MenuItem`'s `highlighted` prop) and exposed via `aria-activedescendant` (using each item's `id`, from `getItemId`). This is the correct WAI-ARIA combobox pattern, and what `SearchBar` (a text input the user is actively typing into) uses — focus can't leave the input while arrow-keying through suggestions.
 
 ## Usage
 
-`Menu` is a building block for a floating/positioned selection UI — see `Select.tsx` for the real usage (owning `useFloating`/`useClick`/`useDismiss`/`useRole`/`useListNavigation`/`useTypeahead`/`useInteractions`, then rendering `<DropdownMenu context={context}><Menu ... /></DropdownMenu>`).
+`Menu` is a building block for a floating/positioned selection UI — see `Select.tsx` for the `'roving'` usage (owning `useFloating`/`useClick`/`useDismiss`/`useRole`/`useListNavigation`/`useTypeahead`/`useInteractions`, then rendering `<DropdownMenu context={context}><Menu ... /></DropdownMenu>`) and `SearchBar.tsx` for the `'virtual'` usage (`useListNavigation({ virtual: true, ... })`, no `useClick`/`useTypeahead`).
 
 ```tsx
-// Single-select — selected is a plain string, items get a checkmark.
+// Single-select, roving focus (Select) — selected is a plain string, items get a checkmark.
 <Menu options={options} selected={value} onSelect={(o) => setValue(o.value)} ... />
 
 // Multi-select — selected is an array, items get a checkbox square instead.
 <Menu options={options} selected={selectedValues} onSelect={(o) => toggle(o.value)} ... />
+
+// Virtual focus (SearchBar) — no selected value to track, items highlight without taking real focus.
+<Menu options={suggestions} focusMode="virtual" getItemId={(i) => `suggestion-${i}`} onSelect={...} ... />
 ```
 
 ## Props
 
 | Prop | Type | Notes |
 |---|---|---|
-| `options` | `{ value: string; label: string; disabled?: boolean }[]` | |
+| `options` | `{ value: string; label: string; disabled?: boolean; icon?: IconName }[]` | `icon` is a concrete, named need — e.g. a unified Explore-page search bar spanning multiple facet/entity types in one result list, where each result needs an icon indicating which facet it belongs to. Not a generic content slot; see `MenuItem`'s README for the deliberately-deferred `content` (full per-row override) extension point this leaves room for without building it now. |
 | `selected` | `string \| string[]` | A single value (single-select) or an array of values (multi-select) — mode is inferred from which shape this is, not a separate `multiple` flag that could drift out of sync with it. Drives which item(s) show a checkmark (single) or a checked checkbox square (multi) — see `MenuItem`'s `indicator` prop, which `Menu` picks automatically based on this. |
 | `onSelect` | `(option) => void` | Reports which option was clicked — nothing more. `Menu` doesn't decide whether that replaces a single value or toggles array membership; that's the consumer's `onSelect` handler's job, same in both modes. |
-| `activeIndex` | `number \| null` | Which option is keyboard-highlighted — drives roving `tabIndex`. |
+| `activeIndex` | `number \| null` | Which option is keyboard-highlighted. |
+| `focusMode` | `'roving' \| 'virtual'` | Default `'roving'`. See above. |
+| `getItemId` | `(index: number) => string` | Required in `'virtual'` mode — generates each item's stable `id`, which the consumer's own `aria-activedescendant` wiring points at. Ignored in `'roving'` mode. |
 | `getItemProps` | `(userProps?) => Record<string, unknown>` | The consumer's already-computed Floating UI `getItemProps` (or an equivalent shape). Deliberately not typed against `@floating-ui/react` directly — `Menu` only needs "a function that returns per-item props to spread," not a hard dependency on that library. |
 | `listRef` | `MutableRefObject<Array<HTMLElement \| null>>` | Populated with each rendered item's DOM node, in `options` order — feeds the consumer's `useListNavigation`. |
-| `labelsRef` | `MutableRefObject<Array<string \| null>>` | Populated with each item's label — feeds the consumer's `useTypeahead`. Omit if the consumer doesn't need typeahead (e.g. a searchable `Select`, where the search field does that job instead). |
+| `labelsRef` | `MutableRefObject<Array<string \| null>>` | Populated with each item's label — feeds the consumer's `useTypeahead`. Omit if the consumer doesn't need typeahead (e.g. a searchable `Select`, or `SearchBar`, where a real text input already is the typeahead). |
 | `emptyMessage` | `string` | Default `'No options found'`. |

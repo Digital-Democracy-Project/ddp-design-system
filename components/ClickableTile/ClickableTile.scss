@@ -1,0 +1,21 @@
+@use '../../styles/core' as *;
+
+// A single element, unlike Card's chrome/content split — the whole box, padding included, is one hit target by definition, so there's nothing that needs to sit outside it.
+.ddp-clickable-tile {
+  @include card();
+  @include elevate-on-hover();
+  @include focus-ring();
+  @include disabled();
+
+  display: block;
+  margin: 0;
+  padding: space(4);
+  appearance: none;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  color: text('default');
+  font-size: font-size('md');
+  line-height: line-height('md');
+  cursor: pointer;
+}

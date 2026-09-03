@@ -9,3 +9,6 @@ export * from './MenuItem';
 export * from './Menu';
 export * from './DropdownMenu';
 export * from './Select';
+export * from './SearchBar';
+export * from './Card';
+export * from './ClickableTile';

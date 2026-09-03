@@ -16,6 +16,7 @@ import { TextInput } from '@digital-democracy-project/design-system';
 | Prop | Type | Default | Notes |
 |---|---|---|---|
 | `value` / `defaultValue` | `string` | — | Controlled/uncontrolled, same convention as a native input. |
+| `icon` | `IconName` | — | A leading, decorative icon — fixed position, no interaction. Scales 1:1 with `size` (a general convention now — see `clearable`'s icon and `Select`'s chevron for the other instances). Deliberately dropped when this component was first built (nothing had validated a need for one), added once `SearchBar` did. |
 | `onChange` | `(value: string) => void` | — | Fires on every keystroke, with the plain string value (not a native event) — matches the validated pattern from `ddp-scorecard-react`'s own search box. |
 | `onSubmit` | `(value: string) => void` | — | Fires on Enter, separate from `onChange`'s live updates — a "commit" callback. Matching, filtering, and any debouncing are entirely the consumer's responsibility; this component doesn't know or care what `onSubmit` does with the value. |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | |
@@ -34,7 +35,10 @@ This component deliberately does **not** implement a suggestions dropdown — th
 
 ## Not built in
 
-- **A decorative leading icon** — considered and deliberately dropped; nothing in this codebase has actually validated a need for one yet (the real reference this component is based on puts its icon inside a submit button, not as passive decoration). Add it if/when `SearchBar` or another real use case needs it. (Almost added for `Select`'s searchable panel, but deferred in favor of swapping that usage for `SearchBar` once it exists, rather than growing this component for one caller.)
 - **Debouncing** — left entirely to the consumer via `onChange`. Timers and cleanup-on-unmount are a concern for whoever's wiring up the actual search/filter logic, not this visual primitive.
 - **The suggestions dropdown itself** — see "Typeahead readiness" above.
-- **`type="search"` + `clearable` together** — not currently combined anywhere. When they are (likely in `SearchBar`), WebKit renders its own native cancel ("×") button for `type="search"` inputs, which would show alongside `clearable`'s own `IconButton`-based one — a double-clear-button look. Override the native one (`-webkit-search-cancel-button: none` or equivalent) when that combination actually happens, rather than guessing at the right treatment now.
+
+## Resolved once `SearchBar` needed them
+
+- **The decorative leading icon** — originally dropped since nothing had validated a need for one; added as the `icon` prop once `SearchBar` gave it a real trigger condition.
+- **`type="search"` + `clearable` together** — WebKit renders its own native cancel ("×") button for `type="search"` inputs, which would otherwise show alongside `clearable`'s own `IconButton`-based one. `TextInput.scss` suppresses the native one (`::-webkit-search-cancel-button { display: none; }`), scoped to `[type='search']`.
