@@ -96,6 +96,15 @@ body.ddp,
 	display: inline-block;
 }
 
+.ddp .section-label {
+	font-size: var(--ddp-font-size-2xs);
+	letter-spacing: var(--ddp-letter-spacing-wide);
+	font-weight: 700;
+	text-transform: uppercase;
+	color: var(--ddp-text-subtle);
+	display: inline-block;
+}
+
 .ddp a {
 	color: var(--ddp-text-link);
 	text-decoration: none;

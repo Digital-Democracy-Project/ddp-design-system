@@ -1,0 +1,26 @@
+@use '../../styles/core' as *;
+
+// tone is a peer-choice axis, so every value (including the default) gets its own explicit class from SectionLabel.tsx — the mixin's own text('subtle') default is kept here only as a documented fallback, same convention Badge.scss follows for its own tone classes.
+.ddp-section-label {
+  @include section-label();
+}
+
+.ddp-section-label-subtle {
+  color: text('subtle');
+}
+
+.ddp-section-label-neutral {
+  color: text('default');
+}
+
+.ddp-section-label-primary {
+  color: color('primary');
+}
+
+.ddp-section-label-secondary {
+  color: color('secondary');
+}
+
+.ddp-section-label-tertiary {
+  color: color('tertiary');
+}

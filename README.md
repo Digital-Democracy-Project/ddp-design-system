@@ -54,6 +54,7 @@ _Temporary section — remove once the initial component library and consuming-a
 - [x] Build ClickableTile (single-element link/button surface, whole box including padding is the hit target — the answer to "can the whole Card be a clickable link")
 - [x] Build ToggleSwitch (the track-and-knob control, deliberately built last — reuses `Checkbox`'s real-input-driven structural pattern, not `ToggleButton`'s button-based one) — last v1 component done
 - [x] Introduce `SizeOptions` (shared `'sm' | 'md' | 'lg'` type in `components/shared/types.ts`), retrofitted into Button/Badge/Checkbox/Select/SearchBar/TextInput/ToggleButton/ToggleSwitch
+- [x] Eyebrow audit: added the missing `section-label` mixin/`.ddp .section-label` class (quieter field-label role `eyebrow` didn't cover) and the `SectionLabel` component; documented the `.ddp`-scoping requirement in `styles/README.md`
 - [ ] Scope decision: `ddp-mapapp`-derived candidates (Accordion, Stat, Spinner, Slide-over, Drawer, Expandable text)
 
 **Phase 2 — Package/publish readiness**

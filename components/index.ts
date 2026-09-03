@@ -14,3 +14,4 @@ export * from './SearchBar';
 export * from './Card';
 export * from './ClickableTile';
 export * from './ToggleSwitch';
+export * from './SectionLabel';

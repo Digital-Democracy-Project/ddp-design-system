@@ -79,6 +79,10 @@ Reach for `$raw-*` maps only when a value must fold at compile time: media query
 }
 ```
 
+## Opt-in base element styles
+
+`_base.scss`'s heading/body/link/`.eyebrow`/`.section-label` treatments (everything past the unconditional box-sizing reset) only apply under a `.ddp` or `body.ddp` ancestor class — they're not global. A component in this package never needs this (each one styles its own scoped classes directly), but a consumer rendering plain HTML/Markdown content, or content assembled outside this package's own components, needs to add `class="ddp"` to a wrapping element (or `body`) to get any of it — without that wrapper, `.eyebrow`/`.h1`/`.small`/etc. classes are present in the compiled stylesheet but silently do nothing where they're used.
+
 ## JS/TS token export (`tokens.json`)
 
 For code that never touches Sass — chart libraries, canvas rendering, map layer styling — `tokens.json` mirrors every accessor group above as plain data:
@@ -111,7 +115,7 @@ The one exception is `tokens.breakpoints` — plain pixel numbers (`{ sm: 480, m
 
 **A11y** — `focus-ring` · `focus-ring-inset` · `visually-hidden` · `motion-safe` · `motion-reduce` · `tap-target`
 
-**Text** — `truncate` · `line-clamp` · `type` · `eyebrow`
+**Text** — `truncate` · `line-clamp` · `type` · `eyebrow` · `section-label`
 
 **Surface** — `card` · `elevate-on-hover`
 

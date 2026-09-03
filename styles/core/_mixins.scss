@@ -99,6 +99,16 @@
   color: #{$color};
 }
 
+/// The quieter field/section-label treatment — same weight/case as eyebrow, smaller and muted by default. Tracking is two steps down from eyebrow's ('wide', not 'widest') — at 2xs, both 'widest' and 'wider' read as too spread out even though they're the same relative em value, since the letterforms themselves are smaller. Settled on 'wide' after a side-by-side Storybook comparison.
+@mixin section-label($color: null) {
+  @if not $color { $color: text('subtle'); }
+  font-size: font-size('2xs');
+  font-weight: font-weight('bold');
+  letter-spacing: tracking('wide');
+  text-transform: uppercase;
+  color: #{$color};
+}
+
 // ---------- Surfaces ----------
 
 /// Card surface: background, hairline border, radius, elevation.
