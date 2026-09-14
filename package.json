@@ -1,6 +1,6 @@
 {
   "name": "@digital-democracy-project/design-system",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "description": "DDP design tokens, SCSS foundation, and React component library shared across Digital Democracy Project web products.",
   "license": "UNLICENSED",
