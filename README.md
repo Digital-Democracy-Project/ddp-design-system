@@ -31,6 +31,20 @@ Raw Sass (tokens, mixins) is also available for consumers authoring their own co
 }
 ```
 
+Static assets — brand marks, raw icon SVGs, and the font files — are published too, each under its own subpath:
+
+```tsx
+import wordmark from '@digital-democracy-project/design-system/brand/ddp-wordmark.svg';
+import searchIcon from '@digital-democracy-project/design-system/icons/search.svg';
+```
+
+```html
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="@digital-democracy-project/design-system/fonts/PublicSans-Roman-VF.woff2">
+```
+
+The subpaths are deliberately shorter than the on-disk layout (`./brand/*`, not `./assets/brand/*`) so `assets/` can be reorganized without a breaking change. Every asset is stored once, at the largest size the web needs — there are no parallel "master" copies in this repo, so treat these as the canonical files. React consumers should prefer the `<Icon>` component over importing icon SVGs directly; it inlines the same files at build time. Fonts need no import at all in the normal case — `styles.css` already declares every `@font-face` and resolves the files relatively.
+
 See each component's own README under `components/<Name>/` for its full prop reference.
 
 ## Development roadmap

@@ -1,12 +1,14 @@
 {
   "name": "@digital-democracy-project/design-system",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "type": "module",
   "description": "DDP design tokens, SCSS foundation, and React component library shared across Digital Democracy Project web products.",
   "license": "UNLICENSED",
   "files": [
     "styles",
+    "assets/brand",
     "assets/fonts",
+    "assets/icons",
     "dist"
   ],
   "main": "./dist/index.cjs",
@@ -25,7 +27,10 @@
     "./styles.css": "./dist/style.css",
     "./styles": "./styles/core/index.scss",
     "./styles/tokens.css": "./styles/colors_and_type.css",
-    "./styles/tokens.json": "./styles/tokens.json"
+    "./styles/tokens.json": "./styles/tokens.json",
+    "./brand/*": "./assets/brand/*",
+    "./icons/*": "./assets/icons/*",
+    "./fonts/*": "./assets/fonts/*"
   },
   "publishConfig": {
     "access": "public"
@@ -37,6 +42,7 @@
   "scripts": {
     "build:check": "sass --no-source-map styles/core/index.scss /dev/null",
     "build": "vite build",
+    "prepack": "npm run build",
     "typecheck": "tsc --noEmit",
     "dev": "vite build --watch",
     "storybook": "storybook dev -p 6006",
