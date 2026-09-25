@@ -59,6 +59,8 @@ export default defineConfig({
       output: {
         // Without this, Vite falls back to deriving the CSS asset name from package.json's "name" (producing design-system.css) now that lib.name isn't set. Named .raw.css, not .css: mergeTokensIntoStylesheet reads this file and writes the real dist/style.css (tokens + this) from it, then deletes it — keeping Vite's own output separate from the final merged artifact avoids the two output formats' writeBundle calls stepping on each other (see that plugin's comment for the full story).
         assetFileNames: 'style.raw.css',
+        // Every component is bundled into this one flat chunk (see the cssCodeSplit comment above for why), which silently drops the individual `'use client'` directives that components like Checkbox/Select/Menu/SearchBar carry in their own source — Rollup only preserves a directive prologue per output chunk, and merging 16 source files into one chunk leaves no single chunk to hoist it onto. Next's RSC compiler then sees a client-only API (useState, etc.) inside a module with no client boundary and refuses to let a Server Component import ANY export from it, even a hook-free one like Badge or Card. Banner-injecting the directive here re-marks the whole merged bundle client, which is correct for the half of the barrel that actually needs it and overcautious for the half that doesn't (Badge, Button, Card, Icon, IconButton, MenuItem, SectionLabel, ClickableTile) — accept that cost until the per-component code-splitting described above happens, at which point each component's own directive (or lack of one) survives on its own chunk and this banner should come out.
+        banner: '"use client";',
       },
     },
   },
