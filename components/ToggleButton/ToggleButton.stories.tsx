@@ -63,6 +63,37 @@ export const Tones: Story = {
   ),
 };
 
+// Local data-theme overrides (not the toolbar toggle) so both themes render simultaneously, side by side, each still reading the real live tokens -- the toolbar toggle changes which values resolve but doesn't paint an actual dark page behind the buttons. Hover can't be captured in a static render; to check the neutral-hover dark-theme gap, actually hover the pressed "neutral" button in the dark panel below.
+function ToneRows() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      {(['neutral', 'primary', 'secondary', 'tertiary'] as const).map((tone) => (
+        <div key={tone} style={{ display: 'flex', gap: 8 }}>
+          <ToggleButton tone={tone}>{tone}</ToggleButton>
+          <ToggleButton tone={tone} defaultPressed>{tone} pressed</ToggleButton>
+          <ToggleButton tone={tone} indicator="checkbox">{tone}</ToggleButton>
+          <ToggleButton tone={tone} indicator="checkbox" defaultPressed>{tone} pressed</ToggleButton>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export const TonesLightVsDark: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <div data-theme="light" style={{ background: '#FFFFFF', padding: 24, border: '1px solid #D7DDE6' }}>
+        <p style={{ color: '#56647C', fontSize: 12, marginBottom: 12 }}>Light theme</p>
+        <ToneRows />
+      </div>
+      <div data-theme="dark" style={{ background: '#14212F', padding: 24 }}>
+        <p style={{ color: '#97A3B4', fontSize: 12, marginBottom: 12 }}>Dark theme</p>
+        <ToneRows />
+      </div>
+    </div>
+  ),
+};
+
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>

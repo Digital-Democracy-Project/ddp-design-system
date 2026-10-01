@@ -1,0 +1,53 @@
+@use 'sass:map';
+@use 'tokens' as *;
+
+$white: var(--ddp-color-white);
+
+$-tone-solid: (
+  'primary': (bg: color('primary'), fg: color('primary-foreground')),
+  'secondary': (bg: color('secondary'), fg: color('secondary-foreground')),
+  'tertiary': (bg: color('tertiary'), fg: color('tertiary-foreground')),
+  'neutral': (bg: var(--ddp-color-neutral-solid-bg), fg: var(--ddp-color-neutral-solid-fg)),
+  'positive': (bg: palette('jade', 500), fg: $white),
+  'negative': (bg: palette('red', 500), fg: $white),
+  'info': (bg: palette('violet', 500), fg: $white),
+  'caution': (bg: #F0C043, fg: palette('neutral', 900)),
+  'democratic': (bg: color('democratic'), fg: $white),
+  'republican': (bg: color('republican'), fg: $white),
+  // Filed under "party" in $-color-keys, stays in the neutral hue family rather than getting its own hue, but no longer pixel-identical to 'neutral' -- its own tint is one step darker, its own solid background a bit lighter than neutral's, via its own dedicated tokens.
+  'unaffiliated': (bg: var(--ddp-color-unaffiliated-solid-bg), fg: var(--ddp-color-unaffiliated-solid-fg)),
+);
+
+$-tone-names: map.keys($-tone-solid);
+
+@mixin tone-soft($tone) {
+  background-color: color('#{$tone}-tint');
+  color: color('#{$tone}-tint-foreground');
+}
+
+@mixin tone-solid($tone) {
+  $entry: map.get($-tone-solid, $tone);
+  background-color: map.get($entry, 'bg');
+  color: map.get($entry, 'fg');
+  border-color: map.get($entry, 'bg');
+}
+
+@function tone-solid-bg($tone) {
+  @return map.get(map.get($-tone-solid, $tone), 'bg');
+}
+
+@mixin apply-tones-soft($prefix) {
+  @each $tone in $-tone-names {
+    &.#{$prefix}-#{$tone} {
+      @include tone-soft($tone);
+    }
+  }
+}
+
+@mixin apply-tones-solid($prefix) {
+  @each $tone in $-tone-names {
+    &.#{$prefix}-#{$tone} {
+      @include tone-solid($tone);
+    }
+  }
+}

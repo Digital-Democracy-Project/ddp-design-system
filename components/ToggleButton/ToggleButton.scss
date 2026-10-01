@@ -1,5 +1,12 @@
 @use '../../styles/core' as *;
 
+$tone-names: (
+  'primary',
+  'secondary',
+  'tertiary',
+  'neutral'
+);
+
 // Two shapes, one component — validated against two real, independently-built references (ddp-scorecard-react's ToggleChip/CheckboxItem, and the legislative-scorecard hi-fi mockup's ChipToggle/ToggleButton), both of which consistently pair a shape with a fill treatment: a plain pill solid-fills when pressed (no indicator prop), a rounded rect with a checkbox square soft/tint-fills when pressed (indicator="checkbox"). No validated case mixes them, so the two aren't exposed as independent props.
 //
 // tone and size are peer-choice axes (every value, including the default, is an actually-rendered look), so `ddp-toggle-button-primary`/`-md` are always explicitly applied by ToggleButton.tsx. `indicator` is on/off — its default (no indicator) is a genuine absence of the checkbox square, not a third peer shape — so it stays implicit, via the shared `has-checkbox` class only when present.
@@ -81,9 +88,20 @@
   @include transition(opacity, $speed: 'fast');
 }
 
-.ddp-toggle-button-sm .ddp-toggle-button-box { width: space(3); height: space(3); }
-.ddp-toggle-button-md .ddp-toggle-button-box { width: space(4); height: space(4); }
-.ddp-toggle-button-lg .ddp-toggle-button-box { width: space(5); height: space(5); }
+.ddp-toggle-button-sm .ddp-toggle-button-box {
+  width: space(3);
+  height: space(3);
+}
+
+.ddp-toggle-button-md .ddp-toggle-button-box {
+  width: space(4);
+  height: space(4);
+}
+
+.ddp-toggle-button-lg .ddp-toggle-button-box {
+  width: space(5);
+  height: space(5);
+}
 
 // ---------- Tones: pressed state ----------
 // Unpressed is identical across every tone (set on .ddp-toggle-button above) — only .is-pressed needs a per-tone/per-shape override.
@@ -91,32 +109,31 @@
 // Every tone (including primary) gets its own explicit compound here — primary isn't special-cased as "the absence of a tone class" the way `has-checkbox`'s absence is, since tone is peer-choice, not on/off.
 
 .is-pressed {
-  &.ddp-toggle-button-primary { background-color: color('primary'); color: color('primary-foreground'); border-color: color('primary'); }
-  &.ddp-toggle-button-secondary { background-color: color('secondary'); color: color('secondary-foreground'); border-color: color('secondary'); }
-  &.ddp-toggle-button-tertiary { background-color: color('tertiary'); color: color('tertiary-foreground'); border-color: color('tertiary'); }
-  &.ddp-toggle-button-neutral { background-color: text('default'); color: text('inverse'); border-color: text('default'); }
+  @include apply-tones-solid('ddp-toggle-button');
 
-  &.ddp-toggle-button-primary:hover { background-color: color('primary-hover'); }
-  &.ddp-toggle-button-secondary:hover { background-color: color('secondary-hover'); }
-  &.ddp-toggle-button-tertiary:hover { background-color: color('tertiary-hover'); }
-  &.ddp-toggle-button-neutral:hover { background-color: text('default'); }
+  &:hover {
+    @each $tone in $tone-names {
+      &.ddp-toggle-button-#{$tone} {
+        background-color: color('#{$tone}-hover');
+      }
+    }
+  }
 
-  &.has-checkbox.ddp-toggle-button-primary { background-color: color('primary-tint'); color: color('primary-tint-foreground'); border-color: color('primary'); }
-  &.has-checkbox.ddp-toggle-button-secondary { background-color: color('secondary-tint'); color: color('secondary-tint-foreground'); border-color: color('secondary'); }
-  &.has-checkbox.ddp-toggle-button-tertiary { background-color: color('tertiary-tint'); color: color('tertiary-tint-foreground'); border-color: color('tertiary'); }
-  &.has-checkbox.ddp-toggle-button-neutral { background-color: surface('sunken'); color: text('default'); border-color: border-color('strong'); }
+  &.has-checkbox {
+    @include apply-tones-soft('ddp-toggle-button');
 
-  &.has-checkbox .ddp-toggle-button-check-icon { opacity: 1; }
+    @each $tone in $tone-names {
+      &.ddp-toggle-button-#{$tone} {
+        border-color: tone-solid-bg($tone);
 
-  &.has-checkbox.ddp-toggle-button-primary .ddp-toggle-button-box { background-color: color('primary'); border-color: color('primary'); }
-  &.has-checkbox.ddp-toggle-button-primary .ddp-toggle-button-check-icon { color: color('primary-foreground'); }
+        .ddp-toggle-button-box {
+          @include tone-solid($tone);
+        }
+      }
+    }
 
-  &.has-checkbox.ddp-toggle-button-secondary .ddp-toggle-button-box { background-color: color('secondary'); border-color: color('secondary'); }
-  &.has-checkbox.ddp-toggle-button-secondary .ddp-toggle-button-check-icon { color: color('secondary-foreground'); }
-
-  &.has-checkbox.ddp-toggle-button-tertiary .ddp-toggle-button-box { background-color: color('tertiary'); border-color: color('tertiary'); }
-  &.has-checkbox.ddp-toggle-button-tertiary .ddp-toggle-button-check-icon { color: color('tertiary-foreground'); }
-
-  &.has-checkbox.ddp-toggle-button-neutral .ddp-toggle-button-box { background-color: text('default'); border-color: text('default'); }
-  &.has-checkbox.ddp-toggle-button-neutral .ddp-toggle-button-check-icon { color: text('inverse'); }
+    .ddp-toggle-button-check-icon {
+      opacity: 1;
+    }
+  }
 }

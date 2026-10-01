@@ -1,4 +1,5 @@
-export * from './shared/types';
+export * from './types';
+export * from './utils';
 export * from './Icon';
 export * from './Button';
 export * from './Badge';

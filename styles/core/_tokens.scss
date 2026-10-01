@@ -15,30 +15,60 @@
   @if $fallback {
     @return var(--ddp-#{$name}, #{$fallback});
   }
+
   @return var(--ddp-#{$name});
 }
 
 @function _assert($value, $allowed, $label) {
-  @if list.index($allowed, $value) == null {
+  @if list.index($allowed, $value)==null {
     @error 'Unknown #{$label} token `#{$value}`. Expected one of: #{$allowed}.';
   }
+
   @return $value;
 }
 
 // ---------- Colour ----------
 
-$-palette-hues: ('orange', 'violet', 'jade', 'lime', 'red', 'amber', 'ochre', 'neutral', 'democratic', 'republican');
-$-palette-steps: (0, 25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950);
+$-palette-hues: (
+  'orange',
+  'violet',
+  'jade',
+  'lime',
+  'red',
+  'amber',
+  'ochre',
+  'neutral',
+  'democratic',
+  'republican'
+);
+$-palette-steps: (
+  0,
+  25,
+  50,
+  100,
+  200,
+  300,
+  400,
+  500,
+  550,
+  600,
+  700,
+  800,
+  900,
+  950
+);
 
 /// Primitive palette colour. Tier 1 — avoid in component code.
 /// palette('orange', 500) → var(--ddp-color-orange-500)
 @function palette($hue, $step: 500) {
-  @if list.index($-palette-hues, $hue) == null {
+  @if list.index($-palette-hues, $hue)==null {
     @error 'Unknown hue `#{$hue}`. Expected one of: #{$-palette-hues}.';
   }
-  @if list.index($-palette-steps, $step) == null {
+
+  @if list.index($-palette-steps, $step)==null {
     @error 'Unknown step `#{$step}`. Expected one of: #{$-palette-steps}.';
   }
+
   @return _var('color-#{$hue}-#{$step}');
 }
 
@@ -49,19 +79,51 @@ $-palette-steps: (0, 25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950);
 //   {role}-tint-foreground text/icon color, safe on the tint
 $-color-keys: (
   // brand
-  'primary', 'primary-hover', 'primary-active', 'primary-tint', 'primary-tint-foreground', 'primary-foreground',
-  'secondary', 'secondary-hover', 'secondary-active', 'secondary-tint', 'secondary-tint-foreground', 'secondary-foreground',
-  'tertiary', 'tertiary-hover', 'tertiary-active', 'tertiary-tint', 'tertiary-tint-foreground', 'tertiary-foreground',
+  'primary',
+  'primary-hover',
+  'primary-active',
+  'primary-tint',
+  'primary-tint-foreground',
+  'primary-foreground',
+  'secondary',
+  'secondary-hover',
+  'secondary-active',
+  'secondary-tint',
+  'secondary-tint-foreground',
+  'secondary-foreground',
+  'tertiary',
+  'tertiary-hover',
+  'tertiary-active',
+  'tertiary-tint',
+  'tertiary-tint-foreground',
+  'tertiary-foreground',
   // valence
-  'positive', 'positive-tint', 'positive-tint-foreground',
-  'negative', 'negative-tint', 'negative-tint-foreground',
-  'caution', 'caution-tint', 'caution-tint-foreground',
-  'info', 'info-tint', 'info-tint-foreground',
-  'neutral-status', 'neutral-status-tint', 'neutral-status-tint-foreground',
+  'positive',
+  'positive-tint',
+  'positive-tint-foreground',
+  'negative',
+  'negative-tint',
+  'negative-tint-foreground',
+  'caution',
+  'caution-tint',
+  'caution-tint-foreground',
+  'info',
+  'info-tint',
+  'info-tint-foreground',
+  'neutral',
+  'neutral-hover',
+  'neutral-tint',
+  'neutral-tint-foreground',
   // party — fixed, never re-themed
-  'democratic', 'democratic-tint', 'democratic-tint-foreground',
-  'republican', 'republican-tint', 'republican-tint-foreground',
-  'unaffiliated', 'unaffiliated-tint', 'unaffiliated-tint-foreground'
+  'democratic',
+  'democratic-tint',
+  'democratic-tint-foreground',
+  'republican',
+  'republican-tint',
+  'republican-tint-foreground',
+  'unaffiliated',
+  'unaffiliated-tint',
+  'unaffiliated-tint-foreground'
 );
 
 /// Semantic colour. Tier 2 — this is what components should use.
@@ -70,156 +132,332 @@ $-color-keys: (
   @return _var('color-#{_assert($key, $-color-keys, "color")}');
 }
 
-$-text-keys: ('default', 'muted', 'subtle', 'disabled', 'inverse', 'link', 'link-hover');
+$-text-keys: (
+  'default',
+  'muted',
+  'subtle',
+  'disabled',
+  'inverse',
+  'link',
+  'link-hover'
+);
+
 @function text($key: 'default') {
   @return _var('text-#{_assert($key, $-text-keys, "text")}');
 }
 
-$-surface-keys: ('page', 'raised', 'sunken', 'inverse', 'overlay');
+$-surface-keys: (
+  'page',
+  'raised',
+  'sunken',
+  'inverse',
+  'overlay'
+);
+
 @function surface($key: 'raised') {
   @return _var('surface-#{_assert($key, $-surface-keys, "surface")}');
 }
 
-$-border-keys: ('subtle', 'default', 'strong', 'inverse', 'focus');
+$-border-keys: (
+  'subtle',
+  'default',
+  'strong',
+  'inverse',
+  'focus'
+);
+
 @function border-color($key: 'default') {
   @return _var('border-#{_assert($key, $-border-keys, "border")}');
 }
 
-$-scale-steps: (1, 2, 3, 4, 5);
-$-scale-variants: ('base', 'tint', 'tint-foreground');
+$-scale-steps: (
+  1,
+  2,
+  3,
+  4,
+  5
+);
+$-scale-variants: (
+  'base',
+  'tint',
+  'tint-foreground'
+);
+
 /// Ordinal grade scale. scale(1) → var(--ddp-scale-1)
 @function scale($step, $variant: 'base') {
-  @if list.index($-scale-steps, $step) == null {
+  @if list.index($-scale-steps, $step)==null {
     @error 'Unknown scale step `#{$step}`. Expected 1–5.';
   }
-  @if list.index($-scale-variants, $variant) == null {
+
+  @if list.index($-scale-variants, $variant)==null {
     @error 'Unknown scale variant `#{$variant}`. Expected one of: #{$-scale-variants}.';
   }
-  @if $variant == 'base' { @return _var('scale-#{$step}'); }
+
+  @if $variant =='base' {
+    @return _var('scale-#{$step}');
+  }
+
   @return _var('scale-#{$step}-#{$variant}');
 }
 
 // ---------- Space, radius, size ----------
 
-$-space-keys: (0, 'px', '0-5', 1, '1-5', 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32);
+$-space-keys: (
+  0,
+  'px',
+  '0-5',
+  1,
+  '1-5',
+  2,
+  3,
+  4,
+  5,
+  6,
+  8,
+  10,
+  12,
+  16,
+  20,
+  24,
+  32
+);
+
 /// space(3) → var(--ddp-space-3). space(17px) → 17px (escape hatch).
 /// Membership is checked first and exclusively — a matched key (even a numeric one, like 3) is never at risk of being mistaken for a raw escape-hatch value; the number check only runs once membership fails.
 @function space($key) {
-  @if list.index($-space-keys, $key) != null {
+  @if list.index($-space-keys, $key) !=null {
     @return _var('space-#{$key}');
   }
-  @if meta.type-of($key) == 'number' {
+
+  @if meta.type-of($key)=='number' {
     @return $key;
   }
+
   @error 'Unknown space token `#{$key}`. Expected one of: #{$-space-keys}, or a raw number.';
 }
 
-$-radius-keys: ('none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', 'full');
+$-radius-keys: (
+  'none',
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl',
+  '2xl',
+  'full'
+);
+
 /// radius('md') → var(--ddp-radius-md). radius(10px) → 10px (escape hatch).
 @function radius($key: 'md') {
-  @if list.index($-radius-keys, $key) != null {
+  @if list.index($-radius-keys, $key) !=null {
     @return _var('radius-#{$key}');
   }
-  @if meta.type-of($key) == 'number' {
+
+  @if meta.type-of($key)=='number' {
     @return $key;
   }
+
   @error 'Unknown radius token `#{$key}`. Expected one of: #{$-radius-keys}, or a raw number.';
 }
 
-$-border-width-keys: (0, 1, 2, 4);
+$-border-width-keys: (
+  0,
+  1,
+  2,
+  4
+);
+
 @function border-width($key: 1) {
   @return _var('border-width-#{_assert($key, $-border-width-keys, "border-width")}');
 }
 
-$-icon-size-keys: ('xs', 'sm', 'md', 'lg', 'xl');
+$-icon-size-keys: (
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl'
+);
+
 /// icon-size('md') → var(--ddp-icon-size-md). icon-size(18px) → 18px (escape hatch).
 @function icon-size($key: 'md') {
-  @if list.index($-icon-size-keys, $key) != null {
+  @if list.index($-icon-size-keys, $key) !=null {
     @return _var('icon-size-#{$key}');
   }
-  @if meta.type-of($key) == 'number' {
+
+  @if meta.type-of($key)=='number' {
     @return $key;
   }
+
   @error 'Unknown icon-size token `#{$key}`. Expected one of: #{$-icon-size-keys}, or a raw number.';
 }
 
-$-shadow-keys: ('none', 'xs', 'sm', 'md', 'lg', 'xl');
+$-shadow-keys: (
+  'none',
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl'
+);
+
 @function shadow($key) {
   @return _var('shadow-#{_assert($key, $-shadow-keys, "shadow")}');
 }
 
-$-z-keys: ('base', 'dropdown', 'sticky', 'overlay', 'modal', 'popover', 'toast', 'tooltip');
+$-z-keys: (
+  'base',
+  'dropdown',
+  'sticky',
+  'overlay',
+  'modal',
+  'popover',
+  'toast',
+  'tooltip'
+);
+
 @function z($key) {
   @return _var('z-#{_assert($key, $-z-keys, "z-index")}');
 }
 
-$-opacity-keys: (0, 5, 10, 20, 40, 60, 80, 100);
+$-opacity-keys: (
+  0,
+  5,
+  10,
+  20,
+  40,
+  60,
+  80,
+  100
+);
+
 /// opacity(40) → var(--ddp-opacity-40). opacity(0.35) → 0.35 (escape hatch).
 /// Named keys are on a 0–100 scale; a raw escape-hatch value is expected on the literal 0–1 CSS opacity scale (e.g. 0.35), so the two can't collide even though both are plain numbers.
 @function opacity($key) {
-  @if list.index($-opacity-keys, $key) != null {
+  @if list.index($-opacity-keys, $key) !=null {
     @return _var('opacity-#{$key}');
   }
-  @if meta.type-of($key) == 'number' {
+
+  @if meta.type-of($key)=='number' {
     @return $key;
   }
+
   @error 'Unknown opacity token `#{$key}`. Expected one of: #{$-opacity-keys}, or a raw number.';
 }
 
-$-container-keys: ('sm', 'md', 'lg', 'xl');
+$-container-keys: (
+  'sm',
+  'md',
+  'lg',
+  'xl'
+);
+
 @function container($key: 'xl') {
   @return _var('container-#{_assert($key, $-container-keys, "container")}');
 }
 
 // ---------- Type ----------
 
-$-font-family-keys: ('sans', 'serif', 'mono');
+$-font-family-keys: (
+  'sans',
+  'serif',
+  'mono'
+);
+
 @function font-family($key: 'sans') {
   @return _var('font-family-#{_assert($key, $-font-family-keys, "font-family")}');
 }
 
-$-font-size-keys: ('2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl', '7xl');
+$-font-size-keys: (
+  '2xs',
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl',
+  '2xl',
+  '3xl',
+  '4xl',
+  '5xl',
+  '6xl',
+  '7xl'
+);
+
 /// font-size('md') → var(--ddp-font-size-md). font-size(15px) → 15px (escape hatch).
 @function font-size($key: 'md') {
-  @if list.index($-font-size-keys, $key) != null {
+  @if list.index($-font-size-keys, $key) !=null {
     @return _var('font-size-#{$key}');
   }
-  @if meta.type-of($key) == 'number' {
+
+  @if meta.type-of($key)=='number' {
     @return $key;
   }
+
   @error 'Unknown font-size token `#{$key}`. Expected one of: #{$-font-size-keys}, or a raw number.';
 }
 
 /// Line heights use the same keys as font sizes and stay on the 4px grid.
 /// line-height('md') → var(--ddp-line-height-md). line-height(1.8) → 1.8 (escape hatch).
 @function line-height($key: 'md') {
-  @if list.index($-font-size-keys, $key) != null {
+  @if list.index($-font-size-keys, $key) !=null {
     @return _var('line-height-#{$key}');
   }
-  @if meta.type-of($key) == 'number' {
+
+  @if meta.type-of($key)=='number' {
     @return $key;
   }
+
   @error 'Unknown line-height token `#{$key}`. Expected one of: #{$-font-size-keys}, or a raw number.';
 }
 
-$-font-weight-keys: ('light', 'regular', 'medium', 'semibold', 'bold', 'extrabold');
+$-font-weight-keys: (
+  'light',
+  'regular',
+  'medium',
+  'semibold',
+  'bold',
+  'extrabold'
+);
+
 @function font-weight($key: 'regular') {
   @return _var('font-weight-#{_assert($key, $-font-weight-keys, "font-weight")}');
 }
 
-$-tracking-keys: ('tighter', 'tight', 'snug', 'normal', 'wide', 'wider', 'widest');
+$-tracking-keys: (
+  'tighter',
+  'tight',
+  'snug',
+  'normal',
+  'wide',
+  'wider',
+  'widest'
+);
+
 @function tracking($key: 'normal') {
   @return _var('letter-spacing-#{_assert($key, $-tracking-keys, "letter-spacing")}');
 }
 
 // ---------- Motion ----------
 
-$-duration-keys: ('instant', 'fast', 'base', 'slow', 'slower');
+$-duration-keys: (
+  'instant',
+  'fast',
+  'base',
+  'slow',
+  'slower'
+);
+
 @function duration($key: 'base') {
   @return _var('duration-#{_assert($key, $-duration-keys, "duration")}');
 }
 
-$-ease-keys: ('standard', 'emphasized', 'in', 'out');
+$-ease-keys: (
+  'standard',
+  'emphasized',
+  'in',
+  'out'
+);
+
 @function ease($key: 'standard') {
   @return _var('ease-#{_assert($key, $-ease-keys, "ease")}');
 }
@@ -231,27 +469,70 @@ $-ease-keys: ('standard', 'emphasized', 'in', 'out');
 // ============================================================
 
 $raw-space: (
-  0: 0px, 'px': 1px, '0-5': 2px, 1: 4px, '1-5': 6px, 2: 8px, 3: 12px, 4: 16px,
-  5: 20px, 6: 24px, 8: 32px, 10: 40px, 12: 48px, 16: 64px, 20: 80px, 24: 96px, 32: 128px
+  0: 0px,
+  'px': 1px,
+  '0-5': 2px,
+  1: 4px,
+  '1-5': 6px,
+  2: 8px,
+  3: 12px,
+  4: 16px,
+  5: 20px,
+  6: 24px,
+  8: 32px,
+  10: 40px,
+  12: 48px,
+  16: 64px,
+  20: 80px,
+  24: 96px,
+  32: 128px
 );
 
 $raw-font-size: (
-  '2xs': 11px, 'xs': 12px, 'sm': 14px, 'md': 16px, 'lg': 18px, 'xl': 20px,
-  '2xl': 24px, '3xl': 30px, '4xl': 36px, '5xl': 48px, '6xl': 60px, '7xl': 72px
+  '2xs': 11px,
+  'xs': 12px,
+  'sm': 14px,
+  'md': 16px,
+  'lg': 18px,
+  'xl': 20px,
+  '2xl': 24px,
+  '3xl': 30px,
+  '4xl': 36px,
+  '5xl': 48px,
+  '6xl': 60px,
+  '7xl': 72px
 );
 
 $raw-line-height: (
-  '2xs': 16px, 'xs': 18px, 'sm': 20px, 'md': 24px, 'lg': 28px, 'xl': 28px,
-  '2xl': 32px, '3xl': 38px, '4xl': 44px, '5xl': 54px, '6xl': 64px, '7xl': 76px
+  '2xs': 16px,
+  'xs': 18px,
+  'sm': 20px,
+  'md': 24px,
+  'lg': 28px,
+  'xl': 28px,
+  '2xl': 32px,
+  '3xl': 38px,
+  '4xl': 44px,
+  '5xl': 54px,
+  '6xl': 64px,
+  '7xl': 76px
 );
 
 $raw-radius: (
-  'none': 0px, 'xs': 2px, 'sm': 4px, 'md': 8px, 'lg': 12px, 'xl': 16px, '2xl': 24px, 'full': 9999px
+  'none': 0px,
+  'xs': 2px,
+  'sm': 4px,
+  'md': 8px,
+  'lg': 12px,
+  'xl': 16px,
+  '2xl': 24px,
+  'full': 9999px
 );
 
 @function raw($map, $key) {
   @if not map.has-key($map, $key) {
     @error 'Unknown raw token `#{$key}`. Expected one of: #{map.keys($map)}.';
   }
+
   @return map.get($map, $key);
 }

@@ -56,6 +56,10 @@
    TIER 1 — PRIMITIVES
    ============================================================ */
 
+	/* the real basics */
+	--ddp-color-white: #FFFFFF;
+	--ddp-color-black: #000000;
+
 	/* ---------- Orange — brand primary (anchored on #F85828) ---------- */
 	--ddp-color-orange-50: #FFF5F1;
 	--ddp-color-orange-100: #FFE4DA;
@@ -91,6 +95,7 @@
 	--ddp-color-neutral-300: #BCC5D2;
 	--ddp-color-neutral-400: #97A3B4;
 	--ddp-color-neutral-500: #74829A;
+	--ddp-color-neutral-550: #64738C;
 	--ddp-color-neutral-600: #56647C;
 	--ddp-color-neutral-700: #3D4A5F;
 	--ddp-color-neutral-800: #263447;
@@ -428,25 +433,32 @@
 	--ddp-color-primary-active: var(--ddp-color-orange-700);
 	--ddp-color-primary-tint: var(--ddp-color-orange-100);
 	--ddp-color-primary-tint-foreground: var(--ddp-color-orange-700);
-	--ddp-color-primary-foreground: var(--ddp-color-neutral-0);
+	--ddp-color-primary-foreground: var(--ddp-color-white);
 
 	--ddp-color-secondary: var(--ddp-color-violet-500);
 	--ddp-color-secondary-hover: var(--ddp-color-violet-600);
 	--ddp-color-secondary-active: var(--ddp-color-violet-700);
 	--ddp-color-secondary-tint: var(--ddp-color-violet-100);
 	--ddp-color-secondary-tint-foreground: var(--ddp-color-violet-700);
-	--ddp-color-secondary-foreground: var(--ddp-color-neutral-0);
+	--ddp-color-secondary-foreground: var(--ddp-color-white);
 
 	--ddp-color-tertiary: var(--ddp-color-jade-500);
 	--ddp-color-tertiary-hover: var(--ddp-color-jade-600);
 	--ddp-color-tertiary-active: var(--ddp-color-jade-700);
 	--ddp-color-tertiary-tint: var(--ddp-color-jade-100);
 	--ddp-color-tertiary-tint-foreground: var(--ddp-color-jade-700);
-	--ddp-color-tertiary-foreground: var(--ddp-color-neutral-0);
+	--ddp-color-tertiary-foreground: var(--ddp-color-white);
+
+	--ddp-color-neutral: var(--ddp-color-neutral-500);
+	--ddp-color-neutral-hover: var(--ddp-color-neutral-700);
+	--ddp-color-neutral-tint: var(--ddp-color-neutral-100);
+	--ddp-color-neutral-tint-foreground: var(--ddp-color-neutral-700);
+	--ddp-color-neutral-solid-bg: var(--ddp-color-neutral-600);
+	--ddp-color-neutral-solid-fg: var(--ddp-color-white);
 
 	/* ---------- Surfaces ---------- */
 	--ddp-surface-page: var(--ddp-color-neutral-50);
-	--ddp-surface-raised: var(--ddp-color-neutral-0);
+	--ddp-surface-raised: var(--ddp-color-white);
 	--ddp-surface-sunken: var(--ddp-color-neutral-100);
 	--ddp-surface-inverse: var(--ddp-color-neutral-900);
 	--ddp-surface-overlay: rgba(11, 21, 32, 0.55);
@@ -456,7 +468,7 @@
 	--ddp-text-muted: var(--ddp-color-neutral-600);
 	--ddp-text-subtle: var(--ddp-color-neutral-500);
 	--ddp-text-disabled: var(--ddp-color-neutral-400);
-	--ddp-text-inverse: var(--ddp-color-neutral-0);
+	--ddp-text-inverse: var(--ddp-color-white);
 	--ddp-text-link: var(--ddp-color-violet-500);
 	--ddp-text-link-hover: var(--ddp-color-violet-700);
 
@@ -482,9 +494,6 @@
 	--ddp-color-info: var(--ddp-color-violet-500);
 	--ddp-color-info-tint: var(--ddp-color-violet-100);
 	--ddp-color-info-tint-foreground: var(--ddp-color-violet-700);
-	--ddp-color-neutral-status: var(--ddp-color-neutral-500);
-	--ddp-color-neutral-status-tint: var(--ddp-color-neutral-100);
-	--ddp-color-neutral-status-tint-foreground: var(--ddp-color-neutral-700);
 
 	/* Back-compat aliases */
 	--ddp-color-success: var(--ddp-color-positive);
@@ -523,8 +532,11 @@
 	--ddp-color-republican-tint: var(--ddp-color-republican-100);
 	--ddp-color-republican-tint-foreground: var(--ddp-color-republican-700);
 	--ddp-color-unaffiliated: var(--ddp-color-neutral-500);
-	--ddp-color-unaffiliated-tint: var(--ddp-color-neutral-100);
-	--ddp-color-unaffiliated-tint-foreground: var(--ddp-color-neutral-700);
+	--ddp-color-unaffiliated-tint: var(--ddp-color-neutral-200);
+	--ddp-color-unaffiliated-tint-foreground: var(--ddp-color-neutral-800);
+	/* Solid-only: the half-step between neutral's own solid background (neutral-600) and neutral-500. */
+	--ddp-color-unaffiliated-solid-bg: var(--ddp-color-neutral-550);
+	--ddp-color-unaffiliated-solid-fg: var(--ddp-color-white);
 
 	/* ---------- Focus ring ---------- */
 	--ddp-focus-ring-width: 3px;
@@ -564,7 +576,7 @@
 	--ddp-surface-page: var(--ddp-color-neutral-900);
 	--ddp-surface-raised: var(--ddp-color-neutral-800);
 	--ddp-surface-sunken: var(--ddp-color-neutral-950);
-	--ddp-surface-inverse: var(--ddp-color-neutral-0);
+	--ddp-surface-inverse: var(--ddp-color-white);
 	--ddp-surface-overlay: rgba(0, 0, 0, 0.65);
 
 	--ddp-text-default: var(--ddp-color-neutral-100);
@@ -593,9 +605,13 @@
 	--ddp-color-info: var(--ddp-color-violet-300);
 	--ddp-color-info-tint: var(--ddp-color-violet-800);
 	--ddp-color-info-tint-foreground: var(--ddp-color-violet-200);
-	--ddp-color-neutral-status: var(--ddp-color-neutral-400);
-	--ddp-color-neutral-status-tint: var(--ddp-color-neutral-800);
-	--ddp-color-neutral-status-tint-foreground: var(--ddp-color-neutral-300);
+
+	--ddp-color-neutral: var(--ddp-color-neutral-400);
+	--ddp-color-neutral-hover: var(--ddp-color-neutral-300);
+	--ddp-color-neutral-tint: var(--ddp-color-neutral-800);
+	--ddp-color-neutral-tint-foreground: var(--ddp-color-neutral-300);
+	--ddp-color-neutral-solid-bg: var(--ddp-color-neutral);
+	--ddp-color-neutral-solid-fg: var(--ddp-surface-page);
 
 	--ddp-scale-1: var(--ddp-color-jade-400);
 	--ddp-scale-1-tint: var(--ddp-color-jade-800);
@@ -613,19 +629,10 @@
 	--ddp-scale-5-tint: var(--ddp-color-red-800);
 	--ddp-scale-5-tint-foreground: var(--ddp-color-red-200);
 
-	/* Nothing democratic/republican-related is re-themed here, unlike every
-   other role -- party affiliation (icon included) reads exactly the same
-   regardless of page theme. -500 (icon fill) is inherited unchanged from the
-   default block below; only tint/tint-foreground need repeating since
-   SCSS/CSS custom properties don't merge across a data-theme override,
-   they replace it wholesale for whatever they redeclare. */
-	--ddp-color-democratic-tint: var(--ddp-color-democratic-100);
-	--ddp-color-democratic-tint-foreground: var(--ddp-color-democratic-700);
-	--ddp-color-republican-tint: var(--ddp-color-republican-100);
-	--ddp-color-republican-tint-foreground: var(--ddp-color-republican-700);
-	--ddp-color-unaffiliated: var(--ddp-color-neutral-400);
-	--ddp-color-unaffiliated-tint: var(--ddp-color-neutral-800);
-	--ddp-color-unaffiliated-tint-foreground: var(--ddp-color-neutral-300);
+	/* Nothing democratic/republican/unaffiliated-related is re-themed here --
+   party affiliation (icon included) reads exactly the same regardless of
+   page theme. None of it is redefined in this block at all; every value
+   falls through via the normal cascade to the light/root definitions. */
 
 	--ddp-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.40);
 	--ddp-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.50);

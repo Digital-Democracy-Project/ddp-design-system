@@ -1,5 +1,5 @@
 import type { FunctionComponent, SVGProps } from 'react';
-import type { SizeOptions } from '../shared/types';
+import type { SizeOptions5 } from '../types';
 import './Icon.scss';
 
 type IconComponent = FunctionComponent<SVGProps<SVGSVGElement>>;
@@ -21,7 +21,7 @@ for (const path in modules) {
 
 export type IconName = string;
 // Deliberately a superset of SizeOptions ('xs' and 'xl' added), not an alias of it — every SizeOptions-scaled component's own size passes straight through to this one with no lookup table, since the subset relationship holds by construction. See TextInput/Select for the components that rely on this.
-export type IconSize = 'xs' | SizeOptions | 'xl';
+export type IconSize = SizeOptions5;
 
 const SIZE_CLASSES: Record<IconSize, string> = {
   xs: 'ddp-icon-xs',
@@ -31,7 +31,10 @@ const SIZE_CLASSES: Record<IconSize, string> = {
   xl: 'ddp-icon-xl',
 };
 
-export interface IconProps extends Omit<SVGProps<SVGSVGElement>, 'width' | 'height'> {
+export interface IconProps extends Omit<
+  SVGProps<SVGSVGElement>,
+  'width' | 'height'
+> {
   /** Which icon to render — see assets/icons/ for the full source set. */
   name: IconName;
   /** Named size step (default 'md'), or a raw pixel number as an escape hatch. */
@@ -40,13 +43,26 @@ export interface IconProps extends Omit<SVGProps<SVGSVGElement>, 'width' | 'heig
   title?: string;
 }
 
-export function Icon({ name, size = 'md', title, className, style, ...rest }: IconProps) {
+export function Icon({
+  name,
+  size = 'md',
+  title,
+  className,
+  style,
+  ...rest
+}: IconProps) {
   const Component = ICONS[name];
   const isCustomSize = typeof size === 'number';
-  const classes = ['ddp-icon', !isCustomSize ? SIZE_CLASSES[size] : undefined, className]
+  const classes = [
+    'ddp-icon',
+    !isCustomSize ? SIZE_CLASSES[size] : undefined,
+    className,
+  ]
     .filter(Boolean)
     .join(' ');
-  const mergedStyle = isCustomSize ? { width: size, height: size, ...style } : style;
+  const mergedStyle = isCustomSize
+    ? { width: size, height: size, ...style }
+    : style;
 
   if (!Component) {
     if (process.env.NODE_ENV !== 'production') {

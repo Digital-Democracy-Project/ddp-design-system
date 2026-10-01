@@ -18,15 +18,14 @@ import { TextInput } from '../TextInput';
 import { DropdownMenu } from '../DropdownMenu';
 import { Menu } from '../Menu';
 import type { MenuOption } from '../Menu';
-import type { SizeOptions } from '../shared/types';
+import type { SizeOptions3 } from '../types';
 
-export type SearchBarSize = SizeOptions;
+export type SearchBarSize = SizeOptions3;
 
-export interface SearchBarProps
-  extends Omit<
-    InputHTMLAttributes<HTMLInputElement>,
-    'size' | 'onChange' | 'onSubmit' | 'value' | 'defaultValue' | 'type'
-  > {
+export interface SearchBarProps extends Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'size' | 'onChange' | 'onSubmit' | 'value' | 'defaultValue' | 'type'
+> {
   value?: string;
   defaultValue?: string;
   /** Fires on every keystroke, with the current string value — matches TextInput. */
@@ -94,7 +93,9 @@ export function SearchBar({
       shift({ padding: 8 }),
       sizeMiddleware({
         apply({ rects, elements }) {
-          Object.assign(elements.floating.style, { width: `${rects.reference.width}px` });
+          Object.assign(elements.floating.style, {
+            width: `${rects.reference.width}px`,
+          });
         },
       }),
     ],
@@ -111,7 +112,9 @@ export function SearchBar({
   const role = useRole(context, { role: 'listbox' });
   const dismiss = useDismiss(context);
 
-  const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions([listNavigation, role, dismiss]);
+  const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
+    [listNavigation, role, dismiss],
+  );
 
   const commitValue = (next: string) => {
     if (!isControlled) setInternalValue(next);
@@ -129,7 +132,12 @@ export function SearchBar({
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key !== 'Enter') return;
-    if (hasSuggestions && open && activeIndex != null && suggestions[activeIndex]) {
+    if (
+      hasSuggestions &&
+      open &&
+      activeIndex != null &&
+      suggestions[activeIndex]
+    ) {
       e.preventDefault();
       handleSelectSuggestion(suggestions[activeIndex]);
     } else {
@@ -155,7 +163,8 @@ export function SearchBar({
         role: 'combobox' as const,
         'aria-expanded': open,
         'aria-autocomplete': 'list' as const,
-        'aria-activedescendant': open && activeIndex != null ? getItemId(activeIndex) : undefined,
+        'aria-activedescendant':
+          open && activeIndex != null ? getItemId(activeIndex) : undefined,
       })
     : {};
 
@@ -163,8 +172,8 @@ export function SearchBar({
     <>
       <TextInput
         ref={setReference}
-        icon="search"
-        type="search"
+        icon='search'
+        type='search'
         clearable
         size={size}
         value={currentValue}
@@ -186,7 +195,7 @@ export function SearchBar({
             options={suggestions}
             onSelect={handleSelectSuggestion}
             activeIndex={activeIndex}
-            focusMode="virtual"
+            focusMode='virtual'
             getItemId={getItemId}
             getItemProps={getItemProps}
             listRef={listRef}

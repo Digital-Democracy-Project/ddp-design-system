@@ -17,8 +17,8 @@
   padding: space(1) space(3);
   font-size: font-size('sm');
   line-height: line-height('sm');
-  background-color: surface('sunken');
-  color: text('default');
+  // tones for all soft appearances, including neutral (the default) — see _tones.scss for the actual color values.
+  @include apply-tones-soft('ddp-badge');
 }
 
 // ---------- Sizes ----------
@@ -43,42 +43,14 @@
 
 // ---------- Tones (soft — the default appearance) ----------
 
-.ddp-badge-neutral {
-  background-color: surface('sunken');
-  color: text('default');
-}
-
-.ddp-badge-primary {
-  background-color: color('primary-tint');
-  color: color('primary-tint-foreground');
-}
-
-.ddp-badge-secondary {
-  background-color: color('secondary-tint');
-  color: color('secondary-tint-foreground');
-}
-
-.ddp-badge-tertiary {
-  background-color: color('tertiary-tint');
-  color: color('tertiary-tint-foreground');
-}
+// .ddp-badge-neutral {
+//   background-color: surface('sunken');
+//   color: text('default');
+// }
 
 // ---------- Solid appearance ----------
 // Overrides the tone classes above only for the three brand tones — 'neutral' has no matching override nested here, so appearance="solid" has no visual effect on it and it stays soft.
 
 .ddp-badge-solid {
-  &.ddp-badge-primary {
-    background-color: color('primary');
-    color: color('primary-foreground');
-  }
-
-  &.ddp-badge-secondary {
-    background-color: color('secondary');
-    color: color('secondary-foreground');
-  }
-
-  &.ddp-badge-tertiary {
-    background-color: color('tertiary');
-    color: color('tertiary-foreground');
-  }
+  @include apply-tones-solid('ddp-badge');
 }

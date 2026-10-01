@@ -21,14 +21,16 @@ import { TextInput } from '../TextInput';
 import { DropdownMenu } from '../DropdownMenu';
 import { Menu } from '../Menu';
 import type { MenuOption } from '../Menu';
-import type { SizeOptions } from '../shared/types';
+import type { SizeOptions3 } from '../types';
 import './Select.scss';
 
-export type SelectSize = SizeOptions;
+export type SelectSize = SizeOptions3;
 export type SelectOption = MenuOption;
 
-export interface SelectProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'value' | 'defaultValue' | 'type'> {
+export interface SelectProps extends Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'onChange' | 'value' | 'defaultValue' | 'type'
+> {
   options: SelectOption[];
   value?: string;
   defaultValue?: string;
@@ -79,10 +81,12 @@ export function Select({
         if (option.disabled) acc.push(index);
         return acc;
       }, []),
-    [filteredOptions]
+    [filteredOptions],
   );
 
-  const selectedOption = options.find((option) => option.value === currentValue);
+  const selectedOption = options.find(
+    (option) => option.value === currentValue,
+  );
 
   const { refs, floatingStyles, context } = useFloating({
     open,
@@ -101,7 +105,9 @@ export function Select({
       shift({ padding: 8 }),
       sizeMiddleware({
         apply({ rects, elements }) {
-          Object.assign(elements.floating.style, { width: `${rects.reference.width}px` });
+          Object.assign(elements.floating.style, {
+            width: `${rects.reference.width}px`,
+          });
         },
       }),
     ],
@@ -110,7 +116,9 @@ export function Select({
   // Preselect the current value on open, matching native <select> — keyboard navigation starts near the existing selection instead of the top.
   useEffect(() => {
     if (open) {
-      const index = filteredOptions.findIndex((option) => option.value === currentValue);
+      const index = filteredOptions.findIndex(
+        (option) => option.value === currentValue,
+      );
       setActiveIndex(index >= 0 ? index : null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -133,13 +141,9 @@ export function Select({
     enabled: !searchable,
   });
 
-  const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions([
-    click,
-    dismiss,
-    role,
-    listNavigation,
-    typeahead,
-  ]);
+  const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
+    [click, dismiss, role, listNavigation, typeahead],
+  );
 
   const handleSelect = (option: SelectOption) => {
     if (option.disabled) return;
@@ -156,7 +160,12 @@ export function Select({
     else if (ref) ref.current = node;
   };
 
-  const classes = ['ddp-select', `ddp-select-${size}`, open ? 'is-open' : undefined, className]
+  const classes = [
+    'ddp-select',
+    `ddp-select-${size}`,
+    open ? 'is-open' : undefined,
+    className,
+  ]
     .filter(Boolean)
     .join(' ');
 
@@ -164,16 +173,20 @@ export function Select({
     <>
       <button
         ref={setReference}
-        type="button"
+        type='button'
         disabled={disabled}
         className={classes}
         {...getReferenceProps(rest)}
       >
-        <span className="ddp-select-value">
-          {selectedOption ? selectedOption.label : <span className="ddp-select-placeholder">{placeholder}</span>}
+        <span className='ddp-select-value'>
+          {selectedOption ? (
+            selectedOption.label
+          ) : (
+            <span className='ddp-select-placeholder'>{placeholder}</span>
+          )}
         </span>
         {/* size passes straight through — SelectSize is a subset of IconSize, so the chevron scales 1:1 with Select's own size, same convention as TextInput's internal icons. */}
-        <Icon name="chevron-down" size={size} className="ddp-select-chevron" />
+        <Icon name='chevron-down' size={size} className='ddp-select-chevron' />
       </button>
       <DropdownMenu
         context={context}
@@ -184,9 +197,9 @@ export function Select({
       >
         {/* Plain TextInput deliberately, not a styled-up search field — no type="search", no leading icon. TextInput has no icon-prop capability at all (a past deliberate decision, see its own README), and reopening that just for this one usage isn't worth it now that SearchBar is coming soon anyway. Swap this for SearchBar once it exists, rather than growing TextInput here. */}
         {searchable && (
-          <div className="ddp-select-search">
+          <div className='ddp-select-search'>
             <TextInput
-              size="sm"
+              size='sm'
               value={query}
               onChange={setQuery}
               placeholder={searchPlaceholder}
