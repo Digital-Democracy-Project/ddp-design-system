@@ -34,6 +34,7 @@ export const Sizes = Object.freeze({
   L: 'lg',
   XL: 'xl',
   XXL: 'xxl',
+  // TODO: verify the actual values and how they're used.
 });
 
 export const getSizeOptions = (num: number): Array<Values<typeof Sizes>> => {
