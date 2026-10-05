@@ -27,7 +27,9 @@ $other-props: (
 // Half-step class names use an escaped dot (`py-1.5` in markup) while the token keys stay hyphenated (`--ddp-space-1-5`). Add an entry here when a new half step joins $raw-space.
 $-half-steps: (
   '0-5': '0\\.5',
-  '1-5': '1\\.5'
+  '1-5': '1\\.5',
+  '2-5': '2\\.5',
+  '3-5': '3\\.5'
 );
 
 @each $prefix, $prop in map.merge($-margin-props, $other-props) {

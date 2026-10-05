@@ -1,0 +1,25 @@
+@use 'sass:list';
+
+// ============================================================
+// TOKEN ACCESSORS
+//
+// The source of truth for every token is colors_and_type.scss — CSS custom properties, so they stay themeable at runtime. These functions are typed accessors that emit `var(--ddp-*)`, validated against the key lists below at compile time. A typo fails the build instead of silently rendering nothing.
+//
+// Use the RAW maps at the bottom only where a value must exist at author time (math, colour manipulation, media queries).
+// ============================================================
+
+@function var-ref($name, $fallback: null) {
+  @if $fallback {
+    @return var(--ddp-#{$name}, #{$fallback});
+  }
+
+  @return var(--ddp-#{$name});
+}
+
+@function assert-key($value, $allowed, $label) {
+  @if list.index($allowed, $value)==null {
+    @error 'Unknown #{$label} token `#{$value}`. Expected one of: #{$allowed}.';
+  }
+
+  @return $value;
+}

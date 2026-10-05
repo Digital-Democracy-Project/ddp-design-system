@@ -1,0 +1,26 @@
+@use 'helpers' as *;
+
+// ---------- Motion ----------
+
+$-duration-keys: (
+  'instant',
+  'fast',
+  'base',
+  'slow',
+  'slower'
+);
+
+@function duration($key: 'base') {
+  @return var-ref('duration-#{assert-key($key, $-duration-keys, "duration")}');
+}
+
+$-ease-keys: (
+  'standard',
+  'emphasized',
+  'in',
+  'out'
+);
+
+@function ease($key: 'standard') {
+  @return var-ref('ease-#{assert-key($key, $-ease-keys, "ease")}');
+}

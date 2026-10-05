@@ -1,0 +1,164 @@
+@use 'sass:list';
+@use 'sass:meta';
+
+@use 'helpers' as *;
+
+// ---------- Space, radius, size ----------
+
+$-space-keys: (
+  0,
+  'px',
+  '0-5',
+  1,
+  '1-5',
+  2,
+  '2-5',
+  3,
+  '3-5',
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  12,
+  16,
+  20,
+  24,
+  32
+);
+
+/// space(3) → var(--ddp-space-3). space(17px) → 17px (escape hatch).
+/// Membership is checked first and exclusively — a matched key (even a numeric one, like 3) is never at risk of being mistaken for a raw escape-hatch value; the number check only runs once membership fails.
+@function space($key) {
+  @if list.index($-space-keys, $key) !=null {
+    @return var-ref('space-#{$key}');
+  }
+
+  @if meta.type-of($key)=='number' {
+    @return $key;
+  }
+
+  @error 'Unknown space token `#{$key}`. Expected one of: #{$-space-keys}, or a raw number.';
+}
+
+$-radius-keys: (
+  'none',
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl',
+  '2xl',
+  'full'
+);
+
+/// radius('md') → var(--ddp-radius-md). radius(10px) → 10px (escape hatch).
+@function radius($key: 'md') {
+  @if list.index($-radius-keys, $key) !=null {
+    @return var-ref('radius-#{$key}');
+  }
+
+  @if meta.type-of($key)=='number' {
+    @return $key;
+  }
+
+  @error 'Unknown radius token `#{$key}`. Expected one of: #{$-radius-keys}, or a raw number.';
+}
+
+$-border-width-keys: (
+  0,
+  1,
+  2,
+  4
+);
+
+@function border-width($key: 1) {
+  @return var-ref('border-width-#{assert-key($key, $-border-width-keys, "border-width")}');
+}
+
+$-icon-size-keys: (
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl'
+);
+
+/// icon-size('md') → var(--ddp-icon-size-md). icon-size(18px) → 18px (escape hatch).
+@function icon-size($key: 'md') {
+  @if list.index($-icon-size-keys, $key) !=null {
+    @return var-ref('icon-size-#{$key}');
+  }
+
+  @if meta.type-of($key)=='number' {
+    @return $key;
+  }
+
+  @error 'Unknown icon-size token `#{$key}`. Expected one of: #{$-icon-size-keys}, or a raw number.';
+}
+
+$-shadow-keys: (
+  'none',
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl'
+);
+
+@function shadow($key) {
+  @return var-ref('shadow-#{assert-key($key, $-shadow-keys, "shadow")}');
+}
+
+$-z-keys: (
+  'base',
+  'dropdown',
+  'sticky',
+  'overlay',
+  'modal',
+  'popover',
+  'toast',
+  'tooltip'
+);
+
+@function z($key) {
+  @return var-ref('z-#{assert-key($key, $-z-keys, "z-index")}');
+}
+
+$-opacity-keys: (
+  0,
+  5,
+  10,
+  20,
+  40,
+  60,
+  80,
+  100
+);
+
+/// opacity(40) → var(--ddp-opacity-40). opacity(0.35) → 0.35 (escape hatch).
+/// Named keys are on a 0–100 scale; a raw escape-hatch value is expected on the literal 0–1 CSS opacity scale (e.g. 0.35), so the two can't collide even though both are plain numbers.
+@function opacity($key) {
+  @if list.index($-opacity-keys, $key) !=null {
+    @return var-ref('opacity-#{$key}');
+  }
+
+  @if meta.type-of($key)=='number' {
+    @return $key;
+  }
+
+  @error 'Unknown opacity token `#{$key}`. Expected one of: #{$-opacity-keys}, or a raw number.';
+}
+
+$-container-keys: (
+  'sm',
+  'md',
+  'lg',
+  'xl'
+);
+
+@function container($key: 'xl') {
+  @return var-ref('container-#{assert-key($key, $-container-keys, "container")}');
+}

@@ -1,0 +1,72 @@
+@use '../functions' as *;
+
+// ============================================================
+// RAW VALUES
+//
+// Compile-time literals, for the rare case where `var()` will not do — media queries, colour manipulation, calc() that must fold early. Keep in sync with colors_and_type.scss. Prefer the functions above.
+// ============================================================
+
+$raw-space: (
+  0: 0px,
+  'px': toRem(1),
+  '0-5': toRem(2),
+  1: toRem(4),
+  '1-5': toRem(6),
+  2: toRem(8),
+  '2-5': toRem(10),
+  3: toRem(12),
+  '3-5': toRem(14),
+  4: toRem(16),
+  5: toRem(20),
+  6: toRem(24),
+  7: toRem(28),
+  8: toRem(32),
+  9: toRem(36),
+  10: toRem(40),
+  12: toRem(48),
+  16: toRem(64),
+  20: toRem(80),
+  24: toRem(96),
+  32: toRem(128)
+);
+
+$raw-font-size: (
+  '2xs': toRem(11),
+  'xs': toRem(12),
+  'sm': toRem(14),
+  'md': toRem(16),
+  'lg': toRem(18),
+  'xl': toRem(20),
+  '2xl': toRem(24),
+  '3xl': toRem(30),
+  '4xl': toRem(36),
+  '5xl': toRem(48),
+  '6xl': toRem(60),
+  '7xl': toRem(72)
+);
+
+$raw-line-height: (
+  '2xs': toRem(16),
+  'xs': toRem(18),
+  'sm': toRem(20),
+  'md': toRem(24),
+  'lg': toRem(28),
+  'xl': toRem(28),
+  '2xl': toRem(32),
+  '3xl': toRem(38),
+  '4xl': toRem(44),
+  '5xl': toRem(54),
+  '6xl': toRem(64),
+  '7xl': toRem(76)
+);
+
+$raw-radius: (
+  'none': 0,
+  'xs': 2px,
+  'sm': 4px,
+  'md': 8px,
+  'lg': 12px,
+  'xl': 16px,
+  '2xl': 24px,
+  'full': 9999px
+);

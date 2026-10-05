@@ -89,7 +89,7 @@
   }
 }
 
-// Matches `.ddp a` in colors_and_type.css exactly: same link color, same hover-only underline via an animated border-bottom (not text-decoration, for tighter control near descenders), same transition. No padding, same as a real inline link — the point of this variant is to disappear into surrounding text, so it deliberately does not share the padded hit-area of the other variants. Declared after the size classes so this override wins.
+// Matches `.ddp a` in colors_and_type.scss exactly: same link color, same hover-only underline via an animated border-bottom (not text-decoration, for tighter control near descenders), same transition. No padding, same as a real inline link — the point of this variant is to disappear into surrounding text, so it deliberately does not share the padded hit-area of the other variants. Declared after the size classes so this override wins.
 //
 // No border-radius normally — `.ddp a` has none either, so the hover underline (a border-bottom) stays a crisp straight line instead of curving up into a corner radius. Only applied on :focus-visible, purely to give the keyboard focus ring a reasonable rounded shape (a real `<a>` doesn't need this since browsers already handle its focus ring differently) — modern outlines follow the element's own border-radius.
 .ddp-button-link {
@@ -111,7 +111,7 @@
 }
 
 // ---------- Appearance: outline ----------
-// Transparent background, border + text in the variant's own color, filled with that variant's existing -tint token on hover/active — reuses tokens already defined for Badge's soft appearance, nothing new added to colors_and_type.css. No effect on .ddp-button-link (no override defined for it — same no-effect pattern Badge already uses for appearance="solid" on tone="neutral": link has no color of its own to put an outline around). `solid` (the default appearance) stays implicit — it's an on/off axis (does this button have an outline or not), unlike variant/size, so it gets no class of its own, same as Badge's `soft` appearance.
+// Transparent background, border + text in the variant's own color, filled with that variant's existing -tint token on hover/active — reuses tokens already defined for Badge's soft appearance, nothing new added to colors_and_type.scss. No effect on .ddp-button-link (no override defined for it — same no-effect pattern Badge already uses for appearance="solid" on tone="neutral": link has no color of its own to put an outline around). `solid` (the default appearance) stays implicit — it's an on/off axis (does this button have an outline or not), unlike variant/size, so it gets no class of its own, same as Badge's `soft` appearance.
 .ddp-button-outline {
   &.ddp-button-primary {
     background-color: transparent;

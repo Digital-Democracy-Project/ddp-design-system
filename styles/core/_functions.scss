@@ -1,0 +1,13 @@
+@use 'sass:math';
+
+@function toRem($px) {
+  @if math.unit($px)=='px' {
+    $px: math.div($px, 1px);
+  }
+
+  @else if not math.is-unitless($px) {
+    @error 'toRem() expects a pixel value or unitless number, got: #{$px}';
+  }
+
+  @return math.div($px, 16) * 1rem;
+}

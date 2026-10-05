@@ -1,13 +1,15 @@
 @use 'sass:map';
 
+@use 'functions' as *;
+
 /// Min-width breakpoints, mobile first.
-/// Mirrors --ddp-breakpoint-* in colors_and_type.css.
+/// Mirrors --ddp-breakpoint-* in colors_and_type.scss.
 $breakpoints: (
-  'sm':  480px,
-  'md':  768px,
-  'lg':  1024px,
-  'xl':  1280px,
-  '2xl': 1536px,
+  'sm':  toRem(480),
+  'md':  toRem(768),
+  'lg':  toRem(1024),
+  'xl':  toRem(1280),
+  '2xl': toRem(1536),
 ) !default;
 
 @function bp($name) {
@@ -24,10 +26,10 @@ $breakpoints: (
 
 /// Apply below `$name`. Exclusive, so it never overlaps `media()`.
 @mixin media-below($name) {
-  @media (max-width: bp($name) - 0.02px) { @content; }
+  @media (width < #{bp($name)}) { @content; }
 }
 
 /// Apply between two breakpoints, inclusive of `$from`, exclusive of `$to`.
 @mixin media-between($from, $to) {
-  @media (min-width: bp($from)) and (max-width: bp($to) - 0.02px) { @content; }
+  @media (min-width: bp($from)) and (width < #{bp($to)}) { @content; }
 }

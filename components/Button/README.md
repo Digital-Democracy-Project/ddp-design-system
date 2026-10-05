@@ -17,7 +17,7 @@ import { Button } from '@digital-democracy-project/design-system';
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
-| `variant` | `'primary' \| 'secondary' \| 'tertiary' \| 'link'` | `'primary'` | The three brand variants are solid-filled. `link` looks like an inline hyperlink — same color and hover-only underline as the base `<a>` styling in `colors_and_type.css` — but stays a real `<button>`, so screen readers still announce it as a button, not a link. Use it for actions that should *read* like a link without misrepresenting what they do. |
+| `variant` | `'primary' \| 'secondary' \| 'tertiary' \| 'link'` | `'primary'` | The three brand variants are solid-filled. `link` looks like an inline hyperlink — same color and hover-only underline as the base `<a>` styling in `colors_and_type.scss` — but stays a real `<button>`, so screen readers still announce it as a button, not a link. Use it for actions that should *read* like a link without misrepresenting what they do. |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Controls padding, font size, and icon/label gap. `link` ignores the padding (no padded hit-area, matching a real inline link) but still scales font size. |
 | `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Defaults away from the browser's implicit `'submit'`, which is a common source of accidental form submits from a stray button inside a `<form>`. |
 | `disabled` | `boolean` | — | Native attribute; also honors `aria-disabled="true"` for cases where you need a visually- and interactively-disabled state without removing it from the tab order. |

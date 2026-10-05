@@ -1,3 +1,5 @@
+@use 'core/functions' as *;
+
 /* ============================================================
    DDP DESIGN SYSTEM — TOKEN FOUNDATION
    ------------------------------------------------------------
@@ -206,43 +208,43 @@
 	--ddp-font-family-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
 	/* ---------- Font sizes ---------- */
-	--ddp-font-size-2xs: 11px;
-	--ddp-font-size-xs: 12px;
-	--ddp-font-size-sm: 14px;
-	--ddp-font-size-md: 16px;
-	--ddp-font-size-lg: 18px;
-	--ddp-font-size-xl: 20px;
-	--ddp-font-size-2xl: 24px;
-	--ddp-font-size-3xl: 30px;
-	--ddp-font-size-4xl: 36px;
-	--ddp-font-size-5xl: 48px;
-	--ddp-font-size-6xl: 60px;
-	--ddp-font-size-7xl: 72px;
+	--ddp-font-size-2xs: #{toRem(11)};
+	--ddp-font-size-xs: #{toRem(12)};
+	--ddp-font-size-sm: #{toRem(14)};
+	--ddp-font-size-md: #{toRem(16)};
+	--ddp-font-size-lg: #{toRem(18)};
+	--ddp-font-size-xl: #{toRem(20)};
+	--ddp-font-size-2xl: #{toRem(24)};
+	--ddp-font-size-3xl: #{toRem(30)};
+	--ddp-font-size-4xl: #{toRem(36)};
+	--ddp-font-size-5xl: #{toRem(48)};
+	--ddp-font-size-6xl: #{toRem(60)};
+	--ddp-font-size-7xl: #{toRem(72)};
 
 	/* ---------- Line heights (all on the 4px grid) /* @kind font */
-	--ddp-line-height-2xs: 16px;
+	--ddp-line-height-2xs: #{toRem(16)};
 	/* @kind font */
-	--ddp-line-height-xs: 18px;
+	--ddp-line-height-xs: #{toRem(18)};
 	/* @kind font */
-	--ddp-line-height-sm: 20px;
+	--ddp-line-height-sm: #{toRem(20)};
 	/* @kind font */
-	--ddp-line-height-md: 24px;
+	--ddp-line-height-md: #{toRem(24)};
 	/* @kind font */
-	--ddp-line-height-lg: 28px;
+	--ddp-line-height-lg: #{toRem(28)};
 	/* @kind font */
-	--ddp-line-height-xl: 28px;
+	--ddp-line-height-xl: #{toRem(28)};
 	/* @kind font */
-	--ddp-line-height-2xl: 32px;
+	--ddp-line-height-2xl: #{toRem(32)};
 	/* @kind font */
-	--ddp-line-height-3xl: 38px;
+	--ddp-line-height-3xl: #{toRem(38)};
 	/* @kind font */
-	--ddp-line-height-4xl: 44px;
+	--ddp-line-height-4xl: #{toRem(44)};
 	/* @kind font */
-	--ddp-line-height-5xl: 54px;
+	--ddp-line-height-5xl: #{toRem(54)};
 	/* @kind font */
-	--ddp-line-height-6xl: 64px;
+	--ddp-line-height-6xl: #{toRem(64)};
 	/* @kind font */
-	--ddp-line-height-7xl: 76px;
+	--ddp-line-height-7xl: #{toRem(76)};
 	/* @kind font */
 
 	/* ---------- Font weights ---------- */
@@ -278,21 +280,25 @@
 	/* ---------- Spacing (4px base) ---------- */
 	--ddp-space-0: 0px;
 	--ddp-space-px: 1px;
-	--ddp-space-0-5: 2px;
-	--ddp-space-1: 4px;
-	--ddp-space-1-5: 6px;
-	--ddp-space-2: 8px;
-	--ddp-space-3: 12px;
-	--ddp-space-4: 16px;
-	--ddp-space-5: 20px;
-	--ddp-space-6: 24px;
-	--ddp-space-8: 32px;
-	--ddp-space-10: 40px;
-	--ddp-space-12: 48px;
-	--ddp-space-16: 64px;
-	--ddp-space-20: 80px;
-	--ddp-space-24: 96px;
-	--ddp-space-32: 128px;
+	--ddp-space-0-5: #{toRem(2)};
+	--ddp-space-1: #{toRem(4)};
+	--ddp-space-1-5: #{toRem(6)};
+	--ddp-space-2: #{toRem(8)};
+	--ddp-space-2-5: #{toRem(10)};
+	--ddp-space-3: #{toRem(12)};
+	--ddp-space-3-5: #{toRem(14)};
+	--ddp-space-4: #{toRem(16)};
+	--ddp-space-5: #{toRem(20)};
+	--ddp-space-6: #{toRem(24)};
+	--ddp-space-7: #{toRem(28)};
+	--ddp-space-8: #{toRem(32)};
+	--ddp-space-9: #{toRem(36)};
+	--ddp-space-10: #{toRem(40)};
+	--ddp-space-12: #{toRem(48)};
+	--ddp-space-16: #{toRem(64)};
+	--ddp-space-20: #{toRem(80)};
+	--ddp-space-24: #{toRem(96)};
+	--ddp-space-32: #{toRem(128)};
 
 	/* ---------- Radii ---------- */
 	--ddp-radius-none: 0px;
@@ -315,15 +321,15 @@
 	/* @kind spacing */
 
 	/* ---------- Icon sizes ---------- */
-	--ddp-icon-size-xs: 12px;
+	--ddp-icon-size-xs: #{toRem(12)};
 	/* @kind spacing */
-	--ddp-icon-size-sm: 16px;
+	--ddp-icon-size-sm: #{toRem(16)};
 	/* @kind spacing */
-	--ddp-icon-size-md: 20px;
+	--ddp-icon-size-md: #{toRem(20)};
 	/* @kind spacing */
-	--ddp-icon-size-lg: 24px;
+	--ddp-icon-size-lg: #{toRem(24)};
 	/* @kind spacing */
-	--ddp-icon-size-xl: 32px;
+	--ddp-icon-size-xl: #{toRem(32)};
 	/* @kind spacing */
 
 	/* ---------- Elevation ---------- */
@@ -371,15 +377,15 @@
 	/* @kind other */
 
 	/* ---------- Breakpoints (reference values — SCSS uses the map) ---------- */
-	--ddp-breakpoint-sm: 480px;
+	--ddp-breakpoint-sm: #{toRem(480)};
 	/* @kind other */
-	--ddp-breakpoint-md: 768px;
+	--ddp-breakpoint-md: #{toRem(768)};
 	/* @kind other */
-	--ddp-breakpoint-lg: 1024px;
+	--ddp-breakpoint-lg: #{toRem(1024)};
 	/* @kind other */
-	--ddp-breakpoint-xl: 1280px;
+	--ddp-breakpoint-xl: #{toRem(1280)};
 	/* @kind other */
-	--ddp-breakpoint-2xl: 1536px;
+	--ddp-breakpoint-2xl: #{toRem(1536)};
 	/* @kind other */
 
 	/* ---------- Motion ---------- */
@@ -403,11 +409,11 @@
 	/* @kind other */
 
 	/* ---------- Layout ---------- */
-	--ddp-container-sm: 640px;
-	--ddp-container-md: 840px;
-	--ddp-container-lg: 1080px;
-	--ddp-container-xl: 1280px;
-	--ddp-gutter: 24px;
+	--ddp-container-sm: #{toRem(640)};
+	--ddp-container-md: #{toRem(840)};
+	--ddp-container-lg: #{toRem(1080)};
+	--ddp-container-xl: #{toRem(1280)};
+	--ddp-gutter: #{toRem(24)};
 
 
 	/* ============================================================

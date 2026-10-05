@@ -23,7 +23,7 @@ export interface ButtonProps extends Omit<
   'type'
 > {
   /**
-   * Visual treatment. `'link'` looks like an inline hyperlink (matches the base `<a>` styling in colors_and_type.css exactly — same color, same hover-only underline) but stays a real `<button>`, so assistive tech still announces it correctly as a button — use it for actions that should read visually as a link without misrepresenting what they do.
+   * Visual treatment. `'link'` looks like an inline hyperlink (matches the base `<a>` styling in colors_and_type.scss exactly — same color, same hover-only underline) but stays a real `<button>`, so assistive tech still announces it correctly as a button — use it for actions that should read visually as a link without misrepresenting what they do.
    */
   variant?: ButtonVariant;
   size?: ButtonSize;
