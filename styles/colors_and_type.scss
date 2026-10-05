@@ -208,6 +208,8 @@
 	--ddp-font-family-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
 	/* ---------- Font sizes ---------- */
+	/* 3xs (10px) passes WCAG AA only with enough contrast (4.5:1): pair it with text('muted') or stronger, never text('subtle'). */
+	--ddp-font-size-3xs: #{toRem(10)};
 	--ddp-font-size-2xs: #{toRem(11)};
 	--ddp-font-size-xs: #{toRem(12)};
 	--ddp-font-size-sm: #{toRem(14)};
@@ -222,6 +224,8 @@
 	--ddp-font-size-7xl: #{toRem(72)};
 
 	/* ---------- Line heights (all on the 4px grid) /* @kind font */
+	--ddp-line-height-3xs: #{toRem(14)};
+	/* @kind font */
 	--ddp-line-height-2xs: #{toRem(16)};
 	/* @kind font */
 	--ddp-line-height-xs: #{toRem(18)};

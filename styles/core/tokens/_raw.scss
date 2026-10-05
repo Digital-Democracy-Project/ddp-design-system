@@ -31,6 +31,7 @@ $raw-space: (
 );
 
 $raw-font-size: (
+  '3xs': toRem(10),
   '2xs': toRem(11),
   'xs': toRem(12),
   'sm': toRem(14),
@@ -46,6 +47,7 @@ $raw-font-size: (
 );
 
 $raw-line-height: (
+  '3xs': toRem(14),
   '2xs': toRem(16),
   'xs': toRem(18),
   'sm': toRem(20),
