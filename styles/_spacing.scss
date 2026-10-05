@@ -1,0 +1,45 @@
+@use 'sass:map';
+@use 'core/tokens' as *;
+
+$-margin-props: (
+  'ma': margin,
+  'mt': margin-top,
+  'mr': margin-right,
+  'mb': margin-bottom,
+  'ml': margin-left,
+  'mx': margin-inline,
+  'my': margin-block
+);
+
+$other-props: (
+  'pa': padding,
+  'pt': padding-top,
+  'pr': padding-right,
+  'pb': padding-bottom,
+  'pl': padding-left,
+  'px': padding-inline,
+  'py': padding-block,
+  'gap': gap,
+  'gap-x': column-gap,
+  'gap-y': row-gap
+);
+
+// Half-step class names use an escaped dot (`py-1.5` in markup) while the token keys stay hyphenated (`--ddp-space-1-5`). Add an entry here when a new half step joins $raw-space.
+$-half-steps: (
+  '0-5': '0\\.5',
+  '1-5': '1\\.5'
+);
+
+@each $prefix, $prop in map.merge($-margin-props, $other-props) {
+  @each $size, $_ in $raw-space {
+    .#{$prefix}-#{map.get($-half-steps, $size) or $size} {
+      #{$prop}: space($size);
+    }
+  }
+}
+
+@each $prefix, $prop in $-margin-props {
+  .#{$prefix}-auto {
+    #{$prop}: auto;
+  }
+}

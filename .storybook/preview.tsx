@@ -4,13 +4,17 @@ import '../styles/colors_and_type.css';
 // a separate Sass partial, loaded here directly since Storybook bypasses
 // vite.config.ts's dist/style.css assembly entirely.
 import '../styles/_base.scss';
+import '../styles/_spacing.scss';
 
 // Renders every story inside a themed wrapper so the toolbar toggle below
 // actually exercises our [data-theme="dark"] token remapping, not just the
 // default light theme.
 const withTheme: Preview['decorators'] = [
   (Story, context) => (
-    <div data-theme={context.globals.theme ?? 'light'} style={{ padding: '1rem' }}>
+    <div
+      data-theme={context.globals.theme ?? 'light'}
+      style={{ padding: '1rem' }}
+    >
       <Story />
     </div>
   ),

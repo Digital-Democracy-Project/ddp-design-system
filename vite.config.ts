@@ -27,8 +27,9 @@ function mergeTokensIntoStylesheet() {
       // relied upon via the JS import graph. Storybook gets it via its own
       // direct import in .storybook/preview.tsx.
       const base = compile(resolve(__dirname, 'styles/_base.scss')).css;
+      const spacing = compile(resolve(__dirname, 'styles/_spacing.scss')).css;
       const componentCss = readFileSync(rawPath, 'utf8');
-      writeFileSync(resolve(__dirname, 'dist/style.css'), `${tokens}\n\n${base}\n\n${componentCss}`);
+      writeFileSync(resolve(__dirname, 'dist/style.css'), `${tokens}\n\n${base}\n\n${spacing}\n\n${componentCss}`);
       unlinkSync(rawPath);
     },
   };
