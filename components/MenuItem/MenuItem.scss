@@ -55,7 +55,7 @@
 // A facet/entity-type icon for this specific row — e.g. distinguishing a legislator result from a bill result in a unified search. Muted, not the brand-colored treatment the selected-indicator check-icon gets, since it's identity, not a state.
 .ddp-menu-item-icon {
   flex-shrink: 0;
-  color: text('muted');
+  color: text('soft');
 }
 
 .ddp-menu-item-label {

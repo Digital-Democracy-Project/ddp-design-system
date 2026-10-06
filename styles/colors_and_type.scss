@@ -208,7 +208,7 @@
 	--ddp-font-family-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
 	/* ---------- Font sizes ---------- */
-	/* 3xs (10px) passes WCAG AA only with enough contrast (4.5:1): pair it with text('muted') or stronger, never text('subtle'). */
+	/* 3xs (10px) passes WCAG AA only with enough contrast (4.5:1): every text token except disabled meets that on every surface. */
 	--ddp-font-size-3xs: #{toRem(10)};
 	--ddp-font-size-2xs: #{toRem(11)};
 	--ddp-font-size-xs: #{toRem(12)};
@@ -475,8 +475,8 @@
 
 	/* ---------- Text ---------- */
 	--ddp-text-default: var(--ddp-color-neutral-900);
-	--ddp-text-muted: var(--ddp-color-neutral-600);
-	--ddp-text-subtle: var(--ddp-color-neutral-500);
+	--ddp-text-soft: var(--ddp-color-neutral-700);
+	--ddp-text-subtle: var(--ddp-color-neutral-600);
 	--ddp-text-disabled: var(--ddp-color-neutral-400);
 	--ddp-text-inverse: var(--ddp-color-white);
 	--ddp-text-link: var(--ddp-color-violet-500);
@@ -507,13 +507,10 @@
 
 	/* Back-compat aliases */
 	--ddp-color-success: var(--ddp-color-positive);
-	--ddp-color-success-subtle: var(--ddp-color-positive-tint);
 	--ddp-color-success-fg: var(--ddp-color-positive-tint-foreground);
 	--ddp-color-danger: var(--ddp-color-negative);
-	--ddp-color-danger-subtle: var(--ddp-color-negative-tint);
 	--ddp-color-danger-fg: var(--ddp-color-negative-tint-foreground);
 	--ddp-color-warning: var(--ddp-color-caution);
-	--ddp-color-warning-subtle: var(--ddp-color-caution-tint);
 	--ddp-color-warning-fg: var(--ddp-color-caution-tint-foreground);
 
 	/* ---------- Ordinal scale — semantic. Five fixed steps, best → worst. */
@@ -590,8 +587,8 @@
 	--ddp-surface-overlay: rgba(0, 0, 0, 0.65);
 
 	--ddp-text-default: var(--ddp-color-neutral-100);
-	--ddp-text-muted: var(--ddp-color-neutral-300);
-	--ddp-text-subtle: var(--ddp-color-neutral-400);
+	--ddp-text-soft: var(--ddp-color-neutral-200);
+	--ddp-text-subtle: var(--ddp-color-neutral-300);
 	--ddp-text-disabled: var(--ddp-color-neutral-600);
 	--ddp-text-inverse: var(--ddp-color-neutral-900);
 	--ddp-text-link: var(--ddp-color-violet-300);

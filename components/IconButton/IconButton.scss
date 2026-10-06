@@ -16,7 +16,7 @@
   border-radius: radius('sm');
 
   background-color: transparent;
-  color: text('muted');
+  color: text('soft');
 
   &:hover,
   &:active {
@@ -30,7 +30,7 @@
 }
 
 // ---------- Themes ----------
-// Each theme's :hover/:active redeclares `color`, not just `background-color` — the base class's own `:hover, :active { color: text('muted') }` rule (folded in for the no-theme default) has equal specificity to `.ddp-icon-button-primary:hover` and would otherwise win on the `color` property alone, reverting a themed icon to muted gray on hover/active instead of staying its safe-on-solid foreground color.
+// Each theme's :hover/:active redeclares `color`, not just `background-color` — the base class's own `:hover, :active { color: text('soft') }` rule (folded in for the no-theme default) has equal specificity to `.ddp-icon-button-primary:hover` and would otherwise win on the `color` property alone, reverting a themed icon to muted gray on hover/active instead of staying its safe-on-solid foreground color.
 
 .ddp-icon-button-primary {
   background-color: color('primary');

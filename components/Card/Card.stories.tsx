@@ -97,11 +97,11 @@ export const WithAvatarAndStat: Story = {
           />
           <div style={{ flex: 1 }}>
             <div style={{ fontWeight: 600 }}>Example Name</div>
-            <div style={{ color: 'var(--ddp-text-muted)', fontSize: 'var(--ddp-font-size-sm)' }}>Subtitle detail</div>
+            <div style={{ color: 'var(--ddp-text-soft)', fontSize: 'var(--ddp-font-size-sm)' }}>Subtitle detail</div>
           </div>
           <div style={{ textAlign: 'right' }}>
             <div style={{ fontWeight: 700, fontSize: 'var(--ddp-font-size-xl)' }}>92</div>
-            <div style={{ color: 'var(--ddp-text-muted)', fontSize: 'var(--ddp-font-size-xs)' }}>Score</div>
+            <div style={{ color: 'var(--ddp-text-soft)', fontSize: 'var(--ddp-font-size-xs)' }}>Score</div>
           </div>
         </div>
       </Card>

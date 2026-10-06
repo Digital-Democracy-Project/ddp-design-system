@@ -45,7 +45,7 @@ export const WithComposedContent: Story = {
       <ClickableTile href="https://example.com">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
           <div style={{ fontWeight: 600 }}>Example Title</div>
-          <p style={{ margin: 0, color: 'var(--ddp-text-muted)' }}>A short description explaining where this tile goes.</p>
+          <p style={{ margin: 0, color: 'var(--ddp-text-subtle)' }}>A short description explaining where this tile goes.</p>
         </div>
       </ClickableTile>
     </div>
