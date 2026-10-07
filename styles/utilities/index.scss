@@ -1,0 +1,3 @@
+// Global utility classes, compiled once into dist/styles.css (unlike core/, which outputs no CSS and is @use'd by every module). Add a new utility file here; no build change needed. Order is the cascade order.
+@use 'spacing';
+@use 'scale';

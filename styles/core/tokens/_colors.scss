@@ -136,6 +136,7 @@ $-border-keys: (
   'subtle',
   'default',
   'strong',
+  'emphasis',
   'inverse',
   'focus'
 );
@@ -172,4 +173,9 @@ $-scale-variants: (
   }
 
   @return var-ref('scale-#{$step}-#{$variant}');
+}
+
+/// Base color of the nearest `ddp-scale-{1–5 | none}` ancestor (see utilities/_scale.scss), for softer secondary text on a grade surface. Falls back to currentColor outside one.
+@function scale-base() {
+  @return var-ref('scale-base', currentColor);
 }

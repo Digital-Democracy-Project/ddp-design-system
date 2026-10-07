@@ -26,12 +26,12 @@ function mergeTokensIntoStylesheet(): Plugin {
       // Merges in memory before Vite writes the file, so nothing is shared or deleted on disk.
       const css = bundle['styles.css'];
       if (!css || css.type !== 'asset') return this.error('Component stylesheet (styles.css) missing from the bundle.');
-      // Concatenation order is load-bearing: [data-theme="dark"] and :root have equal specificity, so the tokens (:root, then dark) come first, then base, spacing and components.
+      // Concatenation order is load-bearing: [data-theme="dark"] and :root have equal specificity, so the tokens (:root, then dark) come first, then base, utilities and components.
       // colors_and_type.scss's @font-face url()s point at ../assets/fonts/, which resolves the same from styles/ (Storybook) and dist/, since both sit next to assets/.
       const tokens = compile(resolve(__dirname, 'styles/colors_and_type.scss')).css;
       const base = compile(resolve(__dirname, 'styles/_base.scss')).css;
-      const spacing = compile(resolve(__dirname, 'styles/_spacing.scss')).css;
-      css.source = `${tokens}\n\n${base}\n\n${spacing}\n\n${css.source}`;
+      const utilities = compile(resolve(__dirname, 'styles/utilities/index.scss')).css;
+      css.source = `${tokens}\n\n${base}\n\n${utilities}\n\n${css.source}`;
       this.emitFile({ type: 'asset', fileName: 'colors_and_type.css', source: tokens });
     },
   };

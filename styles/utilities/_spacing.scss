@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use 'core/tokens' as *;
+@use '../core/tokens' as *;
 
 $-margin-props: (
   'ma': margin,
