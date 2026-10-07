@@ -55,6 +55,9 @@ export const Sizes: Story = {
       <Button size="sm">Small</Button>
       <Button size="md">Medium</Button>
       <Button size="lg">Large</Button>
+      <span style={{ fontSize: 22 }}>
+        <Button size="inherit">Inherit (22px parent)</Button>
+      </span>
     </div>
   ),
 };
@@ -90,8 +93,23 @@ export const InlineWithinText: Story = {
     <p style={{ maxWidth: 400 }}>
       This paragraph contains a{' '}
       <Button variant="link">link-styled button</Button> sitting inline with
-      surrounding text, to check it reads visually like a real link.
+      surrounding text, to check it reads visually like a real link.{' '}
+      <Button variant="link">
+        A longer link-styled button that wraps onto a second line underlines
+        every line on hover
+      </Button>
+      , exactly like an <a href="#">ordinary text link</a> would.
     </p>
+  ),
+};
+
+export const LinkUnderline: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
+      <Button variant="link">Hover (default)</Button>
+      <Button variant="link" underline="always">Always</Button>
+      <Button variant="link" underline="none">None</Button>
+    </div>
   ),
 };
 

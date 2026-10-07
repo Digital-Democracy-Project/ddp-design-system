@@ -1,3 +1,5 @@
+@use 'core' as *;
+
 // ============================================================
 // BASE STYLES — always applied to the final compiled stylesheet, unlike the accessor/mixin layer this directory otherwise ships (index.scss forwards those specifically because they emit no CSS on their own — safe to @use in every consumer component file).
 // This file DOES emit real CSS, so it is deliberately NOT forwarded through index.scss — it reaches the compiled `dist/styles.css` via vite.config.ts's `mergeTokensIntoStylesheet` plugin instead, and reaches Storybook via its own direct import in .storybook/preview.tsx.
@@ -106,15 +108,7 @@ body.ddp,
 }
 
 .ddp a {
-	color: var(--ddp-text-link);
-	text-decoration: none;
-	border-bottom: 1px solid transparent;
-	transition: border-color var(--ddp-duration-fast) var(--ddp-ease-standard), color var(--ddp-duration-fast) var(--ddp-ease-standard);
-}
-
-.ddp a:hover {
-	color: var(--ddp-text-link-hover);
-	border-bottom-color: currentColor;
+	@include link;
 }
 
 .ddp code,

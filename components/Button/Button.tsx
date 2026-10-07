@@ -6,7 +6,8 @@ import type { SizeOptions3 } from '../types';
 import './Button.scss';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'link';
-export type ButtonSize = SizeOptions3;
+export type ButtonSize = SizeOptions3 | 'inherit';
+export type ButtonUnderline = 'hover' | 'always' | 'none';
 export type ButtonAppearance = 'solid' | 'outline';
 
 export interface ButtonCustomColors {
@@ -23,10 +24,17 @@ export interface ButtonProps extends Omit<
   'type'
 > {
   /**
-   * Visual treatment. `'link'` looks like an inline hyperlink (matches the base `<a>` styling in colors_and_type.scss exactly — same color, same hover-only underline) but stays a real `<button>`, so assistive tech still announces it correctly as a button — use it for actions that should read visually as a link without misrepresenting what they do.
+   * Visual treatment. `'link'` looks and behaves exactly like a text link (same `link()` recipe as the base `<a>` styling: color, underline, focus ring; inline, wrapping, type inherited from context) but stays a real `<button>`, so assistive tech still announces it correctly as a button — use it for actions that should read visually as a link without misrepresenting what they do, like show more/less toggles.
    */
   variant?: ButtonVariant;
+  /**
+   * `'sm' | 'md' | 'lg'`: the design system sets type, padding and gap. `'inherit'`: the consumer does — type inherits from context, padding and gap scale with it in em, and a `className` can override any of them regardless of stylesheet order. Defaults to `'inherit'` for `variant="link"` and `'md'` otherwise.
+   */
   size?: ButtonSize;
+  /**
+   * Link variant only: when the underline shows. `'hover'` (default) fades it in on hover and keyboard focus; `'always'` keeps it; `'none'` removes it, only for links whose context already reads as interactive, never inside running text. No effect on other variants.
+   */
+  underline?: ButtonUnderline;
   /**
    * `'solid'` (filled, the default) or `'outline'` (transparent background, border and text in the variant's color, tint-filled on hover). Has no effect on `variant="link"`, which has no color of its own to outline — same rule as `Badge`'s `appearance` having no effect on `tone="neutral"`.
    */
@@ -46,7 +54,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(
     {
       variant = 'primary',
-      size = 'md',
+      size,
+      underline = 'hover',
       appearance = 'solid',
       type = 'button',
       customColors,
@@ -57,10 +66,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) {
+    const resolvedSize = size ?? (variant === 'link' ? 'inherit' : 'md');
     const classes = [
       'ddp-button',
       `ddp-button-${variant}`,
-      `ddp-button-${size}`,
+      `ddp-button-${resolvedSize}`,
+      variant === 'link' && underline !== 'hover' ? `ddp-button-underline-${underline}` : undefined,
       appearance === 'outline' ? 'ddp-button-outline' : undefined,
       customColors ? 'ddp-button-custom' : undefined,
       className,

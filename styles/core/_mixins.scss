@@ -172,6 +172,40 @@
   cursor: pointer;
 }
 
+/// Text link: link color, the standard focus ring, and an underline that by default fades in on hover and keyboard focus. Uses text-decoration rather than a bottom border so the underline follows each line of text in any display mode (a border belongs to the box: on a block or flex-item link it spans the full width, only marks the last wrapped line, and adds height). The single recipe behind `.ddp a` and Button's link variant. On a <button>, include unstyled-button first, since it resets color.
+/// $underline: 'hover' (default), 'always', or 'none'. 'none' is only for links whose context already reads as interactive (buttons, cards, nav, list rows) — never for links inside running text, where color alone isn't enough to mark a link (WCAG 1.4.1).
+@mixin link($underline: 'hover') {
+  @if not list.index(('hover', 'always', 'none'), $underline) {
+    @error 'Unknown link underline `#{$underline}`. Expected hover, always or none.';
+  }
+
+  @include focus-ring;
+  color: text('link');
+
+  @if $underline == 'none' {
+    text-decoration: none;
+    @include transition(color);
+  } @else {
+    text-decoration-line: underline;
+    text-decoration-thickness: border-width(1);
+    text-underline-offset: 0.2em;
+    @if $underline == 'always' {
+      text-decoration-color: currentColor;
+    } @else {
+      text-decoration-color: transparent;
+    }
+    @include transition(text-decoration-color, color);
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: text('link-hover');
+    @if $underline == 'hover' {
+      text-decoration-color: currentColor;
+    }
+  }
+}
+
 // ---------- Layout ----------
 
 /// Centred page container with gutters.
