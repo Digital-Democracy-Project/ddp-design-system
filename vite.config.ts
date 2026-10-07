@@ -17,8 +17,13 @@ function mergeTokensIntoStylesheet(): Plugin {
     buildStart() {
       this.addWatchFile(resolve(__dirname, 'styles'));
     },
-    generateBundle(_options, bundle) {
-      // Runs once per output format (es, cjs). Each pass edits its own in-memory copy of the component CSS before Vite writes it, so the two passes never share or delete a file on disk.
+    generateBundle(options, bundle) {
+      // Both output formats share one stylesheet, so only the ES pass merges and writes it; the CJS pass drops its copy (in watch mode Vite only includes the CSS in the first output anyway, and in one-off builds an unmerged copy would overwrite the merged one).
+      if (options.format !== 'es') {
+        delete bundle['styles.css'];
+        return;
+      }
+      // Merges in memory before Vite writes the file, so nothing is shared or deleted on disk.
       const css = bundle['styles.css'];
       if (!css || css.type !== 'asset') return this.error('Component stylesheet (styles.css) missing from the bundle.');
       // Concatenation order is load-bearing: [data-theme="dark"] and :root have equal specificity, so the tokens (:root, then dark) come first, then base, spacing and components.
