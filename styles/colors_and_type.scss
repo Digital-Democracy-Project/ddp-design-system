@@ -471,6 +471,9 @@
 	--ddp-surface-raised: var(--ddp-color-white);
 	--ddp-surface-sunken: var(--ddp-color-neutral-100);
 	--ddp-surface-inverse: var(--ddp-color-neutral-900);
+	/* Translucent so they take on the hue of whatever inverse or dark brand surface they sit on. Declared in both theme blocks so a nested [data-theme] recomputes them. */
+	--ddp-surface-inverse-raised: color-mix(in oklab, var(--ddp-text-inverse) 5%, transparent);
+	--ddp-surface-inverse-raised-hover: color-mix(in oklab, var(--ddp-text-inverse) 10%, transparent);
 	--ddp-surface-overlay: rgba(11, 21, 32, 0.55);
 
 	/* ---------- Text ---------- */
@@ -479,6 +482,9 @@
 	--ddp-text-subtle: var(--ddp-color-neutral-600);
 	--ddp-text-disabled: var(--ddp-color-neutral-400);
 	--ddp-text-inverse: var(--ddp-color-white);
+	/* Softer text on inverse or dark brand surfaces, mirroring soft/subtle on light ones. Translucent for the same reason as surface-inverse-raised. */
+	--ddp-text-inverse-soft: color-mix(in oklab, var(--ddp-text-inverse) 80%, transparent);
+	--ddp-text-inverse-subtle: color-mix(in oklab, var(--ddp-text-inverse) 60%, transparent);
 	--ddp-text-link: var(--ddp-color-violet-500);
 	--ddp-text-link-hover: var(--ddp-color-violet-700);
 
@@ -585,6 +591,8 @@
 	--ddp-surface-raised: var(--ddp-color-neutral-800);
 	--ddp-surface-sunken: var(--ddp-color-neutral-950);
 	--ddp-surface-inverse: var(--ddp-color-white);
+	--ddp-surface-inverse-raised: color-mix(in oklab, var(--ddp-text-inverse) 5%, transparent);
+	--ddp-surface-inverse-raised-hover: color-mix(in oklab, var(--ddp-text-inverse) 10%, transparent);
 	--ddp-surface-overlay: rgba(0, 0, 0, 0.65);
 
 	--ddp-text-default: var(--ddp-color-neutral-100);
@@ -592,6 +600,8 @@
 	--ddp-text-subtle: var(--ddp-color-neutral-300);
 	--ddp-text-disabled: var(--ddp-color-neutral-600);
 	--ddp-text-inverse: var(--ddp-color-neutral-900);
+	--ddp-text-inverse-soft: color-mix(in oklab, var(--ddp-text-inverse) 80%, transparent);
+	--ddp-text-inverse-subtle: color-mix(in oklab, var(--ddp-text-inverse) 60%, transparent);
 	--ddp-text-link: var(--ddp-color-violet-300);
 	--ddp-text-link-hover: var(--ddp-color-violet-200);
 
