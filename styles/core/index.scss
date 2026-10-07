@@ -11,7 +11,7 @@
 //
 // Emits no CSS on its own — safe to @use in every module.
 //
-// _base.scss (the box-sizing reset + opt-in .ddp base element styles) is deliberately NOT forwarded here, since unlike these three it DOES emit real CSS — forwarding it would mean every consumer component using `@use '.../styles' as *;` silently re-emits it into their own compiled CSS. It reaches the published package's dist/style.css via vite.config.ts's build step instead, and Storybook via its own direct import — see _base.scss's own header comment.
+// _base.scss (the box-sizing reset + opt-in .ddp base element styles) is deliberately NOT forwarded here, since unlike these three it DOES emit real CSS — forwarding it would mean every consumer component using `@use '.../styles' as *;` silently re-emits it into their own compiled CSS. It reaches the published package's dist/styles.css via vite.config.ts's build step instead, and Storybook via its own direct import — see _base.scss's own header comment.
 // ============================================================
 
 @forward 'tokens';

@@ -24,7 +24,7 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./styles.css": "./dist/style.css",
+    "./styles.css": "./dist/styles.css",
     "./styles": "./styles/core/index.scss",
     "./styles/tokens.css": "./dist/colors_and_type.css",
     "./styles/tokens.json": "./styles/tokens.json",
@@ -41,7 +41,7 @@
   },
   "scripts": {
     "build:check": "sass --no-source-map styles/core/index.scss /dev/null",
-    "build": "vite build",
+    "build": "rm -rf dist && vite build",
     "prepack": "npm run build",
     "typecheck": "tsc --noEmit",
     "dev": "vite build --watch",

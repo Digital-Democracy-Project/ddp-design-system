@@ -1,6 +1,6 @@
 // ============================================================
 // BASE STYLES — always applied to the final compiled stylesheet, unlike the accessor/mixin layer this directory otherwise ships (index.scss forwards those specifically because they emit no CSS on their own — safe to @use in every consumer component file).
-// This file DOES emit real CSS, so it is deliberately NOT forwarded through index.scss — it reaches the compiled `dist/style.css` via vite.config.ts's `mergeTokensIntoStylesheet` plugin instead, and reaches Storybook via its own direct import in .storybook/preview.tsx.
+// This file DOES emit real CSS, so it is deliberately NOT forwarded through index.scss — it reaches the compiled `dist/styles.css` via vite.config.ts's `mergeTokensIntoStylesheet` plugin instead, and reaches Storybook via its own direct import in .storybook/preview.tsx.
 // Forwarding it through index.scss would mean every consumer component using `@use '.../styles' as *;` silently re-emits this into their own compiled CSS.
 // ============================================================
 
@@ -32,9 +32,9 @@ body.ddp,
 
 .ddp h1,
 .ddp .h1 {
-	font-size: var(--ddp-font-size-4xl);
-	line-height: var(--ddp-line-height-4xl);
-	font-weight: 700;
+	font-size: var(--ddp-font-size-3xl);
+	line-height: var(--ddp-line-height-3xl);
+	font-weight: 900;
 	letter-spacing: var(--ddp-letter-spacing-tight);
 	color: var(--ddp-text-default);
 	margin: 0 0 .5em;

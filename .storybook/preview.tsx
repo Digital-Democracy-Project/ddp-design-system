@@ -2,7 +2,7 @@ import type { Preview } from '@storybook/react-vite';
 import '../styles/colors_and_type.scss';
 // Not part of the tokens file itself — see styles/_base.scss for why it's
 // a separate Sass partial, loaded here directly since Storybook bypasses
-// vite.config.ts's dist/style.css assembly entirely.
+// vite.config.ts's dist/styles.css assembly entirely.
 import '../styles/_base.scss';
 import '../styles/_spacing.scss';
 

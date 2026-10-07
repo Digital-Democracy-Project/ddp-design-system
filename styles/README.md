@@ -18,7 +18,7 @@ Three groups, split by what they actually do — not just files sitting in the s
 | `colors_and_type.scss` | The actual token _values_ as CSS custom properties (`--ddp-color-primary: #F85828`, etc.), plus `@font-face` declarations and the dark-theme override block. `core/`'s accessor functions don't read this file at compile time; they just emit `var()` references validated against a hardcoded list of allowed keys, kept in sync with this file by convention. |
 | `_base.scss`           | The box-sizing reset and the opt-in `.ddp` base element styles. Forwarding either of these through `core/index.scss` would mean every consumer component using `@use '.../styles' as *;` silently re-emits them into their own compiled output — see the file's own header comment.                                                                              |
 
-Both reach the published `dist/style.css` via `vite.config.ts`'s build step, and Storybook via their own direct imports in `.storybook/preview.tsx` — the same two paths, for the same reason.
+Both reach the published `dist/styles.css` via `vite.config.ts`'s build step, and Storybook via their own direct imports in `.storybook/preview.tsx` — the same two paths, for the same reason.
 
 **Data export — for code with no Sass step at all.**
 
