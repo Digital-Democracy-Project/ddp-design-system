@@ -92,7 +92,7 @@ _Temporary section — remove once the initial component library and consuming-a
 
 **Phase 4 — Migrate consuming apps**
 
-- [ ] `ddp-next`: replace Tailwind/ad hoc UI
+- [x] `ddp-next`: replace Tailwind with design-system tokens, mixins and components (removed 2026-10-08; the remaining ad hoc page code is slated for a rebuild)
 - [ ] `ddp-scorecard-react`: adapt at its own pace
 - [ ] `ddp-mapapp` → `ddp-next` page migration
 
