@@ -1,82 +1,118 @@
-@use '../../styles/core' as *;
+@use "../../styles/core" as *;
 
 // Same pattern as Checkbox: the native input stays in the DOM (visually-hidden, never display:none) and drives the visible track/thumb via sibling selectors off its own :checked/:focus-visible/:disabled — the real DOM checkbox is the single source of truth, no JS-mirrored classes. Nested inside the label together with the track and text, so native label-click delegation covers the whole row for free.
 .ddp-toggle-switch {
-  display: inline-flex;
-  align-items: center;
-  gap: space(2);
-  cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	gap: space(2);
+	cursor: pointer;
 
-  &.is-disabled {
-    cursor: not-allowed;
-    opacity: opacity(60);
-  }
+	&.is-disabled {
+		cursor: not-allowed;
+		opacity: opacity(60);
+	}
 }
 
 .ddp-toggle-switch-control {
-  position: relative;
-  display: inline-flex;
-  flex-shrink: 0;
+	position: relative;
+	display: inline-flex;
+	flex-shrink: 0;
 }
 
 .ddp-toggle-switch-input {
-  @include visually-hidden;
+	@include visually-hidden;
 }
 
 .ddp-toggle-switch-track {
-  position: relative;
-  display: inline-block;
-  flex-shrink: 0;
-  background-color: surface('sunken');
-  border: border-width(1) solid border-color('default');
-  border-radius: radius('full');
-  @include transition(background-color, border-color);
+	position: relative;
+	display: inline-block;
+	flex-shrink: 0;
+	background-color: surface("sunken");
+	border: border-width(1) solid border-color("default");
+	border-radius: radius("full");
+	@include transition(background-color, border-color);
 }
 
 .ddp-toggle-switch-thumb {
-  position: absolute;
-  top: 50%;
-  border-radius: radius('full');
-  background-color: surface('raised');
-  box-shadow: shadow('xs');
-  transform: translateY(-50%);
-  @include transition(left, $speed: 'base');
+	position: absolute;
+	top: 50%;
+	border-radius: radius("full");
+	background-color: surface("raised");
+	box-shadow: shadow("xs");
+	transform: translateY(-50%);
+	@include transition(left, $speed: "base");
 }
 
 .ddp-toggle-switch-input:checked ~ .ddp-toggle-switch-track {
-  background-color: color('primary');
-  border-color: color('primary');
+	background-color: color("primary");
+	border-color: color("primary");
 }
 
 .ddp-toggle-switch-input:focus-visible ~ .ddp-toggle-switch-track {
-  outline: var(--ddp-focus-ring-width) solid var(--ddp-focus-ring-color);
-  outline-offset: var(--ddp-focus-ring-offset);
+	outline: var(--ddp-focus-ring-width) solid var(--ddp-focus-ring-color);
+	outline-offset: var(--ddp-focus-ring-offset);
 }
 
 .ddp-toggle-switch-text {
-  color: text('default');
+	color: text("default");
 }
 
 // ---------- Sizes ----------
 // Track/thumb are a fixed graphical shape with no natural content to size against, so these are component-local literal pixel values rather than steps on the space() scale — same precedent as DropdownMenu's min-width/max-height or Select's max-width. `md` is anchored to the only real (if unvetted) reference in the DDP ecosystem, ddp-scorecard-react's ToggleSwitch (~40x22 track, ~18px thumb, ~2px inset), rounded to whole pixels; sm/lg step evenly off it, matching how Checkbox steps its own three sizes.
 
 .ddp-toggle-switch-sm {
-  .ddp-toggle-switch-track { width: 32px; height: 18px; }
-  .ddp-toggle-switch-thumb { left: 2px; width: 14px; height: 14px; }
-  .ddp-toggle-switch-text { font-size: font-size('xs'); line-height: line-height('xs'); }
-  .ddp-toggle-switch-input:checked ~ .ddp-toggle-switch-track .ddp-toggle-switch-thumb { left: calc(100% - 14px - 2px); }
+	.ddp-toggle-switch-track {
+		width: 32px;
+		height: 18px;
+	}
+	.ddp-toggle-switch-thumb {
+		left: 2px;
+		width: 14px;
+		height: 14px;
+	}
+	.ddp-toggle-switch-text {
+		font-size: font-size("xs");
+		line-height: line-height("xs");
+	}
+	.ddp-toggle-switch-input:checked ~ .ddp-toggle-switch-track .ddp-toggle-switch-thumb {
+		left: calc(100% - 14px - 2px);
+	}
 }
 
 .ddp-toggle-switch-md {
-  .ddp-toggle-switch-track { width: 40px; height: 22px; }
-  .ddp-toggle-switch-thumb { left: 2px; width: 18px; height: 18px; }
-  .ddp-toggle-switch-text { font-size: font-size('sm'); line-height: line-height('sm'); }
-  .ddp-toggle-switch-input:checked ~ .ddp-toggle-switch-track .ddp-toggle-switch-thumb { left: calc(100% - 18px - 2px); }
+	.ddp-toggle-switch-track {
+		width: 40px;
+		height: 22px;
+	}
+	.ddp-toggle-switch-thumb {
+		left: 2px;
+		width: 18px;
+		height: 18px;
+	}
+	.ddp-toggle-switch-text {
+		font-size: font-size("sm");
+		line-height: line-height("sm");
+	}
+	.ddp-toggle-switch-input:checked ~ .ddp-toggle-switch-track .ddp-toggle-switch-thumb {
+		left: calc(100% - 18px - 2px);
+	}
 }
 
 .ddp-toggle-switch-lg {
-  .ddp-toggle-switch-track { width: 48px; height: 26px; }
-  .ddp-toggle-switch-thumb { left: 2px; width: 22px; height: 22px; }
-  .ddp-toggle-switch-text { font-size: font-size('md'); line-height: line-height('md'); }
-  .ddp-toggle-switch-input:checked ~ .ddp-toggle-switch-track .ddp-toggle-switch-thumb { left: calc(100% - 22px - 2px); }
+	.ddp-toggle-switch-track {
+		width: 48px;
+		height: 26px;
+	}
+	.ddp-toggle-switch-thumb {
+		left: 2px;
+		width: 22px;
+		height: 22px;
+	}
+	.ddp-toggle-switch-text {
+		font-size: font-size("md");
+		line-height: line-height("md");
+	}
+	.ddp-toggle-switch-input:checked ~ .ddp-toggle-switch-track .ddp-toggle-switch-thumb {
+		left: calc(100% - 22px - 2px);
+	}
 }

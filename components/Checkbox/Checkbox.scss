@@ -1,114 +1,138 @@
-@use '../../styles/core' as *;
+@use "../../styles/core" as *;
 
 // The native input stays in the DOM and keeps real checkbox semantics — visually-hidden (not display:none), never display:none, so it's still focusable and announced correctly. It's nested inside the label together with the custom box and text, so native label-click delegation gives the whole row a click target for free — no generated id/htmlFor or tap-target hack needed the way IconButton needed one for its bare icon-only hit area.
 //
 // Size is a peer-choice axis (every step, including the default, is an actually-rendered look), so `ddp-checkbox-md` is always explicitly applied by Checkbox.tsx. The box/text sizing below is duplicated onto the bare block as a documented fallback for the md look; the explicit `ddp-checkbox-md` rule further down is what's actually relied on.
 .ddp-checkbox {
-  display: inline-flex;
-  align-items: center;
-  gap: space(2);
-  cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	gap: space(2);
+	cursor: pointer;
 
-  .ddp-checkbox-box { width: space(4); height: space(4); }
-  .ddp-checkbox-text { font-size: font-size('sm'); line-height: line-height('sm'); }
+	.ddp-checkbox-box {
+		width: space(4);
+		height: space(4);
+	}
+	.ddp-checkbox-text {
+		font-size: font-size("sm");
+		line-height: line-height("sm");
+	}
 
-  &.is-disabled {
-    cursor: not-allowed;
-    opacity: opacity(60);
-  }
+	&.is-disabled {
+		cursor: not-allowed;
+		opacity: opacity(60);
+	}
 }
 
 .ddp-checkbox-control {
-  position: relative;
-  display: inline-flex;
-  flex-shrink: 0;
+	position: relative;
+	display: inline-flex;
+	flex-shrink: 0;
 }
 
 .ddp-checkbox-input {
-  @include visually-hidden;
+	@include visually-hidden;
 }
 
 .ddp-checkbox-box {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: surface('raised');
-  border: border-width(1) solid border-color('default');
-  border-radius: radius('sm');
-  @include transition(background-color, border-color);
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background-color: surface("raised");
+	border: border-width(1) solid border-color("default");
+	border-radius: radius("sm");
+	@include transition(background-color, border-color);
 }
 
 .ddp-checkbox-check-icon {
-  color: color('primary-foreground');
-  opacity: 0;
-  @include transition(opacity, $speed: 'fast');
+	color: color("primary-foreground");
+	opacity: 0;
+	@include transition(opacity, $speed: "fast");
 }
 
 // Drawn with CSS, not a source icon — no minus/dash glyph exists in assets/icons/ yet, and a plain bar is enough to communicate indeterminate without adding an SVG for one state of one component.
 .ddp-checkbox-dash {
-  position: absolute;
-  width: 60%;
-  height: border-width(2);
-  background-color: color('primary-foreground');
-  border-radius: radius('full');
-  display: none;
+	position: absolute;
+	width: 60%;
+	height: border-width(2);
+	background-color: color("primary-foreground");
+	border-radius: radius("full");
+	display: none;
 }
 
 // :checked / :indeterminate / :disabled / :focus-visible are native pseudo-classes on the hidden input — driving the box's appearance off them directly (sibling combinator) keeps checked/indeterminate/focus state as a single source of truth (the real DOM checkbox), no JS-side class mirroring required.
 .ddp-checkbox-input:checked ~ .ddp-checkbox-box,
 .ddp-checkbox-input:indeterminate ~ .ddp-checkbox-box {
-  background-color: color('primary');
-  border-color: color('primary');
+	background-color: color("primary");
+	border-color: color("primary");
 }
 
 .ddp-checkbox-input:checked ~ .ddp-checkbox-box .ddp-checkbox-check-icon {
-  opacity: 1;
+	opacity: 1;
 }
 
 .ddp-checkbox-input:indeterminate ~ .ddp-checkbox-box .ddp-checkbox-check-icon {
-  display: none;
+	display: none;
 }
 
 .ddp-checkbox-input:indeterminate ~ .ddp-checkbox-box .ddp-checkbox-dash {
-  display: block;
+	display: block;
 }
 
 .ddp-checkbox-input:focus-visible ~ .ddp-checkbox-box {
-  outline: var(--ddp-focus-ring-width) solid var(--ddp-focus-ring-color);
-  outline-offset: var(--ddp-focus-ring-offset);
+	outline: var(--ddp-focus-ring-width) solid var(--ddp-focus-ring-color);
+	outline-offset: var(--ddp-focus-ring-offset);
 }
 
 .ddp-checkbox-text {
-  color: text('default');
+	color: text("default");
 }
 
 // ---------- Sizes ----------
 // Box dimensions reuse the existing space() scale, and label text reuses the next-smaller font-size/line-height step — deliberately one notch down from what the size name alone would suggest (e.g. `md` pairs a space(4)=16px box with `sm` text, not `md` text), since a checkbox next to its label reads as too heavy at the same scale a standalone text input or button uses. No new raw magic numbers, just borrowed steps.
 
 .ddp-checkbox-sm {
-  .ddp-checkbox-box { width: space(3); height: space(3); }
-  .ddp-checkbox-text { font-size: font-size('xs'); line-height: line-height('xs'); }
+	.ddp-checkbox-box {
+		width: space(3);
+		height: space(3);
+	}
+	.ddp-checkbox-text {
+		font-size: font-size("xs");
+		line-height: line-height("xs");
+	}
 }
 
 .ddp-checkbox-md {
-  .ddp-checkbox-box { width: space(4); height: space(4); }
-  .ddp-checkbox-text { font-size: font-size('sm'); line-height: line-height('sm'); }
+	.ddp-checkbox-box {
+		width: space(4);
+		height: space(4);
+	}
+	.ddp-checkbox-text {
+		font-size: font-size("sm");
+		line-height: line-height("sm");
+	}
 }
 
 .ddp-checkbox-lg {
-  .ddp-checkbox-box { width: space(5); height: space(5); }
-  .ddp-checkbox-text { font-size: font-size('md'); line-height: line-height('md'); }
+	.ddp-checkbox-box {
+		width: space(5);
+		height: space(5);
+	}
+	.ddp-checkbox-text {
+		font-size: font-size("md");
+		line-height: line-height("md");
+	}
 }
 
 // ---------- States ----------
 
 .ddp-checkbox.is-error .ddp-checkbox-box {
-  border-color: color('negative');
+	border-color: color("negative");
 }
 
 .ddp-checkbox-error-message {
-  margin: space(1) 0 0;
-  font-size: font-size('sm');
-  color: color('negative');
+	margin: space(1) 0 0;
+	font-size: font-size("sm");
+	color: color("negative");
 }

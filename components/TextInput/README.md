@@ -13,16 +13,16 @@ import { TextInput } from '@digital-democracy-project/design-system';
 
 ## Props
 
-| Prop | Type | Default | Notes |
-|---|---|---|---|
-| `value` / `defaultValue` | `string` | — | Controlled/uncontrolled, same convention as a native input. |
-| `icon` | `IconName` | — | A leading, decorative icon — fixed position, no interaction. Scales 1:1 with `size` (a general convention now — see `clearable`'s icon and `Select`'s chevron for the other instances). Deliberately dropped when this component was first built (nothing had validated a need for one), added once `SearchBar` did. |
-| `onChange` | `(value: string) => void` | — | Fires on every keystroke, with the plain string value (not a native event) — matches the validated pattern from `ddp-scorecard-react`'s own search box. |
-| `onSubmit` | `(value: string) => void` | — | Fires on Enter, separate from `onChange`'s live updates — a "commit" callback. Matching, filtering, and any debouncing are entirely the consumer's responsibility; this component doesn't know or care what `onSubmit` does with the value. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | |
-| `clearable` | `boolean` | — | Shows a clear (×) control (built from `IconButton`) once there's a value. Clears and fires both `onChange('')` and `onSubmit('')`. |
-| `error` | `boolean` | — | |
-| `errorMessage` | `string` | — | Only rendered when `error` is also true. |
+| Prop                     | Type                      | Default | Notes                                                                                                                                                                                                                                                                                                                |
+| ------------------------ | ------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `value` / `defaultValue` | `string`                  | —       | Controlled/uncontrolled, same convention as a native input.                                                                                                                                                                                                                                                          |
+| `icon`                   | `IconName`                | —       | A leading, decorative icon — fixed position, no interaction. Scales 1:1 with `size` (a general convention now — see `clearable`'s icon and `Select`'s chevron for the other instances). Deliberately dropped when this component was first built (nothing had validated a need for one), added once `SearchBar` did. |
+| `onChange`               | `(value: string) => void` | —       | Fires on every keystroke, with the plain string value (not a native event) — matches the validated pattern from `ddp-scorecard-react`'s own search box.                                                                                                                                                              |
+| `onSubmit`               | `(value: string) => void` | —       | Fires on Enter, separate from `onChange`'s live updates — a "commit" callback. Matching, filtering, and any debouncing are entirely the consumer's responsibility; this component doesn't know or care what `onSubmit` does with the value.                                                                          |
+| `size`                   | `'sm' \| 'md' \| 'lg'`    | `'md'`  |                                                                                                                                                                                                                                                                                                                      |
+| `clearable`              | `boolean`                 | —       | Shows a clear (×) control (built from `IconButton`) once there's a value. Clears and fires both `onChange('')` and `onSubmit('')`.                                                                                                                                                                                   |
+| `error`                  | `boolean`                 | —       |                                                                                                                                                                                                                                                                                                                      |
+| `errorMessage`           | `string`                  | —       | Only rendered when `error` is also true.                                                                                                                                                                                                                                                                             |
 
 Everything else is a normal `<input>` prop and passes through untouched. Accepts a `ref` to the underlying `<input>` element.
 

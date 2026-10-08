@@ -17,12 +17,12 @@ import { Badge } from '@digital-democracy-project/design-system';
 
 ## Props
 
-| Prop | Type | Default | Notes |
-|---|---|---|---|
-| `tone` | `'neutral' \| 'primary' \| 'secondary' \| 'tertiary'` | `'neutral'` | Deliberately just the brand roles plus a token-backed neutral default — not a valence/status/grade vocabulary. See "Not built in" below. |
-| `appearance` | `'soft' \| 'solid'` | `'soft'` | `solid` only has a real effect on `primary`/`secondary`/`tertiary` — `neutral` has no dedicated safe-foreground-on-solid token, so it stays soft regardless of `appearance`. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Controls padding and font size. |
-| `customColors` | `{ background: string; foreground: string }` | — | Escape hatch for any color outside the four built-in tones. Sets background/foreground directly as inline styles; takes priority over `tone`/`appearance` when provided. |
+| Prop           | Type                                                  | Default     | Notes                                                                                                                                                                        |
+| -------------- | ----------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tone`         | `'neutral' \| 'primary' \| 'secondary' \| 'tertiary'` | `'neutral'` | Deliberately just the brand roles plus a token-backed neutral default — not a valence/status/grade vocabulary. See "Not built in" below.                                     |
+| `appearance`   | `'soft' \| 'solid'`                                   | `'soft'`    | `solid` only has a real effect on `primary`/`secondary`/`tertiary` — `neutral` has no dedicated safe-foreground-on-solid token, so it stays soft regardless of `appearance`. |
+| `size`         | `'sm' \| 'md' \| 'lg'`                                | `'md'`      | Controls padding and font size.                                                                                                                                              |
+| `customColors` | `{ background: string; foreground: string }`          | —           | Escape hatch for any color outside the four built-in tones. Sets background/foreground directly as inline styles; takes priority over `tone`/`appearance` when provided.     |
 
 Everything else is a normal `<span>` prop and passes through untouched.
 

@@ -1,4 +1,4 @@
-@use 'core/functions' as *;
+@use "core/functions" as *;
 
 /* ============================================================
    DDP DESIGN SYSTEM — TOKEN FOUNDATION
@@ -53,137 +53,136 @@
 }
 
 :root {
-
 	/* ============================================================
    TIER 1 — PRIMITIVES
    ============================================================ */
 
 	/* the real basics */
-	--ddp-color-white: #FFFFFF;
+	--ddp-color-white: #ffffff;
 	--ddp-color-black: #000000;
 
 	/* ---------- Orange — brand primary (anchored on #F85828) ---------- */
-	--ddp-color-orange-50: #FFF5F1;
-	--ddp-color-orange-100: #FFE4DA;
-	--ddp-color-orange-200: #FFC5B2;
-	--ddp-color-orange-300: #FF9F80;
-	--ddp-color-orange-400: #FC7A4F;
-	--ddp-color-orange-500: #F85828;
-	--ddp-color-orange-600: #D8430F;
-	--ddp-color-orange-700: #B0350C;
-	--ddp-color-orange-800: #872A0B;
+	--ddp-color-orange-50: #fff5f1;
+	--ddp-color-orange-100: #ffe4da;
+	--ddp-color-orange-200: #ffc5b2;
+	--ddp-color-orange-300: #ff9f80;
+	--ddp-color-orange-400: #fc7a4f;
+	--ddp-color-orange-500: #f85828;
+	--ddp-color-orange-600: #d8430f;
+	--ddp-color-orange-700: #b0350c;
+	--ddp-color-orange-800: #872a0b;
 	--ddp-color-orange-900: #612009;
 
 	/* ---------- Violet — brand secondary (triadic partner, hue 278°) ----------
    Replaces the former blue outright. Close enough to blue to inherit its
    affordances (links, info, focus) without carrying party-colour baggage. */
-	--ddp-color-violet-50: #F4F3FE;
-	--ddp-color-violet-100: #E7E4FD;
-	--ddp-color-violet-200: #D0CAFB;
-	--ddp-color-violet-300: #B1A6F6;
-	--ddp-color-violet-400: #8E7CEE;
-	--ddp-color-violet-500: #6B52DF;
-	--ddp-color-violet-600: #573FC0;
-	--ddp-color-violet-700: #46339B;
+	--ddp-color-violet-50: #f4f3fe;
+	--ddp-color-violet-100: #e7e4fd;
+	--ddp-color-violet-200: #d0cafb;
+	--ddp-color-violet-300: #b1a6f6;
+	--ddp-color-violet-400: #8e7cee;
+	--ddp-color-violet-500: #6b52df;
+	--ddp-color-violet-600: #573fc0;
+	--ddp-color-violet-700: #46339b;
 	--ddp-color-violet-800: #362878;
-	--ddp-color-violet-900: #251B54;
+	--ddp-color-violet-900: #251b54;
 
 	/* ---------- Neutral — cool, blue-tinted; single consistent ramp ---------- */
-	--ddp-color-neutral-0: #FFFFFF;
-	--ddp-color-neutral-25: #FAFBFC;
-	--ddp-color-neutral-50: #F4F6F9;
-	--ddp-color-neutral-100: #E9EDF2;
-	--ddp-color-neutral-200: #D7DDE6;
-	--ddp-color-neutral-300: #BCC5D2;
-	--ddp-color-neutral-400: #97A3B4;
-	--ddp-color-neutral-500: #74829A;
-	--ddp-color-neutral-550: #64738C;
-	--ddp-color-neutral-600: #56647C;
-	--ddp-color-neutral-700: #3D4A5F;
+	--ddp-color-neutral-0: #ffffff;
+	--ddp-color-neutral-25: #fafbfc;
+	--ddp-color-neutral-50: #f4f6f9;
+	--ddp-color-neutral-100: #e9edf2;
+	--ddp-color-neutral-200: #d7dde6;
+	--ddp-color-neutral-300: #bcc5d2;
+	--ddp-color-neutral-400: #97a3b4;
+	--ddp-color-neutral-500: #74829a;
+	--ddp-color-neutral-550: #64738c;
+	--ddp-color-neutral-600: #56647c;
+	--ddp-color-neutral-700: #3d4a5f;
 	--ddp-color-neutral-800: #263447;
-	--ddp-color-neutral-900: #14212F;
-	--ddp-color-neutral-950: #0B1520;
+	--ddp-color-neutral-900: #14212f;
+	--ddp-color-neutral-950: #0b1520;
 
 	/* ---------- Jade — third core hue (triadic partner, hue 158°) ----------
    Doubles as the success / yes / pass status colour. */
-	--ddp-color-jade-50: #EFFAF5;
-	--ddp-color-jade-100: #D3F1E3;
-	--ddp-color-jade-200: #A6E3C7;
-	--ddp-color-jade-300: #6ECDA6;
-	--ddp-color-jade-400: #38B083;
-	--ddp-color-jade-500: #1B8460;
-	--ddp-color-jade-600: #156B4D;
-	--ddp-color-jade-700: #11553D;
-	--ddp-color-jade-800: #0D402E;
-	--ddp-color-jade-900: #092C20;
+	--ddp-color-jade-50: #effaf5;
+	--ddp-color-jade-100: #d3f1e3;
+	--ddp-color-jade-200: #a6e3c7;
+	--ddp-color-jade-300: #6ecda6;
+	--ddp-color-jade-400: #38b083;
+	--ddp-color-jade-500: #1b8460;
+	--ddp-color-jade-600: #156b4d;
+	--ddp-color-jade-700: #11553d;
+	--ddp-color-jade-800: #0d402e;
+	--ddp-color-jade-900: #092c20;
 
 	/* ---------- Lime — yellow-green, distinct from jade (hue 90°) ----------
    Used for the ordinal grade scale's second step, so grades 1 and 2 read as
    genuinely different colors rather than two shades of the same jade. */
-	--ddp-color-lime-50: #F4FAEF;
-	--ddp-color-lime-100: #E2F1D3;
-	--ddp-color-lime-200: #C4E3A6;
-	--ddp-color-lime-300: #9ECD6E;
-	--ddp-color-lime-400: #74B038;
-	--ddp-color-lime-500: #50841B;
-	--ddp-color-lime-600: #406B15;
+	--ddp-color-lime-50: #f4faef;
+	--ddp-color-lime-100: #e2f1d3;
+	--ddp-color-lime-200: #c4e3a6;
+	--ddp-color-lime-300: #9ecd6e;
+	--ddp-color-lime-400: #74b038;
+	--ddp-color-lime-500: #50841b;
+	--ddp-color-lime-600: #406b15;
 	--ddp-color-lime-700: #335511;
-	--ddp-color-lime-800: #27400D;
-	--ddp-color-lime-900: #1B2C09;
+	--ddp-color-lime-800: #27400d;
+	--ddp-color-lime-900: #1b2c09;
 
 	/* ---------- Red — oppose / no / fail ---------- */
-	--ddp-color-red-50: #FDF3F2;
-	--ddp-color-red-100: #FADEDB;
-	--ddp-color-red-200: #F4BDB7;
-	--ddp-color-red-300: #EB958C;
-	--ddp-color-red-400: #DE6A5E;
-	--ddp-color-red-500: #C8412F;
-	--ddp-color-red-600: #A83424;
-	--ddp-color-red-700: #87291C;
+	--ddp-color-red-50: #fdf3f2;
+	--ddp-color-red-100: #fadedb;
+	--ddp-color-red-200: #f4bdb7;
+	--ddp-color-red-300: #eb958c;
+	--ddp-color-red-400: #de6a5e;
+	--ddp-color-red-500: #c8412f;
+	--ddp-color-red-600: #a83424;
+	--ddp-color-red-700: #87291c;
 	--ddp-color-red-800: #672016;
-	--ddp-color-red-900: #4A1710;
+	--ddp-color-red-900: #4a1710;
 
 	/* ---------- Amber — mixed / partial / warning. Hue 55 (was 42) —
    moved yellower to clear a bigger gap from both ochre (scale-4) and lime
    (scale-2), same saturation/lightness per step as before. ---------- */
-	--ddp-color-amber-50: #FEFCE9;
-	--ddp-color-amber-100: #FCF7C4;
-	--ddp-color-amber-200: #F8EE85;
-	--ddp-color-amber-300: #F0E243;
-	--ddp-color-amber-400: #DFCE0F;
-	--ddp-color-amber-500: #B8AA0A;
-	--ddp-color-amber-600: #968A08;
-	--ddp-color-amber-700: #766D06;
+	--ddp-color-amber-50: #fefce9;
+	--ddp-color-amber-100: #fcf7c4;
+	--ddp-color-amber-200: #f8ee85;
+	--ddp-color-amber-300: #f0e243;
+	--ddp-color-amber-400: #dfce0f;
+	--ddp-color-amber-500: #b8aa0a;
+	--ddp-color-amber-600: #968a08;
+	--ddp-color-amber-700: #766d06;
 	--ddp-color-amber-800: #585104;
-	--ddp-color-amber-900: #3D3803;
+	--ddp-color-amber-900: #3d3803;
 
 	/* ---------- Party — FIXED. Real-world identity colours, never re-themed,
    never overridden by a consuming project, never used decoratively.
    Only ever to denote actual party affiliation. ---------- */
 	/* +50% saturation vs. the original ramp, every step except -500 (the
    donkey icon's fixed anchor color -- held exactly as-is). */
-	--ddp-color-democratic-50: #EBF3FD;
-	--ddp-color-democratic-100: #D1E4FA;
-	--ddp-color-democratic-200: #A0C6F6;
-	--ddp-color-democratic-300: #5E9DEF;
-	--ddp-color-democratic-400: #2275E7;
-	--ddp-color-democratic-500: #1C58A8;
-	--ddp-color-democratic-600: #0B4595;
+	--ddp-color-democratic-50: #ebf3fd;
+	--ddp-color-democratic-100: #d1e4fa;
+	--ddp-color-democratic-200: #a0c6f6;
+	--ddp-color-democratic-300: #5e9def;
+	--ddp-color-democratic-400: #2275e7;
+	--ddp-color-democratic-500: #1c58a8;
+	--ddp-color-democratic-600: #0b4595;
 	--ddp-color-democratic-700: #093776;
 	--ddp-color-democratic-800: #072958;
-	--ddp-color-democratic-900: #051C3E;
+	--ddp-color-democratic-900: #051c3e;
 
 	/* +50% saturation vs. the original ramp, every step except -500 (the
    elephant icon's fixed anchor color -- held exactly as-is). */
-	--ddp-color-republican-50: #FEEDED;
-	--ddp-color-republican-100: #FCD6D7;
-	--ddp-color-republican-200: #F8AAAC;
-	--ddp-color-republican-300: #F27074;
-	--ddp-color-republican-400: #EB373F;
-	--ddp-color-republican-500: #B3181F;
-	--ddp-color-republican-600: #9E0912;
-	--ddp-color-republican-700: #7E080E;
-	--ddp-color-republican-800: #5E060B;
+	--ddp-color-republican-50: #feeded;
+	--ddp-color-republican-100: #fcd6d7;
+	--ddp-color-republican-200: #f8aaac;
+	--ddp-color-republican-300: #f27074;
+	--ddp-color-republican-400: #eb373f;
+	--ddp-color-republican-500: #b3181f;
+	--ddp-color-republican-600: #9e0912;
+	--ddp-color-republican-700: #7e080e;
+	--ddp-color-republican-800: #5e060b;
 	--ddp-color-republican-900: #420407;
 
 	/* ---------- Ordinal scale — FIXED. A five-step diverging ramp for grades,
@@ -191,16 +190,16 @@
    deliberately excludes the brand orange so a rating can never be mistaken
    for a call to action. The ochre below is darker and less saturated than
    --ddp-color-orange-500 for exactly that reason. ---------- */
-	--ddp-color-ochre-50: #FDF4E9;
-	--ddp-color-ochre-100: #F9E5C8;
-	--ddp-color-ochre-200: #F0C68A;
-	--ddp-color-ochre-300: #E2A24D;
-	--ddp-color-ochre-400: #C2610F;
-	--ddp-color-ochre-500: #A2500C;
-	--ddp-color-ochre-600: #85410A;
+	--ddp-color-ochre-50: #fdf4e9;
+	--ddp-color-ochre-100: #f9e5c8;
+	--ddp-color-ochre-200: #f0c68a;
+	--ddp-color-ochre-300: #e2a24d;
+	--ddp-color-ochre-400: #c2610f;
+	--ddp-color-ochre-500: #a2500c;
+	--ddp-color-ochre-600: #85410a;
 	--ddp-color-ochre-700: #683308;
-	--ddp-color-ochre-800: #4E2606;
-	--ddp-color-ochre-900: #371B04;
+	--ddp-color-ochre-800: #4e2606;
+	--ddp-color-ochre-900: #371b04;
 
 	/* ---------- Type families ---------- */
 	--ddp-font-family-sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -276,7 +275,7 @@
 	/* @kind font */
 	--ddp-letter-spacing-wide: 0.04em;
 	/* @kind font */
-	--ddp-letter-spacing-wider: 0.10em;
+	--ddp-letter-spacing-wider: 0.1em;
 	/* @kind font */
 	--ddp-letter-spacing-widest: 0.16em;
 	/* @kind font */
@@ -340,7 +339,7 @@
 	--ddp-shadow-none: none;
 	--ddp-shadow-xs: 0 1px 2px rgba(11, 21, 32, 0.06);
 	--ddp-shadow-sm: 0 1px 3px rgba(11, 21, 32, 0.09), 0 1px 2px rgba(11, 21, 32, 0.05);
-	--ddp-shadow-md: 0 4px 12px rgba(11, 21, 32, 0.10);
+	--ddp-shadow-md: 0 4px 12px rgba(11, 21, 32, 0.1);
 	--ddp-shadow-lg: 0 12px 32px rgba(11, 21, 32, 0.13);
 	--ddp-shadow-xl: 0 24px 56px rgba(11, 21, 32, 0.17);
 
@@ -349,15 +348,15 @@
 	/* @kind other */
 	--ddp-opacity-5: 0.05;
 	/* @kind other */
-	--ddp-opacity-10: 0.10;
+	--ddp-opacity-10: 0.1;
 	/* @kind other */
-	--ddp-opacity-20: 0.20;
+	--ddp-opacity-20: 0.2;
 	/* @kind other */
-	--ddp-opacity-40: 0.40;
+	--ddp-opacity-40: 0.4;
 	/* @kind other */
-	--ddp-opacity-60: 0.60;
+	--ddp-opacity-60: 0.6;
 	/* @kind other */
-	--ddp-opacity-80: 0.80;
+	--ddp-opacity-80: 0.8;
 	/* @kind other */
 	--ddp-opacity-100: 1;
 	/* @kind other */
@@ -411,7 +410,6 @@
 	--ddp-gutter: #{toRem(24)};
 	/* Max line length for running text. */
 	--ddp-paragraph-width: #{toRem(720)};
-
 
 	/* ============================================================
    TIER 2 — SEMANTIC  (light theme)
@@ -552,9 +550,8 @@
 	/* @kind spacing */
 	--ddp-focus-ring-offset: 2px;
 	/* @kind spacing */
-	--ddp-focus-ring-color: rgba(248, 88, 40, 0.40);
+	--ddp-focus-ring-color: rgba(248, 88, 40, 0.4);
 }
-
 
 /* ============================================================
    TIER 3 — DARK THEME
@@ -650,11 +647,11 @@
    page theme. None of it is redefined in this block at all; every value
    falls through via the normal cascade to the light/root definitions. */
 
-	--ddp-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.40);
-	--ddp-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.50);
+	--ddp-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+	--ddp-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
 	--ddp-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.55);
-	--ddp-shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.60);
+	--ddp-shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
 	--ddp-shadow-xl: 0 24px 56px rgba(0, 0, 0, 0.65);
 
-	--ddp-focus-ring-color: rgba(252, 122, 79, 0.50);
+	--ddp-focus-ring-color: rgba(252, 122, 79, 0.5);
 }

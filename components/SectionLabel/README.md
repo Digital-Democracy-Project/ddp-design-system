@@ -13,10 +13,10 @@ import { SectionLabel } from '@digital-democracy-project/design-system';
 
 ## Props
 
-| Prop | Type | Default | Notes |
-|---|---|---|---|
-| `tone` | `'subtle' \| 'neutral' \| 'primary' \| 'secondary' \| 'tertiary'` | `'subtle'` | `'subtle'` is the quiet field/section-label look this component exists for. `'neutral'` is the same look at full-strength text color. `'primary'`/`'secondary'`/`'tertiary'` are for brand-colored inline record-meta (e.g. a bill number, a category tag) — same brand vocabulary as `Badge`'s own `tone`. |
-| `children` | `ReactNode` | — | Anything. |
+| Prop       | Type                                                              | Default    | Notes                                                                                                                                                                                                                                                                                                       |
+| ---------- | ----------------------------------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tone`     | `'subtle' \| 'neutral' \| 'primary' \| 'secondary' \| 'tertiary'` | `'subtle'` | `'subtle'` is the quiet field/section-label look this component exists for. `'neutral'` is the same look at full-strength text color. `'primary'`/`'secondary'`/`'tertiary'` are for brand-colored inline record-meta (e.g. a bill number, a category tag) — same brand vocabulary as `Badge`'s own `tone`. |
+| `children` | `ReactNode`                                                       | —          | Anything.                                                                                                                                                                                                                                                                                                   |
 
 Everything else is a normal `<span>` prop and passes through untouched.
 

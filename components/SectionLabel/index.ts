@@ -1,1 +1,1 @@
-export * from './SectionLabel';
+export * from './SectionLabel'

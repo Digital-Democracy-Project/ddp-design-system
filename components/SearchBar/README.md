@@ -16,11 +16,11 @@ No floating panel, no combobox ARIA, no `Menu` — just the styled `TextInput`. 
 
 ```tsx
 <SearchBar
-  value={query}
-  onChange={setQuery}
-  suggestions={results}
-  onSelectSuggestion={(r) => navigate(r.value)}
-  placeholder="Search legislators or bills…"
+	value={query}
+	onChange={setQuery}
+	suggestions={results}
+	onSelectSuggestion={(r) => navigate(r.value)}
+	placeholder="Search legislators or bills…"
 />
 ```
 
@@ -28,15 +28,15 @@ The panel opens whenever the input is focused and `suggestions.length > 0`. `sug
 
 ## Props
 
-| Prop | Type | Default | Notes |
-|---|---|---|---|
-| `value` / `defaultValue` | `string` | — | Controlled/uncontrolled, same convention as `TextInput`. |
-| `onChange` | `(value: string) => void` | — | Every keystroke. |
-| `onSubmit` | `(value: string) => void` | — | Enter with nothing highlighted — matches `TextInput`'s model exactly. Also fires when a suggestion is picked (click, or Enter while highlighted), with that suggestion's label — picking one is a valid way to "submit." |
-| `suggestions` | `MenuOption[]` | — (omitted = standalone mode) | Pass an array, even `[]`, to turn on combobox behavior. |
-| `onSelectSuggestion` | `(suggestion: MenuOption) => void` | — | Fires when a suggestion is picked, alongside `onSubmit`. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Matches `TextInput`'s scale. |
-| `emptyMessage` | `string` | — | Passed through to `Menu`. |
+| Prop                     | Type                               | Default                       | Notes                                                                                                                                                                                                                    |
+| ------------------------ | ---------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `value` / `defaultValue` | `string`                           | —                             | Controlled/uncontrolled, same convention as `TextInput`.                                                                                                                                                                 |
+| `onChange`               | `(value: string) => void`          | —                             | Every keystroke.                                                                                                                                                                                                         |
+| `onSubmit`               | `(value: string) => void`          | —                             | Enter with nothing highlighted — matches `TextInput`'s model exactly. Also fires when a suggestion is picked (click, or Enter while highlighted), with that suggestion's label — picking one is a valid way to "submit." |
+| `suggestions`            | `MenuOption[]`                     | — (omitted = standalone mode) | Pass an array, even `[]`, to turn on combobox behavior.                                                                                                                                                                  |
+| `onSelectSuggestion`     | `(suggestion: MenuOption) => void` | —                             | Fires when a suggestion is picked, alongside `onSubmit`.                                                                                                                                                                 |
+| `size`                   | `'sm' \| 'md' \| 'lg'`             | `'md'`                        | Matches `TextInput`'s scale.                                                                                                                                                                                             |
+| `emptyMessage`           | `string`                           | —                             | Passed through to `Menu`.                                                                                                                                                                                                |
 
 Everything else is a normal `<input>` prop and passes through untouched. Accepts a `ref` to the underlying `<input>` element.
 

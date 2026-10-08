@@ -1,87 +1,53 @@
-@use 'sass:list';
-@use 'sass:meta';
+@use "sass:list";
+@use "sass:meta";
 
-@use 'helpers' as *;
-
+@use "helpers" as *;
 
 // ---------- Type ----------
 
-$-font-family-keys: (
-  'sans',
-  'serif',
-  'mono'
-);
+$-font-family-keys: ("sans", "serif", "mono");
 
-@function font-family($key: 'sans') {
-  @return var-ref('font-family-#{assert-key($key, $-font-family-keys, "font-family")}');
+@function font-family($key: "sans") {
+	@return var-ref('font-family-#{assert-key($key, $-font-family-keys, "font-family")}');
 }
 
-$-font-size-keys: (
-  '3xs',
-  '2xs',
-  'xs',
-  'sm',
-  'md',
-  'lg',
-  'xl',
-  '2xl',
-  '3xl',
-  '4xl',
-  '5xl',
-  '6xl',
-  '7xl'
-);
+$-font-size-keys: ("3xs", "2xs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl", "6xl", "7xl");
 
 /// font-size('md') → var(--ddp-font-size-md). font-size(15px) → 15px (escape hatch).
-@function font-size($key: 'md') {
-  @if list.index($-font-size-keys, $key) !=null {
-    @return var-ref('font-size-#{$key}');
-  }
+@function font-size($key: "md") {
+	@if list.index($-font-size-keys, $key) !=null {
+		@return var-ref("font-size-#{$key}");
+	}
 
-  @if meta.type-of($key)=='number' {
-    @return $key;
-  }
+	@if meta.type-of($key) == "number" {
+		@return $key;
+	}
 
-  @error 'Unknown font-size token `#{$key}`. Expected one of: #{$-font-size-keys}, or a raw number.';
+	@error 'Unknown font-size token `#{$key}`. Expected one of: #{$-font-size-keys}, or a raw number.';
 }
 
 /// Line heights use the same keys as font sizes and stay on the 4px grid.
 /// line-height('md') → var(--ddp-line-height-md). line-height(1.8) → 1.8 (escape hatch).
-@function line-height($key: 'md') {
-  @if list.index($-font-size-keys, $key) !=null {
-    @return var-ref('line-height-#{$key}');
-  }
+@function line-height($key: "md") {
+	@if list.index($-font-size-keys, $key) !=null {
+		@return var-ref("line-height-#{$key}");
+	}
 
-  @if meta.type-of($key)=='number' {
-    @return $key;
-  }
+	@if meta.type-of($key) == "number" {
+		@return $key;
+	}
 
-  @error 'Unknown line-height token `#{$key}`. Expected one of: #{$-font-size-keys}, or a raw number.';
+	@error 'Unknown line-height token `#{$key}`. Expected one of: #{$-font-size-keys}, or a raw number.';
 }
 
-$-font-weight-keys: (
-  'light',
-  'regular',
-  'medium',
-  'semibold',
-  'bold',
-  'extrabold'
-);
+$-font-weight-keys: ("light", "regular", "medium", "semibold", "bold", "extrabold");
 
-@function font-weight($key: 'regular') {
-  @return var-ref('font-weight-#{assert-key($key, $-font-weight-keys, "font-weight")}');
+@function font-weight($key: "regular") {
+	@return var-ref('font-weight-#{assert-key($key, $-font-weight-keys, "font-weight")}');
 }
 
-$-tracking-keys: (
-  'tighter',
-  'tight',
-  'snug',
-  'normal',
-  'wide',
-  'wider',
-  'widest'
-);
+$-tracking-keys: ("tighter", "tight", "snug", "normal", "wide", "wider", "widest");
 
-@function tracking($key: 'normal') {
-  @return var-ref('letter-spacing-#{assert-key($key, $-tracking-keys, "letter-spacing")}');
+@function tracking($key: "normal") {
+	@return var-ref('letter-spacing-#{assert-key($key, $-tracking-keys, "letter-spacing")}');
 }

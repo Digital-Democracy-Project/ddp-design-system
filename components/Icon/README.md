@@ -14,11 +14,11 @@ import { Icon } from '@digital-democracy-project/design-system';
 
 ## Props
 
-| Prop | Type | Default | Notes |
-|---|---|---|---|
-| `name` | `string` | — (required) | The icon's filename without `.svg` — see `assets/icons/` for the full source set. Discovered automatically at build time, so this isn't a validated literal type; a typo won't be caught until runtime (the icon just won't render — a console warning fires in development). |
-| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| number` | `'md'` | Named steps map to the `--ddp-icon-size-*` tokens; a number is a raw-pixel escape hatch. |
-| `title` | `string` | — | Accessible label. Omit for decorative icons (the common case next to visible text) — the icon gets `aria-hidden`. Provide it and the icon gets `role="img"` + `aria-label` instead. |
+| Prop    | Type                                             | Default      | Notes                                                                                                                                                                                                                                                                         |
+| ------- | ------------------------------------------------ | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`  | `string`                                         | — (required) | The icon's filename without `.svg` — see `assets/icons/` for the full source set. Discovered automatically at build time, so this isn't a validated literal type; a typo won't be caught until runtime (the icon just won't render — a console warning fires in development). |
+| `size`  | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| number` | `'md'`       | Named steps map to the `--ddp-icon-size-*` tokens; a number is a raw-pixel escape hatch.                                                                                                                                                                                      |
+| `title` | `string`                                         | —            | Accessible label. Omit for decorative icons (the common case next to visible text) — the icon gets `aria-hidden`. Provide it and the icon gets `role="img"` + `aria-label` instead.                                                                                           |
 
 Any other SVG prop is passed through to the root `<svg>`.
 

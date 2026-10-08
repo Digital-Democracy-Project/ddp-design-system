@@ -1,9 +1,9 @@
-@use '../../styles/core' as *;
+@use "../../styles/core" as *;
 
 .ddp-menu-empty {
-  padding: space('1-5') space(3);
-  font-size: font-size('sm');
-  line-height: line-height('sm');
-  color: text('subtle');
-  text-align: center;
+	padding: space("1-5") space(3);
+	font-size: font-size("sm");
+	line-height: line-height("sm");
+	color: text("subtle");
+	text-align: center;
 }

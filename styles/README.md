@@ -4,12 +4,12 @@ Three groups, split by what they actually do — not just files sitting in the s
 
 **`core/` — zero-CSS Sass, `@use` freely from any module.**
 
-| File                     | Contains                                                                                                                     |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
-| `core/_tokens.scss`      | Typed accessors that emit `var(--ddp-*)`, validated at compile time. Plus raw maps for the few places a literal is required. |
+| File                     | Contains                                                                                                                                                                                                                    |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `core/_tokens.scss`      | Typed accessors that emit `var(--ddp-*)`, validated at compile time. Plus raw maps for the few places a literal is required.                                                                                                |
 | `core/_breakpoints.scss` | Width queries from the one width scale (`$raw-widths`, xs–2xl): `container-min` / `container-below` / `query-container` for component layouts, `media` / `media-below` / `media-between` (width + gutters) for page chrome. |
-| `core/_mixins.scss`      | Everything CSS custom properties cannot express at author time.                                                              |
-| `core/index.scss`        | Barrel. `@forward`s the three above.                                                                                         |
+| `core/_mixins.scss`      | Everything CSS custom properties cannot express at author time.                                                                                                                                                             |
+| `core/index.scss`        | Barrel. `@forward`s the three above.                                                                                                                                                                                        |
 
 **Real, applied CSS — not `@use`-able, reaches consumers via a build step or a direct import, never via `core/index.scss`.**
 
@@ -45,41 +45,41 @@ Reach for `$raw-*` maps only when a value must fold at compile time: media query
 @use '@digital-democracy-project/design-system/styles' as *;
 
 .button {
-  @include unstyled-button;
-  @include transition(background-color, color);
-  @include focus-ring;
+	@include unstyled-button;
+	@include transition(background-color, color);
+	@include focus-ring;
 
-  display: inline-flex;
-  align-items: center;
-  gap: space(2);
-  padding: space(3) space(5);
-  border-radius: radius('md');
+	display: inline-flex;
+	align-items: center;
+	gap: space(2);
+	padding: space(3) space(5);
+	border-radius: radius('md');
 
-  @include type('sm', 'semibold');
+	@include type('sm', 'semibold');
 }
 
 .primary {
-  background: color('primary');
-  color: color('primary-foreground');
+	background: color('primary');
+	color: color('primary-foreground');
 
-  &:hover {
-    background: color('primary-hover');
-  }
-  &:active {
-    background: color('primary-active');
-  }
+	&:hover {
+		background: color('primary-hover');
+	}
+	&:active {
+		background: color('primary-active');
+	}
 
-  @include disabled;
+	@include disabled;
 }
 
 .card {
-  @include card('lg', 'sm');
-  @include elevate-on-hover;
-  padding: space(5);
+	@include card('lg', 'sm');
+	@include elevate-on-hover;
+	padding: space(5);
 
-  @include media('md') {
-    padding: space(6);
-  }
+	@include media('md') {
+		padding: space(6);
+	}
 }
 ```
 
@@ -92,11 +92,11 @@ Reach for `$raw-*` maps only when a value must fold at compile time: media query
 For code that never touches Sass — chart libraries, canvas rendering, map layer styling — `tokens.json` mirrors every accessor group above as plain data:
 
 ```ts
-import tokens from '@digital-democracy-project/design-system/styles/tokens.json';
+import tokens from '@digital-democracy-project/design-system/styles/tokens.json'
 
-tokens.color.primary; // "var(--ddp-color-primary)"
-tokens.space['3']; // "var(--ddp-space-3)"
-tokens.scale['2']['tint-foreground']; // "var(--ddp-scale-2-tint-foreground)"
+tokens.color.primary // "var(--ddp-color-primary)"
+tokens.space['3'] // "var(--ddp-space-3)"
+tokens.scale['2']['tint-foreground'] // "var(--ddp-scale-2-tint-foreground)"
 ```
 
 TypeScript infers the exact shape automatically via `resolveJsonModule` (on by default in most modern setups) — no separate `.d.ts` to maintain.

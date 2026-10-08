@@ -1,36 +1,39 @@
-@use '../../styles/core' as *;
+@use "../../styles/core" as *;
 
 .ddp-clickable-tile {
-  @include focus-ring();
-  @include disabled();
+	@include focus-ring();
+	@include disabled();
 
-  @include default-styles {
-    @include card();
-    @include elevate-on-hover();
+	@include default-styles {
+		@include card();
+		@include elevate-on-hover();
 
-    display: block;
-    margin: 0;
-    padding: space(4);
-    appearance: none;
-    font: inherit;
-    text-align: inherit;
-    text-decoration: none;
-    color: text('default');
-    font-size: font-size('md');
-    line-height: line-height('md');
-    cursor: pointer;
-    border-color: border-color('interactive');
+		display: block;
+		margin: 0;
+		padding: space(4);
+		appearance: none;
+		font: inherit;
+		text-align: inherit;
+		text-decoration: none;
+		color: text("default");
+		font-size: font-size("md");
+		line-height: line-height("md");
+		cursor: pointer;
+		border-color: border-color("interactive");
 
-    &:hover {
-      border-color: border-color('interactive-hover');
-    }
+		&:hover {
+			border-color: border-color("interactive-hover");
+		}
 
-    @include motion-safe {
-      transition: box-shadow duration('base') ease('standard'), border-color duration('fast') ease('standard'), transform duration('fast') ease('standard');
+		@include motion-safe {
+			transition:
+				box-shadow duration("base") ease("standard"),
+				border-color duration("fast") ease("standard"),
+				transform duration("fast") ease("standard");
 
-      &:hover {
-        transform: translateY(calc(#{space('0-5')} * -1));
-      }
-    }
-  }
+			&:hover {
+				transform: translateY(calc(#{space("0-5")} * -1));
+			}
+		}
+	}
 }

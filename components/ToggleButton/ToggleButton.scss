@@ -1,106 +1,101 @@
-@use '../../styles/core' as *;
+@use "../../styles/core" as *;
 
-$tone-names: (
-  'primary',
-  'secondary',
-  'tertiary',
-  'neutral'
-);
+$tone-names: ("primary", "secondary", "tertiary", "neutral");
 
 // Two shapes, one component — validated against two real, independently-built references (ddp-scorecard-react's ToggleChip/CheckboxItem, and the legislative-scorecard hi-fi mockup's ChipToggle/ToggleButton), both of which consistently pair a shape with a fill treatment: a plain pill solid-fills when pressed (no indicator prop), a rounded rect with a checkbox square soft/tint-fills when pressed (indicator="checkbox"). No validated case mixes them, so the two aren't exposed as independent props.
 //
 // tone and size are peer-choice axes (every value, including the default, is an actually-rendered look), so `ddp-toggle-button-primary`/`-md` are always explicitly applied by ToggleButton.tsx. `indicator` is on/off — its default (no indicator) is a genuine absence of the checkbox square, not a third peer shape — so it stays implicit, via the shared `has-checkbox` class only when present.
 .ddp-toggle-button {
-  @include unstyled-button;
-  @include focus-ring;
-  @include disabled;
-  @include transition(background-color, color, border-color);
+	@include unstyled-button;
+	@include focus-ring;
+	@include disabled;
+	@include transition(background-color, color, border-color);
 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  font-weight: font-weight('medium');
-  box-sizing: border-box;
-  border: border-width(1) solid border-color('default');
-  background-color: surface('raised');
-  color: text('default');
-  cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	white-space: nowrap;
+	font-weight: font-weight("medium");
+	box-sizing: border-box;
+	border: border-width(1) solid border-color("default");
+	background-color: surface("raised");
+	color: text("default");
+	cursor: pointer;
 
-  // Default look: md size + the plain pill shape (no checkbox indicator).
-  gap: space('1-5');
-  padding: space('1-5') space(4);
-  font-size: font-size('md');
-  line-height: line-height('md');
-  border-radius: radius('full');
+	// Default look: md size + the plain pill shape (no checkbox indicator).
+	gap: space("1-5");
+	padding: space("1-5") space(4);
+	font-size: font-size("md");
+	line-height: line-height("md");
+	border-radius: radius("full");
 
-  &:hover {
-    background-color: surface('sunken');
-  }
+	&:hover {
+		background-color: surface("sunken");
+	}
 }
 
 // ---------- Sizes ----------
 // Same scale as Button, so a ToggleButton sits comfortably next to one in the same toolbar/filter row.
 
 .ddp-toggle-button-sm {
-  gap: space(1);
-  padding: space(1) space(3);
-  font-size: font-size('sm');
-  line-height: line-height('sm');
+	gap: space(1);
+	padding: space(1) space(3);
+	font-size: font-size("sm");
+	line-height: line-height("sm");
 }
 
 .ddp-toggle-button-md {
-  gap: space('1-5');
-  padding: space('1-5') space(4);
-  font-size: font-size('md');
-  line-height: line-height('md');
+	gap: space("1-5");
+	padding: space("1-5") space(4);
+	font-size: font-size("md");
+	line-height: line-height("md");
 }
 
 .ddp-toggle-button-lg {
-  gap: space(2);
-  padding: space(2) space(5);
-  font-size: font-size('lg');
-  line-height: line-height('lg');
+	gap: space(2);
+	padding: space(2) space(5);
+	font-size: font-size("lg");
+	line-height: line-height("lg");
 }
 
 // ---------- Indicator shape ----------
 // `has-checkbox` overrides the base pill shape with a rounded rect. There's no class for the pill shape itself — it's the base's own default look.
 
 .has-checkbox {
-  border-radius: radius('md');
+	border-radius: radius("md");
 }
 
 // The decorative checkbox square — presentational only, no real input behind it (see ToggleButton.tsx). Reuses Checkbox's own box language: same box-size scale, same edge-to-edge checkmark fill.
 .ddp-toggle-button-box {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  background-color: surface('raised');
-  border: border-width(1) solid border-color('default');
-  border-radius: radius('sm');
-  @include transition(background-color, border-color);
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	background-color: surface("raised");
+	border: border-width(1) solid border-color("default");
+	border-radius: radius("sm");
+	@include transition(background-color, border-color);
 }
 
 .ddp-toggle-button-check-icon {
-  opacity: 0;
-  @include transition(opacity, $speed: 'fast');
+	opacity: 0;
+	@include transition(opacity, $speed: "fast");
 }
 
 .ddp-toggle-button-sm .ddp-toggle-button-box {
-  width: space(3);
-  height: space(3);
+	width: space(3);
+	height: space(3);
 }
 
 .ddp-toggle-button-md .ddp-toggle-button-box {
-  width: space(4);
-  height: space(4);
+	width: space(4);
+	height: space(4);
 }
 
 .ddp-toggle-button-lg .ddp-toggle-button-box {
-  width: space(5);
-  height: space(5);
+	width: space(5);
+	height: space(5);
 }
 
 // ---------- Tones: pressed state ----------
@@ -109,31 +104,31 @@ $tone-names: (
 // Every tone (including primary) gets its own explicit compound here — primary isn't special-cased as "the absence of a tone class" the way `has-checkbox`'s absence is, since tone is peer-choice, not on/off.
 
 .is-pressed {
-  @include apply-tones-solid('ddp-toggle-button');
+	@include apply-tones-solid("ddp-toggle-button");
 
-  &:hover {
-    @each $tone in $tone-names {
-      &.ddp-toggle-button-#{$tone} {
-        background-color: color('#{$tone}-hover');
-      }
-    }
-  }
+	&:hover {
+		@each $tone in $tone-names {
+			&.ddp-toggle-button-#{$tone} {
+				background-color: color("#{$tone}-hover");
+			}
+		}
+	}
 
-  &.has-checkbox {
-    @include apply-tones-soft('ddp-toggle-button');
+	&.has-checkbox {
+		@include apply-tones-soft("ddp-toggle-button");
 
-    @each $tone in $tone-names {
-      &.ddp-toggle-button-#{$tone} {
-        border-color: tone-solid-bg($tone);
+		@each $tone in $tone-names {
+			&.ddp-toggle-button-#{$tone} {
+				border-color: tone-solid-bg($tone);
 
-        .ddp-toggle-button-box {
-          @include tone-solid($tone);
-        }
-      }
-    }
+				.ddp-toggle-button-box {
+					@include tone-solid($tone);
+				}
+			}
+		}
 
-    .ddp-toggle-button-check-icon {
-      opacity: 1;
-    }
-  }
+		.ddp-toggle-button-check-icon {
+			opacity: 1;
+		}
+	}
 }

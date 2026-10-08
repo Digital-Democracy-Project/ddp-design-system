@@ -1,25 +1,25 @@
-@use '../../styles/core' as *;
+@use "../../styles/core" as *;
 
 // Pure chrome — background/border/radius/shadow, no padding. Reuses the existing card() mixin directly rather than re-declaring its recipe, since that recipe is already the settled, validated look (also independently documented in the Claude Design project's own "Visual foundations" notes).
 .ddp-card {
-  @include default-styles {
-    @include card();
-  }
+	@include default-styles {
+		@include card();
+	}
 }
 
 // elevate-on-hover's own base box-shadow duplicates card()'s (both resolve to shadow('sm')) — harmless; its &:hover rule (shadow('sm') to 'md') is what actually matters.
 .ddp-card.is-interactive {
-  @include default-styles {
-    @include elevate-on-hover();
-  }
+	@include default-styles {
+		@include elevate-on-hover();
+	}
 }
 
 // Content sits in its own inner element, separate from the outer chrome, so a later addition (a full-bleed header image, a divider-separated footer section) has somewhere to sit outside this padded body without a breaking restructure. Baseline padding, color and size are set explicitly rather than left to inherit from an ambient .ddp wrapper that may not be present.
 .ddp-card-content {
-  @include default-styles {
-    padding: space(4);
-    color: text('default');
-    font-size: font-size('md');
-    line-height: line-height('md');
-  }
+	@include default-styles {
+		padding: space(4);
+		color: text("default");
+		font-size: font-size("md");
+		line-height: line-height("md");
+	}
 }

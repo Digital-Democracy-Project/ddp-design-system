@@ -1,100 +1,100 @@
-@use '../../styles/core' as *;
+@use "../../styles/core" as *;
 
 // Root class dropped "wrapper" — this is the component's block, styled directly, not an internal implementation detail. Size is a peer-choice axis (every step, including the default, is an actually-rendered look), so `ddp-text-input-md` is always explicitly applied by TextInput.tsx. Styled as md here too, but only as a documented fallback.
 .ddp-text-input {
-  display: inline-flex;
-  align-items: center;
-  width: 100%;
-  max-width: 400px;
-  background-color: surface('raised');
-  border: border-width(1) solid border-color('default');
-  border-radius: radius('md');
-  @include transition(border-color, box-shadow);
+	display: inline-flex;
+	align-items: center;
+	width: 100%;
+	max-width: 400px;
+	background-color: surface("raised");
+	border: border-width(1) solid border-color("default");
+	border-radius: radius("md");
+	@include transition(border-color, box-shadow);
 
-  gap: space('1-5');
-  padding: space(1) space(3);
-  font-size: font-size('md');
-  line-height: line-height('md');
+	gap: space("1-5");
+	padding: space(1) space(3);
+	font-size: font-size("md");
+	line-height: line-height("md");
 
-  &:focus-within {
-    border-color: color('primary');
-    box-shadow: 0 0 0 1px color('primary');
-  }
+	&:focus-within {
+		border-color: color("primary");
+		box-shadow: 0 0 0 1px color("primary");
+	}
 }
 
 // Not @include unstyled-button here — that mixin sets cursor: pointer, which is wrong for a text input (should stay the native text cursor). Named "field", not "input" — "ddp-text-input-input" would repeat "input" twice in a row.
 .ddp-text-input-field {
-  flex: 1;
-  min-width: 0;
-  border: none;
-  outline: none;
-  background: transparent;
-  font: inherit;
-  color: text('default');
-  padding: 0;
+	flex: 1;
+	min-width: 0;
+	border: none;
+	outline: none;
+	background: transparent;
+	font: inherit;
+	color: text("default");
+	padding: 0;
 
-  &::placeholder {
-    color: text('subtle');
-  }
+	&::placeholder {
+		color: text("subtle");
+	}
 }
 
 .ddp-text-input-clear-button {
-  flex-shrink: 0;
+	flex-shrink: 0;
 }
 
 .ddp-text-input-icon {
-  flex-shrink: 0;
-  color: text('soft');
+	flex-shrink: 0;
+	color: text("soft");
 }
 
 // type="search" + clearable combine in SearchBar — WebKit renders its own native cancel ("×") button for type="search" inputs, which would show alongside clearable's own IconButton-based one. Suppress the native one so there's only ever one clear control.
-.ddp-text-input-field[type='search']::-webkit-search-cancel-button {
-  display: none;
+.ddp-text-input-field[type="search"]::-webkit-search-cancel-button {
+	display: none;
 }
 
 // ---------- Sizes ----------
 
 .ddp-text-input-sm {
-  gap: space(1);
-  padding: space('0-5') space(2);
-  font-size: font-size('sm');
-  line-height: line-height('sm');
+	gap: space(1);
+	padding: space("0-5") space(2);
+	font-size: font-size("sm");
+	line-height: line-height("sm");
 }
 
 .ddp-text-input-md {
-  gap: space('1-5');
-  padding: space(1) space(3);
-  font-size: font-size('md');
-  line-height: line-height('md');
+	gap: space("1-5");
+	padding: space(1) space(3);
+	font-size: font-size("md");
+	line-height: line-height("md");
 }
 
 .ddp-text-input-lg {
-  gap: space(2);
-  padding: space('1-5') space(4);
-  font-size: font-size('lg');
-  line-height: line-height('lg');
+	gap: space(2);
+	padding: space("1-5") space(4);
+	font-size: font-size("lg");
+	line-height: line-height("lg");
 }
 
 // ---------- States ----------
 
 .ddp-text-input.is-error {
-  border-color: color('negative');
+	border-color: color("negative");
 
-  &:focus-within {
-    border-color: color('negative');
-    box-shadow: 0 0 0 1px color('negative');
-  }
+	&:focus-within {
+		border-color: color("negative");
+		box-shadow: 0 0 0 1px color("negative");
+	}
 }
 
 .ddp-text-input-error-message {
-  margin: space(1) 0 0;
-  font-size: font-size('sm');
-  color: color('negative');
+	margin: space(1) 0 0;
+	font-size: font-size("sm");
+	color: color("negative");
 }
 
 // Applied to the root directly from TSX (the field, not the root, is what's actually :disabled, so the `disabled` mixin — which targets &:disabled on itself — doesn't reach the root).
 .ddp-text-input.is-disabled {
-  cursor: not-allowed;
-  opacity: opacity(60);
-  background-color: surface('sunken');
+	cursor: not-allowed;
+	opacity: opacity(60);
+	background-color: surface("sunken");
 }

@@ -1,4 +1,4 @@
-@use 'core' as *;
+@use "core" as *;
 
 // ============================================================
 // BASE STYLES — always applied to the final compiled stylesheet, unlike the accessor/mixin layer this directory otherwise ships (index.scss forwards those specifically because they emit no CSS on their own — safe to @use in every consumer component file).
@@ -39,7 +39,7 @@ body.ddp,
 	font-weight: 900;
 	letter-spacing: var(--ddp-letter-spacing-tight);
 	color: var(--ddp-text-default);
-	margin: 0 0 .5em;
+	margin: 0 0 0.5em;
 	text-wrap: balance;
 }
 
@@ -50,7 +50,7 @@ body.ddp,
 	font-weight: 700;
 	letter-spacing: var(--ddp-letter-spacing-snug);
 	color: var(--ddp-text-default);
-	margin: 0 0 .5em;
+	margin: 0 0 0.5em;
 }
 
 .ddp h3,
@@ -59,7 +59,7 @@ body.ddp,
 	line-height: var(--ddp-line-height-xl);
 	font-weight: 600;
 	color: var(--ddp-text-default);
-	margin: 0 0 .5em;
+	margin: 0 0 0.5em;
 }
 
 .ddp .display {
@@ -138,7 +138,6 @@ body.ddp,
 }
 
 @media (prefers-reduced-motion: reduce) {
-
 	.ddp *,
 	.ddp *::before,
 	.ddp *::after {

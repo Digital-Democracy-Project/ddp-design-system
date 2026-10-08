@@ -1,4 +1,4 @@
-@use 'sass:list';
+@use "sass:list";
 
 // ============================================================
 // TOKEN ACCESSORS
@@ -9,17 +9,17 @@
 // ============================================================
 
 @function var-ref($name, $fallback: null) {
-  @if $fallback {
-    @return var(--ddp-#{$name}, #{$fallback});
-  }
+	@if $fallback {
+		@return var(--ddp-#{$name}, #{$fallback});
+	}
 
-  @return var(--ddp-#{$name});
+	@return var(--ddp-#{$name});
 }
 
 @function assert-key($value, $allowed, $label) {
-  @if list.index($allowed, $value)==null {
-    @error 'Unknown #{$label} token `#{$value}`. Expected one of: #{$allowed}.';
-  }
+	@if list.index($allowed, $value) ==null {
+		@error 'Unknown #{$label} token `#{$value}`. Expected one of: #{$allowed}.';
+	}
 
-  @return $value;
+	@return $value;
 }

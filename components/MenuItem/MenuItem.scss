@@ -1,81 +1,81 @@
-@use '../../styles/core' as *;
+@use "../../styles/core" as *;
 
 // Two ways an item can be "highlighted," matching two different keyboard-nav patterns real consumers use. In Select's roving-tabIndex listbox pattern, the actively-navigated item receives real DOM focus (Floating UI's useListNavigation), so plain &:focus styling picks it up for free — genuine focus, not a simulated one, which is how a real listbox is supposed to work. In SearchBar's combobox pattern, focus has to stay on the text input, so there's no real :focus to key off — the is-highlighted class (set from Menu's virtual focus mode) gets the identical visual treatment instead.
 .ddp-menu-item {
-  display: flex;
-  align-items: center;
-  gap: space(2);
-  padding: space('1-5') space(3);
-  font-size: font-size('sm');
-  line-height: line-height('sm');
-  color: text('default');
-  cursor: pointer;
-  border-radius: radius('sm');
-  outline: none;
-  @include transition(background-color, color);
+	display: flex;
+	align-items: center;
+	gap: space(2);
+	padding: space("1-5") space(3);
+	font-size: font-size("sm");
+	line-height: line-height("sm");
+	color: text("default");
+	cursor: pointer;
+	border-radius: radius("sm");
+	outline: none;
+	@include transition(background-color, color);
 
-  &:hover,
-  &:focus {
-    background-color: surface('sunken');
-  }
+	&:hover,
+	&:focus {
+		background-color: surface("sunken");
+	}
 }
 
 .ddp-menu-item.is-highlighted {
-  background-color: surface('sunken');
+	background-color: surface("sunken");
 }
 
 .ddp-menu-item-check-icon {
-  flex-shrink: 0;
-  color: color('primary');
+	flex-shrink: 0;
+	color: color("primary");
 }
 
 // Multi-select indicator — a persistent checkbox square, checked or not, reusing the same box language as Checkbox/ToggleButton's own indicator.
 .ddp-menu-item-box {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: space(4);
-  height: space(4);
-  background-color: surface('raised');
-  border: border-width(1) solid border-color('default');
-  border-radius: radius('sm');
-  @include transition(background-color, border-color);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: space(4);
+	height: space(4);
+	background-color: surface("raised");
+	border: border-width(1) solid border-color("default");
+	border-radius: radius("sm");
+	@include transition(background-color, border-color);
 }
 
 .ddp-menu-item.is-selected .ddp-menu-item-box {
-  background-color: color('primary');
-  border-color: color('primary');
+	background-color: color("primary");
+	border-color: color("primary");
 }
 
 .ddp-menu-item.is-selected .ddp-menu-item-box .ddp-menu-item-check-icon {
-  color: color('primary-foreground');
+	color: color("primary-foreground");
 }
 
 // A facet/entity-type icon for this specific row — e.g. distinguishing a legislator result from a bill result in a unified search. Muted, not the brand-colored treatment the selected-indicator check-icon gets, since it's identity, not a state.
 .ddp-menu-item-icon {
-  flex-shrink: 0;
-  color: text('soft');
+	flex-shrink: 0;
+	color: text("soft");
 }
 
 .ddp-menu-item-label {
-  flex: 1;
-  min-width: 0;
-  @include truncate;
+	flex: 1;
+	min-width: 0;
+	@include truncate;
 }
 
 .ddp-menu-item.is-selected {
-  font-weight: font-weight('medium');
-  color: color('primary');
+	font-weight: font-weight("medium");
+	color: color("primary");
 
-  &:hover,
-  &:focus {
-    background-color: color('primary-tint');
-  }
+	&:hover,
+	&:focus {
+		background-color: color("primary-tint");
+	}
 }
 
 .ddp-menu-item.is-disabled {
-  color: text('disabled');
-  cursor: not-allowed;
-  pointer-events: none;
+	color: text("disabled");
+	cursor: not-allowed;
+	pointer-events: none;
 }

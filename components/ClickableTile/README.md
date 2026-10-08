@@ -25,12 +25,12 @@ import Link from 'next/link';
 
 ## Props
 
-| Prop | Type | Default | Notes |
-|---|---|---|---|
-| `href` | `string` | — | Renders as a link instead of a button. Anchor-only native props (`target`, `rel`, etc.) are only available when `href` is set. |
-| `as` | `ComponentType` | `'a'` | Link-only. Swap in a router's `Link` component (Next.js's `Link`, for example) instead of a native `<a>`, for client-side routing. Must accept `href`, `className`, `children`, and forward a ref to the underlying `<a>`. React Router's `Link` takes `to` instead of `href` — wrap it in a small adapter component that renames the prop before passing it here. |
-| `disabled` | `boolean` | — | Dims the tile, removes it from the tab order, and blocks clicks — works the same for both render paths. |
-| `children` | `ReactNode` | — | Anything. |
+| Prop       | Type            | Default | Notes                                                                                                                                                                                                                                                                                                                                                              |
+| ---------- | --------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `href`     | `string`        | —       | Renders as a link instead of a button. Anchor-only native props (`target`, `rel`, etc.) are only available when `href` is set.                                                                                                                                                                                                                                     |
+| `as`       | `ComponentType` | `'a'`   | Link-only. Swap in a router's `Link` component (Next.js's `Link`, for example) instead of a native `<a>`, for client-side routing. Must accept `href`, `className`, `children`, and forward a ref to the underlying `<a>`. React Router's `Link` takes `to` instead of `href` — wrap it in a small adapter component that renames the prop before passing it here. |
+| `disabled` | `boolean`       | —       | Dims the tile, removes it from the tab order, and blocks clicks — works the same for both render paths.                                                                                                                                                                                                                                                            |
+| `children` | `ReactNode`     | —       | Anything.                                                                                                                                                                                                                                                                                                                                                          |
 
 Everything else passes straight through to the underlying `<a>`/`Link`/`<button>` (e.g. `onClick`, `target`, `rel`).
 

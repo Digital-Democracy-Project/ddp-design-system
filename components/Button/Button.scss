@@ -1,204 +1,204 @@
-@use '../../styles/core' as *;
+@use "../../styles/core" as *;
 
 // No component-token indirection layer for the standard variants — same simplification as Badge. Each variant sets background-color/color directly, including its own :hover/:active rules, since nothing outside this file ever needs to read a --ddp-button-* value for these.
 //
 // variant and size are both peer-choice axes (every value, including the default, is an actually-rendered look — there's no "off" state), so `ddp-button-primary`/`ddp-button-md` are always explicitly applied by Button.tsx, never omitted. Styled as primary + md here too, but only as a documented fallback — this isn't a substitute for those classes.
 .ddp-button {
-  @include focus-ring;
-  @include disabled;
+	@include focus-ring;
+	@include disabled;
 
-  @include default-styles {
-    @include unstyled-button;
-    @include transition(background-color, color, border-color);
+	@include default-styles {
+		@include unstyled-button;
+		@include transition(background-color, color, border-color);
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    border-radius: radius('md');
-    font-weight: font-weight('medium');
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		white-space: nowrap;
+		border-radius: radius("md");
+		font-weight: font-weight("medium");
 
-    // Default look: md size + primary variant, resting state only — no :hover/:active here. A pseudo-class on the bare block would have the same specificity as e.g. `.ddp-button-secondary:hover` and could only be beaten by an equally-specific, explicit override; `.ddp-button-link` doesn't redeclare `background-color` on hover (it only ever changes text color/underline), so it would silently inherit primary's hover background otherwise. `.ddp-button-primary` below already owns the real hover/active rule for actual primary buttons — this base copy is just enough to not look broken if that class were ever missing.
-    gap: space('1-5');
-    padding: space('1-5') space(4);
-    font-size: font-size('md');
-    line-height: line-height('md');
-    background-color: color('primary');
-    color: color('primary-foreground');
-  }
+		// Default look: md size + primary variant, resting state only — no :hover/:active here. A pseudo-class on the bare block would have the same specificity as e.g. `.ddp-button-secondary:hover` and could only be beaten by an equally-specific, explicit override; `.ddp-button-link` doesn't redeclare `background-color` on hover (it only ever changes text color/underline), so it would silently inherit primary's hover background otherwise. `.ddp-button-primary` below already owns the real hover/active rule for actual primary buttons — this base copy is just enough to not look broken if that class were ever missing.
+		gap: space("1-5");
+		padding: space("1-5") space(4);
+		font-size: font-size("md");
+		line-height: line-height("md");
+		background-color: color("primary");
+		color: color("primary-foreground");
+	}
 }
 
 // ---------- Sizes ----------
 
 .ddp-button-sm {
-  gap: space(1);
-  padding: space(1) space(3);
-  font-size: font-size('sm');
-  line-height: line-height('sm');
+	gap: space(1);
+	padding: space(1) space(3);
+	font-size: font-size("sm");
+	line-height: line-height("sm");
 }
 
 .ddp-button-md {
-  gap: space('1-5');
-  padding: space('1-5') space(4);
-  font-size: font-size('md');
-  line-height: line-height('md');
+	gap: space("1-5");
+	padding: space("1-5") space(4);
+	font-size: font-size("md");
+	line-height: line-height("md");
 }
 
 .ddp-button-lg {
-  gap: space(2);
-  padding: space(2) space(5);
-  font-size: font-size('lg');
-  line-height: line-height('lg');
+	gap: space(2);
+	padding: space(2) space(5);
+	font-size: font-size("lg");
+	line-height: line-height("lg");
 }
 
 // The consumer decides: type inherits from the surrounding text (or the consumer's own class), and padding/gap are in em so they scale with it at md's proportions (exactly md at 16px). All zero specificity, so a consumer class can set any of them. The default size for the link variant.
 .ddp-button-inherit {
-  @include default-styles {
-    gap: 0.375em;
-    padding: 0.375em 1em;
-    font-size: inherit;
-    line-height: inherit;
-  }
+	@include default-styles {
+		gap: 0.375em;
+		padding: 0.375em 1em;
+		font-size: inherit;
+		line-height: inherit;
+	}
 }
 
 // ---------- Variants ----------
 
 .ddp-button-primary {
-  background-color: color('primary');
-  color: color('primary-foreground');
+	background-color: color("primary");
+	color: color("primary-foreground");
 
-  &:hover {
-    background-color: color('primary-hover');
-  }
+	&:hover {
+		background-color: color("primary-hover");
+	}
 
-  &:active {
-    background-color: color('primary-active');
-  }
+	&:active {
+		background-color: color("primary-active");
+	}
 }
 
 .ddp-button-secondary {
-  background-color: color('secondary');
-  color: color('secondary-foreground');
+	background-color: color("secondary");
+	color: color("secondary-foreground");
 
-  &:hover {
-    background-color: color('secondary-hover');
-  }
+	&:hover {
+		background-color: color("secondary-hover");
+	}
 
-  &:active {
-    background-color: color('secondary-active');
-  }
+	&:active {
+		background-color: color("secondary-active");
+	}
 }
 
 .ddp-button-tertiary {
-  background-color: color('tertiary');
-  color: color('tertiary-foreground');
+	background-color: color("tertiary");
+	color: color("tertiary-foreground");
 
-  &:hover {
-    background-color: color('tertiary-hover');
-  }
+	&:hover {
+		background-color: color("tertiary-hover");
+	}
 
-  &:active {
-    background-color: color('tertiary-active');
-  }
+	&:active {
+		background-color: color("tertiary-active");
+	}
 }
 
 // Looks and behaves exactly like a text link: the same link() mixin as `.ddp a` (color, underline, focus ring, transition), and every box property a link doesn't have is reset (inline, wrapping, inherited type, no padding/gap/background/radius). It's still a real <button>, so assistive tech announces it as one. The resets are zero specificity, like the base block, so a consumer class can still set type or layout; size defaults to `inherit` for this variant in Button.tsx.
 .ddp-button-link {
-  @include link;
+	@include link;
 
-  &.ddp-button-underline-always {
-    @include link($underline: 'always');
-  }
+	&.ddp-button-underline-always {
+		@include link($underline: "always");
+	}
 
-  &.ddp-button-underline-none {
-    @include link($underline: 'none');
-  }
+	&.ddp-button-underline-none {
+		@include link($underline: "none");
+	}
 
-  // Rounds the focus outline (outlines follow border-radius); there's no radius otherwise, same as a link.
-  &:focus-visible {
-    border-radius: radius('sm');
-  }
+	// Rounds the focus outline (outlines follow border-radius); there's no radius otherwise, same as a link.
+	&:focus-visible {
+		border-radius: radius("sm");
+	}
 }
 
 .ddp-button-link {
-  @include default-styles {
-    display: inline;
-    white-space: normal;
-    font-weight: inherit;
-    padding: 0;
-    gap: 0;
-    background-color: transparent;
-    border-radius: 0;
-  }
+	@include default-styles {
+		display: inline;
+		white-space: normal;
+		font-weight: inherit;
+		padding: 0;
+		gap: 0;
+		background-color: transparent;
+		border-radius: 0;
+	}
 }
 
 // ---------- Appearance: outline ----------
 // Transparent background, border + text in the variant's own color, filled with that variant's existing -tint token on hover/active — reuses tokens already defined for Badge's soft appearance, nothing new added to colors_and_type.scss. No effect on .ddp-button-link (no override defined for it — same no-effect pattern Badge already uses for appearance="solid" on tone="neutral": link has no color of its own to put an outline around). `solid` (the default appearance) stays implicit — it's an on/off axis (does this button have an outline or not), unlike variant/size, so it gets no class of its own, same as Badge's `soft` appearance.
 .ddp-button-outline {
-  &.ddp-button-primary {
-    background-color: transparent;
-    color: color('primary');
-    border: border-width(1) solid color('primary');
+	&.ddp-button-primary {
+		background-color: transparent;
+		color: color("primary");
+		border: border-width(1) solid color("primary");
 
-    &:hover,
-    &:active {
-      background-color: color('primary-tint');
-    }
-  }
+		&:hover,
+		&:active {
+			background-color: color("primary-tint");
+		}
+	}
 
-  &.ddp-button-secondary {
-    background-color: transparent;
-    color: color('secondary');
-    border: border-width(1) solid color('secondary');
+	&.ddp-button-secondary {
+		background-color: transparent;
+		color: color("secondary");
+		border: border-width(1) solid color("secondary");
 
-    &:hover,
-    &:active {
-      background-color: color('secondary-tint');
-    }
-  }
+		&:hover,
+		&:active {
+			background-color: color("secondary-tint");
+		}
+	}
 
-  &.ddp-button-tertiary {
-    background-color: transparent;
-    color: color('tertiary');
-    border: border-width(1) solid color('tertiary');
+	&.ddp-button-tertiary {
+		background-color: transparent;
+		color: color("tertiary");
+		border: border-width(1) solid color("tertiary");
 
-    &:hover,
-    &:active {
-      background-color: color('tertiary-tint');
-    }
-  }
+		&:hover,
+		&:active {
+			background-color: color("tertiary-tint");
+		}
+	}
 
-  // customColors still overrides color when combined with outline — needs the same 2-class specificity as .ddp-button-outline.ddp-button-primary etc. above (plain .ddp-button-custom, at 1 class, would lose to them) and to come after them in source order to win at that equal specificity. No hover/active tint here: customColors has no separate "tint" value to draw on, so it stays flat rather than guessing at one.
-  &.ddp-button-custom {
-    background-color: transparent;
-    color: var(--ddp-button-fg);
-    border-color: var(--ddp-button-fg);
+	// customColors still overrides color when combined with outline — needs the same 2-class specificity as .ddp-button-outline.ddp-button-primary etc. above (plain .ddp-button-custom, at 1 class, would lose to them) and to come after them in source order to win at that equal specificity. No hover/active tint here: customColors has no separate "tint" value to draw on, so it stays flat rather than guessing at one.
+	&.ddp-button-custom {
+		background-color: transparent;
+		color: var(--ddp-button-fg);
+		border-color: var(--ddp-button-fg);
 
-    &:hover,
-    &:active {
-      background-color: transparent;
-    }
-  }
+		&:hover,
+		&:active {
+			background-color: transparent;
+		}
+	}
 }
 
 // ---------- Custom colors escape hatch ----------
 // The one place Button still uses CSS custom properties, and only because inline `style` (what the `customColors` prop sets these from) has no way to express a pseudo-class — ":hover, use this color" has to read from something. --ddp-button-bg-hover/-active fall back to the base color via var()'s second argument when Button.tsx doesn't set them (i.e. `backgroundHover`/`backgroundActive` were omitted from `customColors`).
 .ddp-button-custom {
-  background-color: var(--ddp-button-bg);
-  color: var(--ddp-button-fg);
+	background-color: var(--ddp-button-bg);
+	color: var(--ddp-button-fg);
 
-  &:hover {
-    background-color: var(--ddp-button-bg-hover, var(--ddp-button-bg));
-  }
+	&:hover {
+		background-color: var(--ddp-button-bg-hover, var(--ddp-button-bg));
+	}
 
-  &:active {
-    background-color: var(--ddp-button-bg-active, var(--ddp-button-bg));
-  }
+	&:active {
+		background-color: var(--ddp-button-bg-active, var(--ddp-button-bg));
+	}
 
-  // link has no background by design — customColors only overrides its text color, not the transparent background. (Its hover color still comes from .ddp-button-link:hover above, which is more specific than .ddp-button-custom, so the built-in link-hover tone intentionally still wins on hover.)
-  &.ddp-button-link,
-  &.ddp-button-link:hover,
-  &.ddp-button-link:active {
-    background-color: transparent;
-  }
+	// link has no background by design — customColors only overrides its text color, not the transparent background. (Its hover color still comes from .ddp-button-link:hover above, which is more specific than .ddp-button-custom, so the built-in link-hover tone intentionally still wins on hover.)
+	&.ddp-button-link,
+	&.ddp-button-link:hover,
+	&.ddp-button-link:active {
+		background-color: transparent;
+	}
 }

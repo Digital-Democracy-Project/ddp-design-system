@@ -23,14 +23,14 @@ import { ToggleButton } from '@digital-democracy-project/design-system';
 
 ## Props
 
-| Prop | Type | Default | Notes |
-|---|---|---|---|
-| `pressed` / `defaultPressed` | `boolean` | — | Controlled/uncontrolled, same convention as `Checkbox`'s `checked`/`defaultChecked`. |
-| `onPressedChange` | `(pressed: boolean) => void` | — | |
-| `tone` | `'neutral' \| 'primary' \| 'secondary' \| 'tertiary'` | `'primary'` | Same vocabulary as `Badge`'s `tone`. `'neutral'` has no dedicated brand color token (same reasoning as `Badge`), so its pressed state inverts using `text()`/`surface()` tokens instead of a `color()` value — monochrome by design, not a guessed "neutral color." |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Same padding/font scale as `Button`, so the two sit comfortably in the same row. |
-| `indicator` | `'checkbox'` | — (omit for the plain pill) | See above — not a peer shape, just present or absent. |
-| `children` | `ReactNode` | — | The button's label. |
+| Prop                         | Type                                                  | Default                     | Notes                                                                                                                                                                                                                                                               |
+| ---------------------------- | ----------------------------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pressed` / `defaultPressed` | `boolean`                                             | —                           | Controlled/uncontrolled, same convention as `Checkbox`'s `checked`/`defaultChecked`.                                                                                                                                                                                |
+| `onPressedChange`            | `(pressed: boolean) => void`                          | —                           |                                                                                                                                                                                                                                                                     |
+| `tone`                       | `'neutral' \| 'primary' \| 'secondary' \| 'tertiary'` | `'primary'`                 | Same vocabulary as `Badge`'s `tone`. `'neutral'` has no dedicated brand color token (same reasoning as `Badge`), so its pressed state inverts using `text()`/`surface()` tokens instead of a `color()` value — monochrome by design, not a guessed "neutral color." |
+| `size`                       | `'sm' \| 'md' \| 'lg'`                                | `'md'`                      | Same padding/font scale as `Button`, so the two sit comfortably in the same row.                                                                                                                                                                                    |
+| `indicator`                  | `'checkbox'`                                          | — (omit for the plain pill) | See above — not a peer shape, just present or absent.                                                                                                                                                                                                               |
+| `children`                   | `ReactNode`                                           | —                           | The button's label.                                                                                                                                                                                                                                                 |
 
 Everything else is a normal `<button>` prop and passes through untouched. Accepts a `ref` to the underlying `<button>` element.
 

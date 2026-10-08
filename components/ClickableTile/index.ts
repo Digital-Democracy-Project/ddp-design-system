@@ -1,1 +1,1 @@
-export * from './ClickableTile';
+export * from './ClickableTile'

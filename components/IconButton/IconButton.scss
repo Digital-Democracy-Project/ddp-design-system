@@ -1,60 +1,78 @@
-@use '../../styles/core' as *;
+@use "../../styles/core" as *;
 
 // Deliberately opinionated: the icon lives inside the component (an `iconName` prop, not children) — this is a single-purpose control, a button whose only content is one centered icon. unstyled-button already resets padding to 0, which is the correct default here: the one treatment actually validated (a live reference clear-button) has no padding at all, just tap-target's invisible hit-area expansion. Explicit `padding`/`width`/`height` props (applied as inline style in the component) override this per-instance.
 //
 // `theme` is an on/off axis, not peer-choice: the default (no theme prop) is a genuine absence of color chrome (transparent, muted text) — not a fourth peer color alongside primary/secondary/tertiary — so it has no class of its own, folded directly into the base class below.
 .ddp-icon-button {
-  @include focus-ring;
-  @include disabled;
-  @include tap-target;
+	@include focus-ring;
+	@include disabled;
+	@include tap-target;
 
-  @include default-styles {
-    @include unstyled-button;
-    @include transition(background-color, color);
+	@include default-styles {
+		@include unstyled-button;
+		@include transition(background-color, color);
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: radius('sm');
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: radius("sm");
 
-    background-color: transparent;
-    color: text('soft');
+		background-color: transparent;
+		color: text("soft");
 
-    &:hover,
-    &:active {
-      color: text('default');
-    }
-  }
+		&:hover,
+		&:active {
+			color: text("default");
+		}
+	}
 }
 
 .ddp-icon-button-fill {
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 // ---------- Themes ----------
 // Each theme's :hover/:active redeclares `color`, not just `background-color` — the base class's own `:hover, :active { color: text('soft') }` rule (folded in for the no-theme default) has equal specificity to `.ddp-icon-button-primary:hover` and would otherwise win on the `color` property alone, reverting a themed icon to muted gray on hover/active instead of staying its safe-on-solid foreground color.
 
 .ddp-icon-button-primary {
-  background-color: color('primary');
-  color: color('primary-foreground');
+	background-color: color("primary");
+	color: color("primary-foreground");
 
-  &:hover { background-color: color('primary-hover'); color: color('primary-foreground'); }
-  &:active { background-color: color('primary-active'); color: color('primary-foreground'); }
+	&:hover {
+		background-color: color("primary-hover");
+		color: color("primary-foreground");
+	}
+	&:active {
+		background-color: color("primary-active");
+		color: color("primary-foreground");
+	}
 }
 
 .ddp-icon-button-secondary {
-  background-color: color('secondary');
-  color: color('secondary-foreground');
+	background-color: color("secondary");
+	color: color("secondary-foreground");
 
-  &:hover { background-color: color('secondary-hover'); color: color('secondary-foreground'); }
-  &:active { background-color: color('secondary-active'); color: color('secondary-foreground'); }
+	&:hover {
+		background-color: color("secondary-hover");
+		color: color("secondary-foreground");
+	}
+	&:active {
+		background-color: color("secondary-active");
+		color: color("secondary-foreground");
+	}
 }
 
 .ddp-icon-button-tertiary {
-  background-color: color('tertiary');
-  color: color('tertiary-foreground');
+	background-color: color("tertiary");
+	color: color("tertiary-foreground");
 
-  &:hover { background-color: color('tertiary-hover'); color: color('tertiary-foreground'); }
-  &:active { background-color: color('tertiary-active'); color: color('tertiary-foreground'); }
+	&:hover {
+		background-color: color("tertiary-hover");
+		color: color("tertiary-foreground");
+	}
+	&:active {
+		background-color: color("tertiary-active");
+		color: color("tertiary-foreground");
+	}
 }

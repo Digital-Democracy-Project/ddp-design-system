@@ -1,16 +1,16 @@
-@use '../core/tokens' as *;
+@use "../core/tokens" as *;
 
 // Ordinal grade scale utilities. Put `ddp-scale-{1–5}` on any element that represents a grade: it gets that step's soft look (tint background, tint-foreground text) and sets --ddp-scale-base, so descendants can use scale-base() for softer secondary text in the step's base color instead of fading text with opacity. `ddp-scale-none` is the ungraded state, in the neutral tone, so a grade element always takes exactly one of these classes and never needs a fallback of its own (a fallback in a component module would load after this file and override every step).
 @for $step from 1 through 5 {
-  .ddp-scale-#{$step} {
-    background-color: scale($step, 'tint');
-    color: scale($step, 'tint-foreground');
-    --ddp-scale-base: #{scale($step)};
-  }
+	.ddp-scale-#{$step} {
+		background-color: scale($step, "tint");
+		color: scale($step, "tint-foreground");
+		--ddp-scale-base: #{scale($step)};
+	}
 }
 
 .ddp-scale-none {
-  background-color: color('neutral-tint');
-  color: color('neutral-tint-foreground');
-  --ddp-scale-base: #{color('neutral')};
+	background-color: color("neutral-tint");
+	color: color("neutral-tint-foreground");
+	--ddp-scale-base: #{color("neutral")};
 }

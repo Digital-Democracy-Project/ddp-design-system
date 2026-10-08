@@ -1,4 +1,4 @@
-@use '../../styles/core' as *;
+@use "../../styles/core" as *;
 
 // No new component-token indirection here — --ddp-icon-size-* is already scoped specifically to icons, so there's nothing meaningful to alias.
 //
@@ -6,33 +6,33 @@
 //
 // Size is a peer-choice axis (every step, including the default, is an actually-rendered size — there's no "off" state) — so `md` gets its own class same as every other step, always explicitly applied. Styled as `md` here too, as a documented fallback only: `ddp-icon-md` is still applied by Icon.tsx in the default case, this isn't a substitute for it.
 .ddp-icon {
-  display: inline-flex;
-  flex: none;
-  width: icon-size('md');
-  height: icon-size('md');
+	display: inline-flex;
+	flex: none;
+	width: icon-size("md");
+	height: icon-size("md");
 }
 
 .ddp-icon-xs {
-  width: icon-size('xs');
-  height: icon-size('xs');
+	width: icon-size("xs");
+	height: icon-size("xs");
 }
 
 .ddp-icon-sm {
-  width: icon-size('sm');
-  height: icon-size('sm');
+	width: icon-size("sm");
+	height: icon-size("sm");
 }
 
 .ddp-icon-md {
-  width: icon-size('md');
-  height: icon-size('md');
+	width: icon-size("md");
+	height: icon-size("md");
 }
 
 .ddp-icon-lg {
-  width: icon-size('lg');
-  height: icon-size('lg');
+	width: icon-size("lg");
+	height: icon-size("lg");
 }
 
 .ddp-icon-xl {
-  width: icon-size('xl');
-  height: icon-size('xl');
+	width: icon-size("xl");
+	height: icon-size("xl");
 }

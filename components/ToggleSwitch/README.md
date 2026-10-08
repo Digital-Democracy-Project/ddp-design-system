@@ -1,6 +1,6 @@
 # ToggleSwitch
 
-A physical track-and-knob on/off switch — a real `<input type="checkbox" role="switch">`, visually hidden and paired with a custom-styled track/thumb driven off its own native state. Distinct from `ToggleButton` (a pill/chip-style button for a toggleable *action*); this one represents a boolean *setting*, the same conceptual role as `Checkbox`, just a different visual affordance.
+A physical track-and-knob on/off switch — a real `<input type="checkbox" role="switch">`, visually hidden and paired with a custom-styled track/thumb driven off its own native state. Distinct from `ToggleButton` (a pill/chip-style button for a toggleable _action_); this one represents a boolean _setting_, the same conceptual role as `Checkbox`, just a different visual affordance.
 
 ## Usage
 
@@ -14,12 +14,12 @@ import { ToggleSwitch } from '@digital-democracy-project/design-system';
 
 ## Props
 
-| Prop | Type | Default | Notes |
-|---|---|---|---|
-| `checked` / `defaultChecked` | `boolean` | — | Controlled/uncontrolled, same convention as `Checkbox`. |
-| `onChange` | `(checked: boolean) => void` | — | Plain boolean, not a native event — matches `Checkbox`/`TextInput`'s plain-value convention. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Track `32×18` / `40×22` / `48×26`px, thumb `14` / `18` / `22`px. Component-local dimensions — see design notes. |
-| `children` | `ReactNode` | — | Label content, rendered next to the switch inside the same `<label>`. Omit for an unlabeled use and pass `aria-label` instead, same contract `Checkbox`'s `children` follows. |
+| Prop                         | Type                         | Default | Notes                                                                                                                                                                         |
+| ---------------------------- | ---------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `checked` / `defaultChecked` | `boolean`                    | —       | Controlled/uncontrolled, same convention as `Checkbox`.                                                                                                                       |
+| `onChange`                   | `(checked: boolean) => void` | —       | Plain boolean, not a native event — matches `Checkbox`/`TextInput`'s plain-value convention.                                                                                  |
+| `size`                       | `'sm' \| 'md' \| 'lg'`       | `'md'`  | Track `32×18` / `40×22` / `48×26`px, thumb `14` / `18` / `22`px. Component-local dimensions — see design notes.                                                               |
+| `children`                   | `ReactNode`                  | —       | Label content, rendered next to the switch inside the same `<label>`. Omit for an unlabeled use and pass `aria-label` instead, same contract `Checkbox`'s `children` follows. |
 
 Everything else is a normal `<input>` prop and passes through untouched. Accepts a `ref` to the underlying `<input>` element.
 

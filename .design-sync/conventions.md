@@ -26,10 +26,12 @@ Read `styles.css` (and what it `@import`s) before styling anything — it's the 
 
 ```jsx
 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--ddp-space-2)' }}>
-  <Button variant="primary">
-    <Icon name="check" size="sm" />
-    Confirm
-  </Button>
-  <Badge tone="positive" appearance="soft">Active</Badge>
+	<Button variant="primary">
+		<Icon name="check" size="sm" />
+		Confirm
+	</Button>
+	<Badge tone="positive" appearance="soft">
+		Active
+	</Badge>
 </div>
 ```
