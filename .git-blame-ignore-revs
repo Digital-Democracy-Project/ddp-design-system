@@ -1,0 +1,4 @@
+# Commits that only reformat code. git blame (and GitHub's blame view) skips them, so lines stay attributed to the commit that actually wrote them. Locally: git config blame.ignoreRevsFile .git-blame-ignore-revs
+
+# Prettier reformat of the whole code base, 2026-10-08
+5bbb232a5a5cb7b6133908dafc07cfb8e3d170b5
