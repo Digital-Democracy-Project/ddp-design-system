@@ -4,23 +4,26 @@
 //
 // `theme` is an on/off axis, not peer-choice: the default (no theme prop) is a genuine absence of color chrome (transparent, muted text) — not a fourth peer color alongside primary/secondary/tertiary — so it has no class of its own, folded directly into the base class below.
 .ddp-icon-button {
-  @include unstyled-button;
   @include focus-ring;
   @include disabled;
-  @include transition(background-color, color);
   @include tap-target;
 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: radius('sm');
+  @include default-styles {
+    @include unstyled-button;
+    @include transition(background-color, color);
 
-  background-color: transparent;
-  color: text('soft');
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: radius('sm');
 
-  &:hover,
-  &:active {
-    color: text('default');
+    background-color: transparent;
+    color: text('soft');
+
+    &:hover,
+    &:active {
+      color: text('default');
+    }
   }
 }
 
