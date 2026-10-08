@@ -6,143 +6,207 @@
 // Forwarding it through index.scss would mean every consumer component using `@use '.../styles' as *;` silently re-emits this into their own compiled CSS.
 // ============================================================
 
-/* ------------------------------------------------------------
-	RESET — always applied, not opt-in via .ddp.
-	box-sizing: border-box everywhere, so a component's own border/padding never grows its rendered box past a width it sets itself (the classic content-box overflow bug — a select's trigger or text input at width:100% plus a 1px border would otherwise overflow its container by 2px).
-	Standard practice for any component library that ships one global stylesheet, same as Normalize/sanitize.css/Tailwind's preflight/Bootstrap's reboot.
-	Unconditional, unlike the .ddp-scoped styles below — no component here requires consumers to wrap their page in .ddp, so a reset scoped to it wouldn't reach them for a consumer who never uses that wrapper.
-	------------------------------------------------------------ */
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
+/* Layer order, lowest first: the element reset, then the `.ddp` element defaults. Both are layered, so any unlayered class (and any layer declared later) beats them whatever its specificity, which is also why neither needs :where(). */
+@layer ddp-reset, ddp-base;
+
+/* ============================================================
+   ELEMENT RESET  (always applied, not opt-in via .ddp)
+   Strips browser defaults so every element starts from a neutral baseline and gets its look only from component and consumer styles. Unconditional because no component here requires its consumer to wrap the page in .ddp, so the baseline components are built on has to hold without it.
+   ============================================================ */
+@layer ddp-reset {
+	/* No browser margins or padding, and a border only needs a width and color to appear. border-box so a component's own border and padding never grow its box past a width it sets (an input at width: 100% plus a 1px border would otherwise overflow its container by 2px). */
+	*,
+	*::before,
+	*::after {
+		margin: 0;
+		padding: 0;
+		border: 0 solid;
+		box-sizing: border-box;
+	}
+
+	/* Stops iOS inflating text in landscape. */
+	html {
+		-webkit-text-size-adjust: 100%;
+		text-size-adjust: 100%;
+	}
+
+	/* Lists carry no bullets or indent; a list that wants markers styles them itself. */
+	ul,
+	ol,
+	menu {
+		list-style: none;
+	}
+
+	/* Long words and URLs wrap instead of overflowing. */
+	p,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	li,
+	dd,
+	blockquote {
+		overflow-wrap: break-word;
+	}
+
+	/* Media are blocks (no stray baseline gap) and never overflow their container. */
+	img,
+	svg,
+	video,
+	canvas,
+	iframe {
+		display: block;
+	}
+
+	img,
+	video {
+		max-width: 100%;
+		height: auto;
+	}
+
+	/* Form controls inherit type and color from their context, with no browser chrome. */
+	button,
+	input,
+	select,
+	textarea {
+		font: inherit;
+		letter-spacing: inherit;
+		color: inherit;
+		background-color: transparent;
+	}
+
+	button {
+		cursor: pointer;
+	}
+
+	/* Can only grow taller, so a user can't drag it wider than its container. */
+	textarea {
+		resize: vertical;
+	}
 }
 
 /* ============================================================
    BASE ELEMENT STYLES  (opt-in via .ddp)
+   The design system's typographic defaults for raw elements, for pages that put .ddp on <body> or a wrapper.
    ============================================================ */
-body.ddp,
-.ddp {
-	font-family: var(--ddp-font-family-sans);
-	font-size: var(--ddp-font-size-md);
-	line-height: var(--ddp-line-height-md);
-	color: var(--ddp-text-default);
-	background: var(--ddp-surface-page);
-	-webkit-font-smoothing: antialiased;
-	text-rendering: optimizeLegibility;
-}
+@layer ddp-base {
+	body.ddp,
+	.ddp {
+		font-family: var(--ddp-font-family-sans);
+		font-size: var(--ddp-font-size-md);
+		line-height: var(--ddp-line-height-md);
+		color: var(--ddp-text-default);
+		background: var(--ddp-surface-page);
+		-webkit-font-smoothing: antialiased;
+		text-rendering: optimizeLegibility;
 
-.ddp h1,
-.ddp .h1 {
-	font-size: var(--ddp-font-size-3xl);
-	line-height: var(--ddp-line-height-3xl);
-	font-weight: 900;
-	letter-spacing: var(--ddp-letter-spacing-tight);
-	color: var(--ddp-text-default);
-	margin: 0 0 0.5em;
-	text-wrap: balance;
-}
+		h1,
+		.h1 {
+			font-size: var(--ddp-font-size-3xl);
+			line-height: var(--ddp-line-height-3xl);
+			font-weight: 900;
+			letter-spacing: var(--ddp-letter-spacing-tight);
+			text-wrap: balance;
+		}
 
-.ddp h2,
-.ddp .h2 {
-	font-size: var(--ddp-font-size-2xl);
-	line-height: var(--ddp-line-height-2xl);
-	font-weight: 700;
-	letter-spacing: var(--ddp-letter-spacing-snug);
-	color: var(--ddp-text-default);
-	margin: 0 0 0.5em;
-}
+		h2,
+		.h2 {
+			font-size: var(--ddp-font-size-2xl);
+			line-height: var(--ddp-line-height-2xl);
+			font-weight: 700;
+			letter-spacing: var(--ddp-letter-spacing-snug);
+		}
 
-.ddp h3,
-.ddp .h3 {
-	font-size: var(--ddp-font-size-xl);
-	line-height: var(--ddp-line-height-xl);
-	font-weight: 600;
-	color: var(--ddp-text-default);
-	margin: 0 0 0.5em;
-}
+		h3,
+		.h3 {
+			font-size: var(--ddp-font-size-xl);
+			line-height: var(--ddp-line-height-xl);
+			font-weight: 600;
+		}
 
-.ddp .display {
-	font-size: var(--ddp-font-size-5xl);
-	line-height: 1.05;
-	font-weight: 800;
-	letter-spacing: var(--ddp-letter-spacing-tight);
-	color: var(--ddp-text-default);
-	text-wrap: balance;
-}
+		.display {
+			font-size: var(--ddp-font-size-5xl);
+			line-height: 1.05;
+			font-weight: 800;
+			letter-spacing: var(--ddp-letter-spacing-tight);
+			text-wrap: balance;
+		}
 
-.ddp p {
-	margin: 0 0 1em;
-	color: var(--ddp-text-default);
-}
+		p {
+			// Running text never runs wider than the design system's paragraph width.
+			max-width: var(--ddp-paragraph-width);
 
-.ddp p.lead {
-	font-size: var(--ddp-font-size-lg);
-	line-height: var(--ddp-line-height-lg);
-	color: var(--ddp-text-default);
-}
+			// Only consecutive paragraphs get space between them, so a lone paragraph never brings margin into a layout that spaces with gap.
+			+ p {
+				margin-block-start: 1em;
+			}
 
-.ddp small,
-.ddp .small {
-	font-size: var(--ddp-font-size-sm);
-	line-height: var(--ddp-line-height-sm);
-	color: var(--ddp-text-subtle);
-}
+			&.lead {
+				font-size: var(--ddp-font-size-lg);
+				line-height: var(--ddp-line-height-lg);
+			}
+		}
 
-.ddp .eyebrow {
-	font-size: var(--ddp-font-size-xs);
-	letter-spacing: var(--ddp-letter-spacing-widest);
-	font-weight: 700;
-	text-transform: uppercase;
-	color: var(--ddp-color-primary);
-	display: inline-block;
-}
+		small,
+		.small {
+			font-size: var(--ddp-font-size-sm);
+			line-height: var(--ddp-line-height-sm);
+			color: var(--ddp-text-subtle);
+		}
 
-.ddp .section-label {
-	font-size: var(--ddp-font-size-2xs);
-	letter-spacing: var(--ddp-letter-spacing-wide);
-	font-weight: 700;
-	text-transform: uppercase;
-	color: var(--ddp-text-subtle);
-	display: inline-block;
-}
+		.eyebrow {
+			@include eyebrow;
+			display: inline-block;
+		}
 
-.ddp a {
-	@include link;
-}
+		.section-label {
+			@include section-label;
+			display: inline-block;
+		}
 
-.ddp code,
-.ddp .mono {
-	font-family: var(--ddp-font-family-mono);
-	font-size: 0.92em;
-	background: var(--ddp-surface-sunken);
-	padding: 0.1em 0.35em;
-	border-radius: var(--ddp-radius-sm);
-}
+		a {
+			@include link;
+		}
 
-.ddp blockquote {
-	font-family: var(--ddp-font-family-serif);
-	font-style: italic;
-	font-size: var(--ddp-font-size-2xl);
-	line-height: var(--ddp-line-height-2xl);
-	color: var(--ddp-text-default);
-	border-left: 4px solid var(--ddp-color-primary);
-	padding: var(--ddp-space-2) 0 var(--ddp-space-2) var(--ddp-space-6);
-	margin: 0;
-}
+		code,
+		.mono {
+			font-family: var(--ddp-font-family-mono);
+			font-size: 0.92em;
+			background: var(--ddp-surface-sunken);
+			padding: 0.1em 0.35em;
+			border-radius: var(--ddp-radius-sm);
+		}
 
-.ddp :focus-visible {
-	outline: var(--ddp-focus-ring-width) solid var(--ddp-focus-ring-color);
-	outline-offset: var(--ddp-focus-ring-offset);
-	border-radius: var(--ddp-radius-xs);
-}
+		blockquote {
+			font-family: var(--ddp-font-family-serif);
+			font-style: italic;
+			font-size: var(--ddp-font-size-2xl);
+			line-height: var(--ddp-line-height-2xl);
+			border-left: 4px solid var(--ddp-color-primary);
+			padding: var(--ddp-space-2) 0 var(--ddp-space-2) var(--ddp-space-6);
+		}
 
-@media (prefers-reduced-motion: reduce) {
-	.ddp *,
-	.ddp *::before,
-	.ddp *::after {
-		animation-duration: 1ms !important;
-		animation-iteration-count: 1 !important;
-		transition-duration: 1ms !important;
+		::placeholder {
+			opacity: 1;
+			color: var(--ddp-text-subtle);
+		}
+
+		:focus-visible {
+			outline: var(--ddp-focus-ring-width) solid var(--ddp-focus-ring-color);
+			outline-offset: var(--ddp-focus-ring-offset);
+			border-radius: var(--ddp-radius-xs);
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			*,
+			*::before,
+			*::after {
+				animation-duration: 1ms !important;
+				animation-iteration-count: 1 !important;
+				transition-duration: 1ms !important;
+			}
+		}
 	}
 }

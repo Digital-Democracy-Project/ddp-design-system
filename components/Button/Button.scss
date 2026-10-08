@@ -17,6 +17,7 @@
 		white-space: nowrap;
 		border-radius: radius("md");
 		font-weight: font-weight("medium");
+		text-decoration: none;
 
 		// Default look: md size + primary variant, resting state only — no :hover/:active here. A pseudo-class on the bare block would have the same specificity as e.g. `.ddp-button-secondary:hover` and could only be beaten by an equally-specific, explicit override; `.ddp-button-link` doesn't redeclare `background-color` on hover (it only ever changes text color/underline), so it would silently inherit primary's hover background otherwise. `.ddp-button-primary` below already owns the real hover/active rule for actual primary buttons — this base copy is just enough to not look broken if that class were ever missing.
 		gap: space("1-5");

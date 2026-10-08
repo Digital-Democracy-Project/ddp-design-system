@@ -119,6 +119,7 @@
 		$color: color("primary");
 	}
 	font-size: font-size("xs");
+	line-height: line-height("xs");
 	font-weight: font-weight("bold");
 	letter-spacing: tracking("widest");
 	text-transform: uppercase;
@@ -131,6 +132,7 @@
 		$color: text("subtle");
 	}
 	font-size: font-size("2xs");
+	line-height: line-height("2xs");
 	font-weight: font-weight("bold");
 	letter-spacing: tracking("wide");
 	text-transform: uppercase;
@@ -206,6 +208,12 @@
 	color: inherit;
 	text-align: inherit;
 	cursor: pointer;
+}
+
+/// Strip the `.ddp a` link styling from a link that gets its whole look from its own class (nav, buttons, cards, list rows). Include it first, so the class's own color wins.
+@mixin unstyled-link {
+	color: inherit;
+	text-decoration: none;
 }
 
 /// Text link: link color, the standard focus ring, and an underline that by default fades in on hover and keyboard focus. Uses text-decoration rather than a bottom border so the underline follows each line of text in any display mode (a border belongs to the box: on a block or flex-item link it spans the full width, only marks the last wrapped line, and adds height). The single recipe behind `.ddp a` and Button's link variant. On a <button>, include unstyled-button first, since it resets color.

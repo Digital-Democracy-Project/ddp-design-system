@@ -123,7 +123,7 @@ The one exception is `tokens.breakpoints` — plain pixel numbers, the media-que
 
 **Surface** — `card` · `elevate-on-hover`
 
-**Interaction** — `transition` · `disabled` · `unstyled-button`
+**Interaction** — `transition` · `disabled` · `unstyled-button` · `unstyled-link`
 
 **Layout** — `container` · `stack` · `cluster` · `auto-grid` · `media` · `media-below` · `media-between`
 
