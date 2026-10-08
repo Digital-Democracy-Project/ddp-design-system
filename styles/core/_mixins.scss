@@ -216,17 +216,28 @@
   padding-inline: var(--ddp-gutter);
 }
 
-/// Vertical rhythm via gap.
-@mixin stack($gap: 4) {
+/// Vertical flow (a column): children stack with a gap and stretch to full width by default, which is what you want vertically. $align/$justify are optional overrides.
+@mixin stack($gap: 4, $align: null, $justify: null) {
   display: flex;
   flex-direction: column;
+  @if $align { align-items: $align; }
+  @if $justify { justify-content: $justify; }
   gap: space($gap);
 }
 
-/// Horizontal group via gap.
-@mixin cluster($gap: 2, $align: center, $wrap: wrap) {
+/// Row of items on one line: the everyday flex row. Centered on the cross axis by default (the most common reason to reach for a row); never wraps — use cluster() for groups that should flow onto new lines.
+@mixin row($gap: 2, $align: center, $justify: null) {
   display: flex;
   align-items: $align;
+  @if $justify { justify-content: $justify; }
+  gap: space($gap);
+}
+
+/// Wrapping group (tags, filter chips, button groups): items flow onto new lines when they run out of room. For a single non-wrapping row, use row().
+@mixin cluster($gap: 2, $align: center, $justify: null, $wrap: wrap) {
+  display: flex;
+  align-items: $align;
+  @if $justify { justify-content: $justify; }
   flex-wrap: $wrap;
   gap: space($gap);
 }
