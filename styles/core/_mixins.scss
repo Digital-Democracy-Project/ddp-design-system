@@ -9,6 +9,15 @@
 // The things CSS custom properties cannot express at author time.
 // ============================================================
 
+// ---------- Component defaults ----------
+
+/// Compiles to :where(<selector>), at zero specificity, so any consumer class overrides these styles regardless of stylesheet order. Prop choices (a size or tone class) and accessibility guarantees (focus ring, disabled) stay outside it.
+@mixin default-styles {
+  :where(&) {
+    @content;
+  }
+}
+
 // ---------- Accessibility ----------
 
 /// Standard focus treatment. Keyboard only — pointer users never see it.

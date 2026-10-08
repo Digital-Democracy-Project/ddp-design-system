@@ -3,31 +3,29 @@
 // No component-token indirection layer for the standard variants — same simplification as Badge. Each variant sets background-color/color directly, including its own :hover/:active rules, since nothing outside this file ever needs to read a --ddp-button-* value for these.
 //
 // variant and size are both peer-choice axes (every value, including the default, is an actually-rendered look — there's no "off" state), so `ddp-button-primary`/`ddp-button-md` are always explicitly applied by Button.tsx, never omitted. Styled as primary + md here too, but only as a documented fallback — this isn't a substitute for those classes.
-//
-// Overridable defaults sit in :where(), which matches the same elements at zero specificity, so a consumer's className (one class, 0,1,0) beats them regardless of which stylesheet loads first. That covers the base block, the `inherit` size and the link variant's resets. What the design system decides stays at normal specificity: the sm/md/lg sizes, the variant colors, the focus ring and the disabled treatment.
 .ddp-button {
   @include focus-ring;
   @include disabled;
-}
 
-:where(.ddp-button) {
-  @include unstyled-button;
-  @include transition(background-color, color, border-color);
+  @include default-styles {
+    @include unstyled-button;
+    @include transition(background-color, color, border-color);
 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  border-radius: radius('md');
-  font-weight: font-weight('medium');
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: radius('md');
+    font-weight: font-weight('medium');
 
-  // Default look: md size + primary variant, resting state only — no :hover/:active here. A pseudo-class on the bare block would have the same specificity as e.g. `.ddp-button-secondary:hover` and could only be beaten by an equally-specific, explicit override; `.ddp-button-link` doesn't redeclare `background-color` on hover (it only ever changes text color/underline), so it would silently inherit primary's hover background otherwise. `.ddp-button-primary` below already owns the real hover/active rule for actual primary buttons — this base copy is just enough to not look broken if that class were ever missing.
-  gap: space('1-5');
-  padding: space('1-5') space(4);
-  font-size: font-size('md');
-  line-height: line-height('md');
-  background-color: color('primary');
-  color: color('primary-foreground');
+    // Default look: md size + primary variant, resting state only — no :hover/:active here. A pseudo-class on the bare block would have the same specificity as e.g. `.ddp-button-secondary:hover` and could only be beaten by an equally-specific, explicit override; `.ddp-button-link` doesn't redeclare `background-color` on hover (it only ever changes text color/underline), so it would silently inherit primary's hover background otherwise. `.ddp-button-primary` below already owns the real hover/active rule for actual primary buttons — this base copy is just enough to not look broken if that class were ever missing.
+    gap: space('1-5');
+    padding: space('1-5') space(4);
+    font-size: font-size('md');
+    line-height: line-height('md');
+    background-color: color('primary');
+    color: color('primary-foreground');
+  }
 }
 
 // ---------- Sizes ----------
@@ -54,11 +52,13 @@
 }
 
 // The consumer decides: type inherits from the surrounding text (or the consumer's own class), and padding/gap are in em so they scale with it at md's proportions (exactly md at 16px). All zero specificity, so a consumer class can set any of them. The default size for the link variant.
-:where(.ddp-button-inherit) {
-  gap: 0.375em;
-  padding: 0.375em 1em;
-  font-size: inherit;
-  line-height: inherit;
+.ddp-button-inherit {
+  @include default-styles {
+    gap: 0.375em;
+    padding: 0.375em 1em;
+    font-size: inherit;
+    line-height: inherit;
+  }
 }
 
 // ---------- Variants ----------
@@ -120,14 +120,16 @@
   }
 }
 
-:where(.ddp-button-link) {
-  display: inline;
-  white-space: normal;
-  font-weight: inherit;
-  padding: 0;
-  gap: 0;
-  background-color: transparent;
-  border-radius: 0;
+.ddp-button-link {
+  @include default-styles {
+    display: inline;
+    white-space: normal;
+    font-weight: inherit;
+    padding: 0;
+    gap: 0;
+    background-color: transparent;
+    border-radius: 0;
+  }
 }
 
 // ---------- Appearance: outline ----------

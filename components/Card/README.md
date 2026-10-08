@@ -22,6 +22,7 @@ import { Card } from '@digital-democracy-project/design-system';
 | Prop | Type | Default | Notes |
 |---|---|---|---|
 | `interactive` | `boolean` | — | Raises the card's elevation on hover (`shadow('sm')` → `shadow('md')`) — for a card used as a clickable list row. Off by default; a static card shouldn't imply it's clickable. |
+| `contentClassName` | `string` | — | Class for the inner content element. Every Card style (chrome and content) is a zero-specificity default, so this — a spacing utility like `pa-5`, or a module class — overrides padding, color or type with plain CSS; `className` does the same for the outer chrome. |
 | `children` | `ReactNode` | — | Anything. |
 
 Everything else is a normal `<div>` prop and passes through untouched (e.g. `onClick`, if you're making the whole card clickable yourself).
