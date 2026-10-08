@@ -1,22 +1,31 @@
 @use 'sass:map';
 
 @use 'functions' as *;
+@use 'tokens/raw' as *;
 
-/// Min-width breakpoints, mobile first.
-/// Mirrors --ddp-breakpoint-* in colors_and_type.scss.
-$breakpoints: (
-  'sm':  toRem(480),
-  'md':  toRem(768),
-  'lg':  toRem(1024),
-  'xl':  toRem(1280),
-  '2xl': toRem(1536),
-) !default;
+// One width scale ($raw-widths, xs–2xl) drives every width query. Component layouts respond to the space they're given with container queries (container-min / container-below, thresholds = the content widths); only page chrome that genuinely depends on the viewport uses media queries (media / media-below / media-between, breakpoints = the content width plus both gutters, i.e. the viewport at which that size of container() fits).
 
-@function bp($name) {
-  @if not map.has-key($breakpoints, $name) {
-    @error 'Unknown breakpoint `#{$name}`. Expected one of: #{map.keys($breakpoints)}.';
+/// Media-query breakpoints, mobile first: each width plus both gutters.
+$breakpoints: ();
+@each $key, $px in $raw-widths {
+  $breakpoints: map.set($breakpoints, $key, toRem($px + 2 * $raw-gutter));
+}
+
+@function -assert-width($name) {
+  @if not map.has-key($raw-widths, $name) {
+    @error 'Unknown width `#{$name}`. Expected one of: #{map.keys($raw-widths)}.';
   }
-  @return map.get($breakpoints, $name);
+  @return $name;
+}
+
+/// Viewport breakpoint for `$name`.
+@function bp($name) {
+  @return map.get($breakpoints, -assert-width($name));
+}
+
+/// Container-query threshold (content width) for `$name`.
+@function cq($name) {
+  @return toRem(map.get($raw-widths, -assert-width($name)));
 }
 
 /// Apply from `$name` upward. @include media('md') { ... }
@@ -32,4 +41,20 @@ $breakpoints: (
 /// Apply between two breakpoints, inclusive of `$from`, exclusive of `$to`.
 @mixin media-between($from, $to) {
   @media (min-width: bp($from)) and (width < #{bp($to)}) { @content; }
+}
+
+/// Make this element a size container for its descendants' container queries. An element can't query itself, so put this on the wrapper whose width the layout should respond to (a section or card). It stops the element from shrink-wrapping its content horizontally, so use it on block-level wrappers only. `$name` is only needed when a descendant must skip a nearer container.
+@mixin query-container($name: null) {
+  container-type: inline-size;
+  @if $name { container-name: $name; }
+}
+
+/// Apply when the nearest (or named) container has at least `$size` of content width. @include container-min('md') { ... }
+@mixin container-min($size, $name: null) {
+  @container #{$name} (min-width: #{cq($size)}) { @content; }
+}
+
+/// Apply when the nearest (or named) container is narrower than `$size`. Exclusive, so it never overlaps `container-min()`.
+@mixin container-below($size, $name: null) {
+  @container #{$name} (width < #{cq($size)}) { @content; }
 }

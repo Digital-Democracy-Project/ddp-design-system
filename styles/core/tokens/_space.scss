@@ -153,10 +153,12 @@ $-opacity-keys: (
 }
 
 $-container-keys: (
+  'xs',
   'sm',
   'md',
   'lg',
-  'xl'
+  'xl',
+  '2xl'
 );
 
 @function container($key: 'xl') {

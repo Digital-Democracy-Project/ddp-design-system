@@ -208,10 +208,10 @@
 
 // ---------- Layout ----------
 
-/// Centred page container with gutters.
+/// Centred page container with gutters. Container sizes are content widths: the gutters sit outside them, so `xl` gives exactly 1280px of content (and a 1328px box) for clean column math.
 @mixin container($size: 'xl') {
   width: 100%;
-  max-width: container($size);
+  max-width: calc(#{container($size)} + 2 * var(--ddp-gutter));
   margin-inline: auto;
   padding-inline: var(--ddp-gutter);
 }

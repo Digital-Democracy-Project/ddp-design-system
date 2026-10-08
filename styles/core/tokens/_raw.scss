@@ -72,3 +72,15 @@ $raw-radius: (
   '2xl': 24px,
   'full': 9999px
 );
+
+// The one width scale, in px: container content widths (container()), container-query thresholds (container-min/-below) and, plus the gutters, media-query breakpoints (media()). Mirrors --ddp-container-* and --ddp-gutter.
+$raw-widths: (
+  'xs': 400,
+  'sm': 640,
+  'md': 840,
+  'lg': 1080,
+  'xl': 1280,
+  '2xl': 1600
+);
+
+$raw-gutter: 24;

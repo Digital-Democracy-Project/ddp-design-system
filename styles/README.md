@@ -7,7 +7,7 @@ Three groups, split by what they actually do — not just files sitting in the s
 | File                     | Contains                                                                                                                     |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
 | `core/_tokens.scss`      | Typed accessors that emit `var(--ddp-*)`, validated at compile time. Plus raw maps for the few places a literal is required. |
-| `core/_breakpoints.scss` | Breakpoint map and the `media` / `media-below` / `media-between` mixins.                                                     |
+| `core/_breakpoints.scss` | Width queries from the one width scale (`$raw-widths`, xs–2xl): `container-min` / `container-below` / `query-container` for component layouts, `media` / `media-below` / `media-between` (width + gutters) for page chrome. |
 | `core/_mixins.scss`      | Everything CSS custom properties cannot express at author time.                                                              |
 | `core/index.scss`        | Barrel. `@forward`s the three above.                                                                                         |
 
@@ -103,7 +103,7 @@ TypeScript infers the exact shape automatically via `resolveJsonModule` (on by d
 
 Every value is a `var(--ddp-*)` string, not a resolved color/length — same as the Sass functions, and for the same reason (see above): one export works correctly under both themes because the _browser_ resolves the variable against whichever `[data-theme]` is active, not the token file. That means these strings are only meaningful somewhere the CSS cascade applies — safe to hand to `style={{ color: tokens.color.primary }}` or a CSS-in-JS template, **not** safe to hand to a canvas `fillStyle` or a charting library that expects a literal color (those need `getComputedStyle(el).getPropertyValue('--ddp-color-primary')` at render time instead).
 
-The one exception is `tokens.breakpoints` — plain pixel numbers (`{ sm: 480, md: 768, ... }`), because `matchMedia` and JS breakpoint logic can't consume a custom property either way, themed or not.
+The one exception is `tokens.breakpoints` — plain pixel numbers, the media-query breakpoints (each container width plus both gutters: `{ xs: 448, sm: 688, md: 888, ... }`), because `matchMedia` and JS breakpoint logic can't consume a custom property either way, themed or not.
 
 ## Accessors
 

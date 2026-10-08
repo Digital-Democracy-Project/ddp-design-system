@@ -380,18 +380,6 @@
 	--ddp-z-tooltip: 1600;
 	/* @kind other */
 
-	/* ---------- Breakpoints (reference values — SCSS uses the map) ---------- */
-	--ddp-breakpoint-sm: #{toRem(480)};
-	/* @kind other */
-	--ddp-breakpoint-md: #{toRem(768)};
-	/* @kind other */
-	--ddp-breakpoint-lg: #{toRem(1024)};
-	/* @kind other */
-	--ddp-breakpoint-xl: #{toRem(1280)};
-	/* @kind other */
-	--ddp-breakpoint-2xl: #{toRem(1536)};
-	/* @kind other */
-
 	/* ---------- Motion ---------- */
 	--ddp-duration-instant: 0ms;
 	/* @kind other */
@@ -413,10 +401,13 @@
 	/* @kind other */
 
 	/* ---------- Layout ---------- */
+	/* The one width scale (mirrors $raw-widths): content widths for container(), thresholds for container queries, and, plus both gutters, the media-query breakpoints. */
+	--ddp-container-xs: #{toRem(400)};
 	--ddp-container-sm: #{toRem(640)};
 	--ddp-container-md: #{toRem(840)};
 	--ddp-container-lg: #{toRem(1080)};
 	--ddp-container-xl: #{toRem(1280)};
+	--ddp-container-2xl: #{toRem(1600)};
 	--ddp-gutter: #{toRem(24)};
 
 
