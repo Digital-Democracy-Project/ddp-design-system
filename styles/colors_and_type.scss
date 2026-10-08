@@ -409,6 +409,8 @@
 	--ddp-container-xl: #{toRem(1280)};
 	--ddp-container-2xl: #{toRem(1600)};
 	--ddp-gutter: #{toRem(24)};
+	/* Max line length for running text. */
+	--ddp-paragraph-width: #{toRem(720)};
 
 
 	/* ============================================================

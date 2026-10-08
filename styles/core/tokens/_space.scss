@@ -164,3 +164,8 @@ $-container-keys: (
 @function container($key: 'xl') {
   @return var-ref('container-#{assert-key($key, $-container-keys, "container")}');
 }
+
+/// Max line length for running text. paragraph-width() → var(--ddp-paragraph-width).
+@function paragraph-width() {
+  @return var-ref('paragraph-width');
+}
