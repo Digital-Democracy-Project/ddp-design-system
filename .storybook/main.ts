@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-vite'
+import { fileURLToPath } from 'node:url'
 import type { Plugin, PluginOption } from 'vite'
 
 // vite.config.ts is the library build, and Storybook merges it in. These two plugins only make sense there: merge-tokens-into-stylesheet errors when the bundle has no dist/styles.css, and Storybook never needs .d.ts rollups.
@@ -13,6 +14,10 @@ const config: StorybookConfig = {
 			.filter((plugin) => !LIBRARY_ONLY_PLUGINS.includes((plugin as Plugin | null)?.name ?? '')) as PluginOption[]
 		return viteConfig
 	},
+	previewAnnotations: async (entries = []) => [
+		...entries,
+		fileURLToPath(new URL('./global-styles.ts', import.meta.url)),
+	],
 	stories: ['../components/**/*.stories.@(ts|tsx)'],
 	addons: ['@storybook/addon-docs'],
 	framework: {

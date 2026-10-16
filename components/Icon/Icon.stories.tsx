@@ -1,32 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Icon } from './Icon'
-
-// This list is only for Storybook's controls UI (a dropdown needs a
-// concrete set of options) — it has no bearing on the component itself,
-// which discovers icons automatically. Worth updating here so new icons
-// show up in the picker, but nothing breaks if it's forgotten.
-const ICON_NAMES = [
-	'arrow-down',
-	'arrow-up',
-	'arrows-up-down',
-	'check',
-	'chevron-down',
-	'close',
-	'democrat',
-	'info',
-	'republican',
-	'search',
-	'sliders',
-	'sort-down',
-	'trash',
-]
+import { Icon, iconNames } from './Icon'
 
 const meta: Meta<typeof Icon> = {
 	title: 'Components/Icon',
 	component: Icon,
 	args: { name: 'chevron-down', size: 'md' },
 	argTypes: {
-		name: { control: 'select', options: ICON_NAMES },
+		name: { control: 'select', options: iconNames },
 		size: { control: 'select', options: ['xs', 'sm', 'md', 'lg', 'xl'] },
 	},
 }
@@ -39,7 +19,7 @@ export const Playground: Story = {}
 export const AllIcons: Story = {
 	render: () => (
 		<div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
-			{ICON_NAMES.map((n) => (
+			{iconNames.map((n) => (
 				<div
 					key={n}
 					style={{

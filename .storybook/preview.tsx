@@ -1,20 +1,19 @@
 import type { Preview } from '@storybook/react-vite'
-import '../styles/colors_and_type.scss'
-// Not part of the tokens file itself — see styles/_base.scss for why it's
-// a separate Sass partial, loaded here directly since Storybook bypasses
-// vite.config.ts's dist/styles.css assembly entirely.
-import '../styles/_base.scss'
-import '../styles/utilities/index.scss'
 
 // Renders every story inside a themed wrapper so the toolbar toggle below
 // actually exercises our [data-theme="dark"] token remapping, not just the
-// default light theme.
+// default light theme. The `ddp` class matches how consuming apps use the
+// library (ddp-next puts it on <body>): components take their font from it.
 const withTheme: Preview['decorators'] = [
-	(Story, context) => (
-		<div data-theme={context.globals.theme ?? 'light'} style={{ padding: '1rem' }}>
-			<Story />
-		</div>
-	),
+	(Story, context) => {
+		// Portaled content (dropdown panels) renders under <body>, outside this wrapper, so <body> gets the class too, as in consuming apps. Story view only: in Docs view <body> also holds Storybook's own docs page.
+		if (context.viewMode === 'story') document.body.classList.add('ddp')
+		return (
+			<div className="ddp" data-theme={context.globals.theme ?? 'light'} style={{ padding: '1rem' }}>
+				<Story />
+			</div>
+		)
+	},
 ]
 
 const preview: Preview = {

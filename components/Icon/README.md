@@ -22,9 +22,19 @@ import { Icon } from '@digital-democracy-project/design-system';
 
 Any other SVG prop is passed through to the root `<svg>`.
 
+## Listing the available icons
+
+`iconNames` is the full list of names `Icon` accepts, in alphabetical order, discovered from `assets/icons/` at build time:
+
+```tsx
+import { Icon, iconNames } from '@digital-democracy-project/design-system';
+
+{iconNames.map((name) => <Icon key={name} name={name} />)}
+```
+
 ## Adding a new icon
 
-Drop a standardized SVG (see the existing files in `assets/icons/` for the convention — `fill="currentColor"` or `stroke="currentColor"`, no explicit `width`/`height`, no design-tool cruft) into `assets/icons/`. It's picked up automatically — no import statement or registry entry to add. Storybook's icon-picker dropdown (`Icon.stories.tsx`) is a separate, manually-maintained list purely for that control's UI; update it too if you want the new icon to show up there, but nothing functional depends on it.
+Drop a standardized SVG (see the existing files in `assets/icons/` for the convention — `fill="currentColor"` or `stroke="currentColor"`, no explicit `width`/`height`, no design-tool cruft) into `assets/icons/`. It's picked up automatically — no import statement or registry entry to add — and it appears in `iconNames`, so Storybook's icon picker and "All Icons" story include it too.
 
 ## Color
 

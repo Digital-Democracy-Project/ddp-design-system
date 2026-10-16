@@ -20,6 +20,9 @@ for (const path in modules) {
 }
 
 export type IconName = string
+
+/** Every icon name `Icon` accepts, in alphabetical order. Discovered from assets/icons/ at build time, so it's always the complete set. */
+export const iconNames: readonly IconName[] = Object.keys(ICONS).sort()
 // Deliberately a superset of SizeOptions ('xs' and 'xl' added), not an alias of it — every SizeOptions-scaled component's own size passes straight through to this one with no lookup table, since the subset relationship holds by construction. See TextInput/Select for the components that rely on this.
 export type IconSize = SizeOptions5
 

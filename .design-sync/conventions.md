@@ -2,7 +2,7 @@
 
 Load the one stylesheet, `styles.css`. It contains everything: the tokens, the fonts (Public Sans for sans, Newsreader for serif), a reset that removes browser default styles, the base text styles, the utility classes, and every component's CSS. No component needs a provider or wrapper component.
 
-Put `class="ddp"` on `<body>` or the page's outermost wrapper. That turns on the design system's styles for plain elements: body text, `h1`–`h3`, `p`, links, `small`, `code`, `blockquote`, placeholders and focus rings. Without it, plain HTML renders unstyled, because the reset removes the browser's defaults. Components look the same either way.
+Always put `class="ddp"` on `<body>` or the page's outermost wrapper. Components don't set their own font: they take it from the page, and `.ddp` is what supplies Public Sans, along with the default text size, color and page background. Without it, components render in the browser's default serif font. `.ddp` also styles plain elements: body text, `h1`–`h3`, `p`, links, `small`, `code`, `blockquote`, placeholders and focus rings. Without it, plain HTML renders unstyled, because the reset removes the browser's defaults.
 
 Dark mode is `data-theme="dark"` on any ancestor element. It redefines the same token names, so there are no dark-mode props or separate dark variants.
 
@@ -64,7 +64,7 @@ The raw color steps behind these (`--ddp-color-violet-500` and so on) exist, but
 - **Labels and icons:**
   - `Badge` for a label pill that isn't clickable;
   - `SectionLabel` for a small label above a field or section, or for inline details about a record;
-  - `Icon`, which has these names: `arrow-down`, `arrow-up`, `arrows-up-down`, `check`, `chevron-down`, `close`, `democrat`, `info`, `menu`, `republican`, `search`, `sliders`, `sort-down` and `trash`.
+  - `Icon`, which has these names: `arrow-down`, `arrow-up`, `arrows-up-down`, `check`, `chevron-down`, `close`, `democrat`, `info`, `menu`, `republican`, `search`, `sliders`, `sort-down` and `trash`. The same list is exported as `iconNames`.
 - **Lists and menus:**
   - `MenuItem` is a single option row, with an optional `icon` and a selection indicator (`'check'` or `'checkbox'`). It works on its own.
   - `Menu` is a list of options with keyboard navigation. It takes `getItemProps`, `listRef` and `activeIndex` from Floating UI's interaction hooks (`@floating-ui/react`), set up by the code using it.
