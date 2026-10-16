@@ -18,6 +18,8 @@ const withTheme: Preview['decorators'] = [
 ]
 
 const preview: Preview = {
+	// Generates a Docs page (props table + every story) for each component; a story file can opt out with tags: ['!autodocs'].
+	tags: ['autodocs'],
 	parameters: {
 		controls: {
 			matchers: {

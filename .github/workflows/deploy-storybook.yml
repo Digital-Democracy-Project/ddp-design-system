@@ -1,0 +1,60 @@
+name: Deploy Storybook to GitHub Pages
+
+# Published at https://digital-democracy-project.github.io/ddp-design-system/storybook/
+# Hosted on GitHub Pages only -- no custom domain, no ddp-server involvement.
+# One-time setup this workflow does not do: repo Settings -> Pages -> Source: "GitHub Actions".
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'components/**'
+      - '.storybook/**'
+      - 'assets/**'
+      - 'styles/**'
+      - 'package.json'
+      - 'package-lock.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - run: npm ci
+
+      - run: npm run build-storybook
+
+      # Nests the build under /storybook/ so the project-page root
+      # (https://digital-democracy-project.github.io/ddp-design-system/) stays free for later.
+      - run: |
+          mkdir -p _site/storybook
+          cp -r storybook-static/. _site/storybook/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
