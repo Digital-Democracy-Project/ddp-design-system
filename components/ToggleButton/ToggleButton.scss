@@ -2,7 +2,7 @@
 
 $tone-names: ("primary", "secondary", "tertiary", "neutral");
 
-// Two shapes, one component — validated against two real, independently-built references (ddp-scorecard-react's ToggleChip/CheckboxItem, and the legislative-scorecard hi-fi mockup's ChipToggle/ToggleButton), both of which consistently pair a shape with a fill treatment: a plain pill solid-fills when pressed (no indicator prop), a rounded rect with a checkbox square soft/tint-fills when pressed (indicator="checkbox"). No validated case mixes them, so the two aren't exposed as independent props.
+// Two shapes, one component — validated against two real, independently-built references (ddp-scorecard-react's ToggleChip/CheckboxItem, and the ChipToggle/ToggleButton in the "Filter - Hi-fi (Direction D)" mockup in Claude Design, the basis for the legislator-page filters on digitaldemocracyproject.org), both of which consistently pair a shape with a fill treatment: a plain pill solid-fills when pressed (no indicator prop), a rounded rect with a checkbox square soft/tint-fills when pressed (indicator="checkbox"). No validated case mixes them, so the two aren't exposed as independent props.
 //
 // tone and size are peer-choice axes (every value, including the default, is an actually-rendered look), so `ddp-toggle-button-primary`/`-md` are always explicitly applied by ToggleButton.tsx. `indicator` is on/off — its default (no indicator) is a genuine absence of the checkbox square, not a third peer shape — so it stays implicit, via the shared `has-checkbox` class only when present.
 .ddp-toggle-button {

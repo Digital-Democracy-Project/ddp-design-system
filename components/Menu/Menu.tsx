@@ -17,7 +17,7 @@ export type MenuFocusMode = 'roving' | 'virtual'
 
 export interface MenuProps {
 	options: MenuOption[]
-	/** A single value (single-select) or an array of values (multi-select) — mode is inferred from which shape this is, not a separate `multiple` flag that could drift out of sync with it. Single-select items show a bare checkmark when selected (`MenuItem`'s `'check'` indicator); multi-select items show a persistent checkbox square (`'checkbox'`), matching the real validated precedent (the legislative-scorecard hi-fi mockup's `CategoryMenu`). */
+	/** A single value (single-select) or an array of values (multi-select) — mode is inferred from which shape this is, not a separate `multiple` flag that could drift out of sync with it. Single-select items show a bare checkmark when selected (`MenuItem`'s `'check'` indicator); multi-select items show a persistent checkbox square (`'checkbox'`). */
 	selected?: string | string[]
 	onSelect: (option: MenuOption) => void
 	/** Which option is keyboard-highlighted right now. */

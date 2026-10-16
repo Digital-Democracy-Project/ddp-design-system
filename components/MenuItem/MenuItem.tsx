@@ -11,7 +11,7 @@ export type MenuItemIndicator = 'check' | 'checkbox'
 export interface MenuItemProps extends HTMLAttributes<HTMLDivElement> {
 	selected?: boolean
 	disabled?: boolean
-	/** `'check'` (default) — a bare checkmark, only occupying space when `selected`. Right for a single-select list, where only one row is ever marked. `'checkbox'` — a persistent checkbox square, checked or not, matching the real validated multi-select precedent (the legislative-scorecard hi-fi mockup's `CategoryMenu`) — reuses the same box styling `Checkbox`/`ToggleButton`'s `has-checkbox` indicator use. */
+	/** `'check'` (default) — a bare checkmark, only occupying space when `selected`. Right for a single-select list, where only one row is ever marked. `'checkbox'` — a persistent checkbox square, checked or not, for multi-select lists. Reuses the same box styling `Checkbox`/`ToggleButton`'s `has-checkbox` indicator use. */
 	indicator?: MenuItemIndicator
 	/** Keyboard-highlighted via `aria-activedescendant`, without real DOM focus — for a combobox-style consumer (e.g. `SearchBar`) where focus has to stay on a text input while arrow keys move a virtual active item. Distinct from `selected`: a search suggestion isn't "the current value" the way a `Select` option is, it's just momentarily highlighted. Renders the same visual treatment `:hover`/`:focus` already give a roving-focus item. */
 	highlighted?: boolean

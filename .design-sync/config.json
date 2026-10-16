@@ -2,10 +2,11 @@
 	"projectId": "ad94b7aa-16f0-42fa-9511-09a93f9ca4f2",
 	"shape": "storybook",
 	"pkg": "@digital-democracy-project/design-system",
+	"buildCmd": "npm run build",
 	"storybookStatic": ".design-sync/sb-reference",
 	"storybookConfigDir": ".storybook",
 	"readmeHeader": ".design-sync/conventions.md",
 	"overrides": {
-		"Button": { "cardMode": "column" }
+		"DropdownMenu": { "cardMode": "single" }
 	}
 }

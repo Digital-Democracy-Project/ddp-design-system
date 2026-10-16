@@ -37,7 +37,7 @@ export interface SelectProps extends Omit<
 	onChange?: (value: string) => void
 	placeholder?: string
 	size?: SelectSize
-	/** Adds a filter `TextInput` inside the panel — a real, validated pattern (Aqua's `AquaDropdown`, the legislative-scorecard hi-fi mockup's `CategoryMenu`), not speculative. Off by default. */
+	/** Adds a filter `TextInput` inside the panel. Off by default. */
 	searchable?: boolean
 	searchPlaceholder?: string
 	ref?: Ref<HTMLButtonElement>

@@ -2,7 +2,7 @@
 
 A real `<button aria-pressed>` with two shapes, validated against two independently-built real references:
 
-- Omitting `indicator` — a plain pill, solid-filled with `tone`'s color when pressed. Matches `ddp-scorecard-react`'s `ToggleChip` and the legislative-scorecard hi-fi mockup's `ChipToggle` — used for multi-select-style chips (e.g. picking one or more years/sessions).
+- Omitting `indicator` — a plain pill, solid-filled with `tone`'s color when pressed. Matches `ddp-scorecard-react`'s `ToggleChip` and the `ChipToggle` in the "Filter - Hi-fi (Direction D)" mockup in Claude Design (the basis for the legislator-page filters on digitaldemocracyproject.org) — used for multi-select-style chips (e.g. picking one or more years/sessions).
 - `indicator="checkbox"` — a rounded rect with a small decorative checkbox square, soft/tint-filled with `tone`'s color when pressed. Matches `ddp-scorecard-react`'s `CheckboxItem` (button mode) and the mockup's own `ToggleButton` — used for independent boolean flags (e.g. "hide voice votes").
 
 Both real references consistently pair a shape with a fill treatment, so `indicator` drives both together rather than exposing them as independent props — there's no validated case that mixes them.

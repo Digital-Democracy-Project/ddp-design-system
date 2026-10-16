@@ -1,6 +1,6 @@
 @use "../../styles/core" as *;
 
-// Pure chrome — background/border/radius/shadow, no padding. Reuses the existing card() mixin directly rather than re-declaring its recipe, since that recipe is already the settled, validated look (also independently documented in the Claude Design project's own "Visual foundations" notes).
+// Pure chrome — background/border/radius/shadow, no padding. Reuses the existing card() mixin directly rather than re-declaring its recipe, since that recipe is already the settled, validated look.
 .ddp-card {
 	@include default-styles {
 		@include card();
