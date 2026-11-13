@@ -1,0 +1,64 @@
+@use "../../styles/core" as *;
+
+// Radio reuses Checkbox's row layout, sizes, label text, disabled and error styles by rendering the same `ddp-checkbox*` classes (Radio.tsx imports Checkbox.scss), so the two always line up at every size. Only what differs lives here: the round box, the dot, and the checked/focus rules.
+//
+// The checked/focus rules hang off `.ddp-radio-input`, not `.ddp-checkbox-input`, on purpose: a radio whose group has nothing selected matches the native `:indeterminate` pseudo-class, and Checkbox's `:indeterminate` rules would paint every radio filled with a dash.
+.ddp-radio-input {
+	@include visually-hidden;
+}
+
+.ddp-radio-circle {
+	border-radius: radius("full");
+}
+
+.ddp-radio-dot {
+	width: 40%;
+	height: 40%;
+	border-radius: radius("full");
+	background-color: color("primary-foreground");
+	opacity: 0;
+	@include transition(opacity, $speed: "fast");
+}
+
+.ddp-radio-input:checked ~ .ddp-radio-circle {
+	background-color: color("primary");
+	border-color: color("primary");
+}
+
+.ddp-radio-input:checked ~ .ddp-radio-circle .ddp-radio-dot {
+	opacity: 1;
+}
+
+.ddp-radio-input:focus-visible ~ .ddp-radio-circle {
+	outline: var(--ddp-focus-ring-width) solid var(--ddp-focus-ring-color);
+	outline-offset: var(--ddp-focus-ring-offset);
+}
+
+// ---------- Group ----------
+
+// A plain fieldset with the browser's border, padding and margin removed; the legend takes SectionLabel's look so the group reads like the other labelled rail sections.
+.ddp-radio-group {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	min-width: 0;
+}
+
+.ddp-radio-group-legend {
+	@include section-label();
+	padding: 0;
+	margin-bottom: space(2);
+}
+
+.ddp-radio-group-options {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: space(2);
+}
+
+.ddp-radio-group-error-message {
+	margin: space(1) 0 0;
+	font-size: font-size("sm");
+	color: color("negative");
+}
