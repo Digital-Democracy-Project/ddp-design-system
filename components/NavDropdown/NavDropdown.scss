@@ -1,0 +1,66 @@
+@use "../../styles/core" as *;
+
+// The wrapper only anchors the list; the page decides where it sits in the bar.
+.ddp-nav-dropdown {
+	position: relative;
+}
+
+.ddp-nav-dropdown-button {
+	@include unstyled-button;
+	@include focus-ring;
+	@include row(1);
+	@include type("sm", "medium");
+	color: text("default");
+	@include transition(color, background-color, border-color);
+
+	&:hover,
+	&.ddp-nav-dropdown-button-active {
+		color: color("primary");
+	}
+}
+
+.ddp-nav-dropdown-chevron {
+	@include transition(transform);
+	flex: none;
+}
+
+.ddp-nav-dropdown-chevron-open {
+	transform: rotate(180deg);
+}
+
+.ddp-nav-dropdown-panel {
+	position: absolute;
+	top: 100%;
+	margin-top: space(2);
+	padding-block: space(1);
+	width: toRem(192);
+	background-color: surface("raised");
+	border: border-width(1) solid border-color("default");
+	border-radius: radius("md");
+	box-shadow: shadow("lg");
+	z-index: z("dropdown");
+}
+
+.ddp-nav-dropdown-panel-left {
+	left: 0;
+}
+
+.ddp-nav-dropdown-panel-right {
+	right: 0;
+}
+
+.ddp-nav-dropdown-link {
+	@include unstyled-link;
+	@include focus-ring-inset;
+	display: block;
+	padding: space(2) space(4);
+	font-size: font-size("sm");
+	line-height: line-height("sm");
+	color: text("default");
+	@include transition(color, background-color, border-color);
+
+	&:hover {
+		background-color: surface("page");
+		color: color("primary");
+	}
+}
